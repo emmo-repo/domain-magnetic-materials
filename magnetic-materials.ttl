@@ -15,7 +15,7 @@
     owl:versionInfo "0.0.4" ;
     dcterms:title "Domain Ontology for Magnetic Materials"@en ;
     dcterms:abstract "An EMMO-based domain-ontology for magnetic materials. Created within the EU project MaMMoS.Grant number 101135546 (HORIZON-CL4-2023-DIGITAL-EMERGING-01).The Magnetic Materials Ontology is released under the Creative Commons Attribution 4.0 International license (CC BY 4.0)."@en ;
-    dcterms: :WilfriedHortschitz, :SantaPile, :ThomasSchrefl ;
+    dcterms:creator :WilfriedHortschitz, :SantaPile, :ThomasSchrefl ;
     dcterms:contributor :AndreaPetrocchi, :MartinDobiasch,  :SwapneelAmitPathak, :SamuelHolt, :HansFangohr, :JonasWinkler, :MartinLang, :WilliamRigaut ;
     rdfs:comment "Created within the EU project MaMMoS. Grant number 101135546     (HORIZON-CL4-2023-DIGITAL-EMERGING-01)."^^xsd:string,
         """Contacts:
