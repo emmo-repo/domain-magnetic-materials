@@ -1,4 +1,4 @@
-@prefix : <https://w3id.org/emmo/domain/magnetic_materials#> .
+@prefix : <https://w3id.org/emmo/domain/magnetic-materials#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ns1: <https://w3id.org/emmo#> .
 @prefix ns2: <http://www.lesfleursdunormal.fr/static/_downloads/owlready_ontology.owl#> .
@@ -7,6 +7,22 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/emmo/domain/magnetic-materials> a owl:Ontology ;
+    owl:imports <https://w3id.org/emmo/domain/magnetic-materials/0.0.4/dependencies> ;
+    owl:imports <https://w3id.org/emmo/domain/magnetic-materials/0.0.4/contributors> ;
+    owl:versionIRI <https://w3id.org/emmo/domain/magnetic-materials/0.0.4> ;
+    owl:versionInfo "0.0.4" ;
+    dcterms:title "Domain Ontology for Magnetic Materials"@en ;
+    dcterms:abstract "An EMMO-based domain-ontology for magnetic materials. Created within the EU project MaMMoS.Grant number 101135546 (HORIZON-CL4-2023-DIGITAL-EMERGING-01).The Magnetic Materials Ontology is released under the Creative Commons Attribution 4.0 International license (CC BY 4.0)."@en ;
+    dcterms: :WilfriedHortschitz, :SantaPile, :ThomasSchrefl ;
+    dcterms:contributor :AndreaPetrocchi, :MartinDobiasch,  :SwapneelAmitPathak, :SamuelHolt, :HansFangohr, :JonasWinkler, :MartinLang, :WilliamRigaut ;
+    rdfs:comment "Created within the EU project MaMMoS. Grant number 101135546     (HORIZON-CL4-2023-DIGITAL-EMERGING-01)."^^xsd:string,
+        """Contacts:
+Wilfried Hortschitz
+DISS-UWK
+email: wilfried.hortschitz@donau-uni.ac.at
+"""@en .
 
 <http://purl.org/ontology/bibo/status/published> a owl:Thing .
 
@@ -612,29 +628,6 @@ ns1:WeightPercent rdfs:subClassOf ns1:EMMO_52fa9c76_fc42_4eca_a5c1_6095a1c9caab,
 ns1:Yobi rdfs:subClassOf ns1:EMMO_ac9e518d_b403_4d8b_97e2_06f9d40bac01 .
 
 ns1:Zebi rdfs:subClassOf ns1:EMMO_ac9e518d_b403_4d8b_97e2_06f9d40bac01 .
-
-<https://w3id.org/emmo/domain/magnetic_materials> a owl:Ontology ;
-    dcterms:abstract "An EMMO-based domain-ontology for magnetic materials.Created within the EU project MaMMoS.Grant number 101135546 (HORIZON-CL4-2023-DIGITAL-EMERGING-01).The Magnetic Materials Ontology is released under the Creative Commons Attribution 4.0 International license (CC BY 4.0)."@en ;
-    dcterms:contributor "Andrea Petrocchi"@en,
-        "Hans Fangohr"@en,
-        "Jonas Winkler"@en,
-        "Martin Lang"@en,
-        "Sam Holt"@en,
-        "Swapneel Amit Pathak"@en,
-        "William Rigaut"@en ;
-    dcterms:creator "Santa Pile"@en,
-        "Thomas Schrefl"@en,
-        "Wilfried Hortschitz"@en ;
-    dcterms:title "Magnetic Materials Ontology"@en ;
-    rdfs:comment "Created within the EU project MaMMoS. Grant number 101135546     (HORIZON-CL4-2023-DIGITAL-EMERGING-01)."^^xsd:string,
-        """Contacts:
-Wilfried Hortschitz
-DISS-UWK
-email: wilfried.hortschitz@donau-uni.ac.at
-"""@en ;
-    owl:imports <https://w3id.org/emmo/inferred> ;
-    owl:versionIRI <https://w3id.org/emmo/domain/0.0.4/magnetic_materials> ;
-    owl:versionInfo "0.0.4"@en .
 
 :EMMO_405ae501-8898-59c0-b2db-0afa09d561f9 a owl:AnnotationProperty ;
     ns2:python_name "EMMO_405ae501-8898-59c0-b2db-0afa09d561f9"^^xsd:string ;
