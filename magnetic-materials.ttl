@@ -621,7 +621,7 @@ emmo:Zebi rdfs:subClassOf emmo:EMMO_ac9e518d_b403_4d8b_97e2_06f9d40bac01 .
     dcterms:creator :SantaPile,
         :ThomasSchrefl,
         :WilfriedHortschitz ;
-    dcterms:title "Magnetic Materials Ontology"@en ;
+    dcterms:title "Magnetic Materials Ontology (MagMO)"@en ;
     rdfs:comment "Created within the EU project MaMMoS. Grant number 101135546     (HORIZON-CL4-2023-DIGITAL-EMERGING-01)."^^xsd:string,
         """Contacts:
 Wilfried Hortschitz
@@ -632,7 +632,7 @@ email: wilfried.hortschitz@donau-uni.ac.at
     dcterms:mediator emmo:EMMC_ASBL ;
     dcterms:publisher <https://mammos-project.github.io/> ;
     bibo:status "unstable" ;
-    vann:preferredNamespacePrefix: "domm" ;
+    vann:preferredNamespacePrefix: "MagMO" ;
     vann:preferredNamespaceUri: "https://w3id.org/emmo/domain/magnetic-materials" ;
     owl:imports <https://w3id.org/emmo/domain/magnetic-materials/0.0.4/contributors>,
         <https://w3id.org/emmo/domain/magnetic-materials/0.0.4/dependencies> ;
