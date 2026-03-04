@@ -1,4 +1,5 @@
 @prefix : <https://w3id.org/emmo/domain/magnetic-materials#> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix emmo: <https://w3id.org/emmo#> .
 @prefix ns2: <http://www.lesfleursdunormal.fr/static/_downloads/owlready_ontology.owl#> .
@@ -6,6 +7,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://purl.org/ontology/bibo/status/published> a owl:Thing .
