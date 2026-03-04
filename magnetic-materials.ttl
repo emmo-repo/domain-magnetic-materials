@@ -634,8 +634,8 @@ email: wilfried.hortschitz@donau-uni.ac.at
     dcterms:mediator emmo:EMMC_ASBL ;
     dcterms:publisher <https://mammos-project.github.io/> ;
     bibo:status "unstable" ;
-    vann:preferredNamespacePrefix: "MagMO" ;
-    vann:preferredNamespaceUri: "https://w3id.org/emmo/domain/magnetic-materials" ;
+    vann:preferredNamespacePrefix "MagMO" ;
+    vann:preferredNamespaceUri "https://w3id.org/emmo/domain/magnetic-materials" ;
     owl:imports <https://w3id.org/emmo/domain/magnetic-materials/0.0.4/contributors>,
         <https://w3id.org/emmo/domain/magnetic-materials/0.0.4/dependencies> ;
     owl:versionIRI <https://w3id.org/emmo/domain/magnetic-materials/0.0.4> ;
