@@ -10,6 +10,7 @@ on:
 
 env:
   ONTOLOGY_NAME: magnetic-materials
+  ONTOLOGY_PREFIX: magmo
   ONTOLOGY_IRI: https://w3id.org/emmo/domain/magnetic-materials
 
 permissions:
@@ -28,12 +29,18 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
-        python-version: 3.11
+        python-version: 3.13 # Tripper does not support 3.14 yet.
 
-    - name: Install EMMOntoPy
+    - name: Install EMMOntoPy and tripper
       run: |
         pip install --upgrade pip
-        pip install git+https://github.com/emmo-repo/EMMOntoPy.git@master
+        pip install \
+            "EMMOntoPy[ontokit] @ git+https://github.com/emmo-repo/EMMOntoPy.git@ontokit" \
+            "tripper[datadoc] @ git+https://github.com/EMMC-ASBL/tripper.git@master"
+
+    #- name: Install current ontology for keywords tool
+    #  run: |
+    #    pip install -U git+
 
     - name: Install ROBOT
       run: |
@@ -44,36 +51,106 @@ jobs:
         chmod +x bin/robot
         ls -l bin/
 
-    - name: Create dependencies, squashed and inferred ontologies
+    - name: Download Widoco
+      run: |
+        wget --quiet https://github.com/dgarijo/Widoco/releases/download/v1.4.25/widoco-1.4.25-jar-with-dependencies_JDK-17.jar
+
+    - name: Copy readme and license files to gh-pages
       run: |
         mkdir build
-        cp README.md build/.
+        cp README.md LICENSE build/.
+
+    - name: Create dependencies on gh-pages
+      run: |
         ontoconvert \
             -saw \
             --namespace="emmo:https://w3id.org/emmo#" \
+            --namespace="${ONTOLOGY_PREFIX}:https://w3id.org/emmo/domain/${ONTOLOGY_NAME}#" \
             ${ONTOLOGY_NAME}-dependencies.ttl \
             build/${ONTOLOGY_NAME}-dependencies.ttl
+
+    - name: Create squashed ontology
+      run: |
         ontoconvert \
             -sawe \
-            --base-iri="${ONTOLOGY_IRI}#" \
-            --iri="${ONTOLOGY_IRI}" \
+            --namespace="emmo:https://w3id.org/emmo#" \
+            --namespace="${ONTOLOGY_PREFIX}:https://w3id.org/emmo/domain/${ONTOLOGY_NAME}#" \
+            --base-iri="https://w3id.org/emmo/domain/${ONTOLOGY_NAME}#" \
+            --iri="https://w3id.org/emmo/domain/${ONTOLOGY_NAME}" \
             ${ONTOLOGY_NAME}.ttl \
             build/${ONTOLOGY_NAME}.ttl
-        bin/robot reason --reasoner HermiT --input build/${ONTOLOGY_NAME}.ttl --output build/${ONTOLOGY_NAME}-inferred.ttl
 
-        # HermiT (when run via EMMOntoPy) doesn't support custom datatypes. Use ROBOT instead
-        #ontoconvert \
-        #    -sawe \
-        #    --base-iri="${ONTOLOGY_IRI}#" \
-        #    --iri="${ONTOLOGY_IRI}" \
-        #    --infer=HermiT \
-        #    ${ONTOLOGY_NAME}.ttl \
-        #    build/${ONTOLOGY_NAME}-inferred.ttl
+    - name: Create ontology for used later for generating documentation
+      run: |
+        ontoconvert \
+            -awe \
+            --namespace="emmo:https://w3id.org/emmo#" \
+            --namespace="${ONTOLOGY_PREFIX}:https://w3id.org/emmo/domain/${ONTOLOGY_NAME}#" \
+            --base-iri="https://w3id.org/emmo/domain/${ONTOLOGY_NAME}#" \
+            --iri="https://w3id.org/emmo/domain/${ONTOLOGY_NAME}" \
+            --copy-annotation="elucidation-->http://purl.org/dc/terms/description" \
+            --copy-annotation="prefLabel-->http://www.w3.org/2000/01/rdf-schema#label" \
+            ${ONTOLOGY_NAME}.ttl \
+            build/${ONTOLOGY_NAME}-doc.ttl
+
+    - name: Copy dependencies to buid
+      run: cp ${ONTOLOGY_NAME}-dependencies.ttl build/ && cp catalog-v001.xml build/
+
+    - name: Create inferred ontology
+      run: |
+        bin/robot reason \
+            --reasoner HermiT \
+            --remove-redundant-subclass-axioms true \
+            --preserve-annotated-axioms true \
+            --exclude-owl-thing true \
+            --exclude-duplicate-axioms true \
+            --input build/${ONTOLOGY_NAME}.ttl \
+            --output ${ONTOLOGY_NAME}-inferred.ttl
+        ontoconvert --iri=https://w3id.org/emmo/domain/${ONTOLOGY_NAME}/inferred ${ONTOLOGY_NAME}-inferred.ttl build/${ONTOLOGY_NAME}-inferred.ttl
+
+    - name: Generate markdown documentation of all keywords
+      run: |
+        keywords -i build/${ONTOLOGY_NAME}-doc.ttl --write-kw-md build/${ONTOLOGY_NAME}_kw.md --namespace-filter=https://w3id.org/emmo/domain/${ONTOLOGY_NAME}# --redefine=allow
+
+    - name: Generate Widoco documentation
+      run: |
+        java -jar widoco-1.4.25-jar-with-dependencies_JDK-17.jar \
+            -ontFile build/${ONTOLOGY_NAME}-doc.ttl \
+            -outFolder build/widoco \
+            -getOntologyMetadata \
+            -oops \
+            -rewriteAll \
+            -saveConfig build/widoco/widoco.conf \
+            -webVowl \
+            -licensius \
+            -includeAnnotationProperties
+
+    # Should be added automatically when running ontokit setup    
+    - name: Generate Ontokit documentation to public
+      run: |
+        ontokit docs --iri-regex=https://w3id.org/emmo/domain/${ONTOLOGY_NAME} . && touch public/.nojekyll 
+        cat build/conf.py
+
+    # Copy turtle files from build to public
+    # Consider if this should be done either in ontokit docs directly
+    # or specified in more detail as part of ontokit setup (which makes this file)
+    - name: Copy ontologies to public
+      run: cp build/*ttl public/
+
+    - name: Copy widoco documentation to public
+      run: cp -r build/widoco public/widoco
+
+    - name: Check content of build 
+      run: ls -la build
+
+    - name: Check content of public
+      run: ls -la public
+
 
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        folder: build
+        folder: public
         branch: gh-pages
-        clean: false
+        clean: true
         single-commit: true
