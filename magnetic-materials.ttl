@@ -644,10 +644,10 @@ email: wilfried.hortschitz@donau-uni.ac.at
     bibo:status "unstable" ;
     vann:preferredNamespacePrefix "MagMO" ;
     vann:preferredNamespaceUri "https://w3id.org/emmo/domain/magnetic-materials" ;
-    owl:imports <https://w3id.org/emmo/domain/magnetic-materials/0.0.5/contributors>,
-    <https://w3id.org/emmo/domain/magnetic-materials/0.0.5/dependencies> ;
-    owl:versionIRI <https://w3id.org/emmo/domain/magnetic-materials/0.0.5> ;
-    owl:versionInfo "0.0.5" .
+    owl:imports <https://w3id.org/emmo/domain/magnetic-materials/0.0.6/contributors>,
+    <https://w3id.org/emmo/domain/magnetic-materials/0.0.6/dependencies> ;
+    owl:versionIRI <https://w3id.org/emmo/domain/magnetic-materials/0.0.6> ;
+    owl:versionInfo "0.0.6" .
 
 :EMMO_405ae501-8898-59c0-b2db-0afa09d561f9 a owl:AnnotationProperty ;
     ns1:python_name "EMMO_405ae501-8898-59c0-b2db-0afa09d561f9"^^xsd:string ;
