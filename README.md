@@ -8,6 +8,7 @@ Version dependencies on imported ontologies:
 |---------|-----------------|
 | 0.0.4   | 1.0.3           |
 | 0.0.5   | 1.0.3           |
+| 0.0.6   | 1.0.3           |
 
 ## Project
 Created within the EU project [MaMMoS](https://mammos-project.github.io/). Grant number 101135546 (HORIZON-CL4-2023-DIGITAL-EMERGING-01).
