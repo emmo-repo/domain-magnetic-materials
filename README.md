@@ -9,6 +9,3 @@ Version dependencies on imported ontologies:
 | 0.0.4   | 1.0.3           |
 | 0.0.5   | 1.0.3           |
 | 0.0.6   | 1.0.3           |
-
-## Development
-This ontology is developed in https://github.com/MaMMoS-project/MagneticMaterialsOntology and issues should be raised there.
