@@ -27,91 +27,99 @@
 # Organisations
 
 ###  https://mammos-project.github.io/
-<https://mammos-project.github.io/> rdf:type owl:NamedIndividual ;
-                                    rdfs:comment "EU project grant number 101135546 (HORIZON-CL4-2023-DIGITAL-EMERGING-01)" ;
-                                    skos:prefLabel "MaMMoS" ;
-                                    foaf:homepage "https://mammos-project.github.io/index.html" ;
-                                    foaf:logo <https://raw.githubusercontent.com/MaMMoS-project/MaMMoS-project.github.io/refs/heads/main/source/_static/mammos-logo.png> ;
-                                    foaf:name "MAgnetic Multiscale MOdelling Suite (MaMMoS)" .
+:MaMMoS rdf:type owl:NamedIndividual ;
+       rdfs:comment "EU project grant number 101135546 (HORIZON-CL4-2023-DIGITAL-EMERGING-01)" ;
+       skos:prefLabel "MaMMoS" ;
+       foaf:homepage "https://mammos-project.github.io/index.html" ;
+       foaf:logo <https://raw.githubusercontent.com/MaMMoS-project/MaMMoS-project.github.io/refs/heads/main/source/_static/mammos-logo.png> ;
+       foaf:name "MAgnetic Multiscale MOdelling Suite (MaMMoS)" .
 
 
 # People
 
-###  https://orcid.org/0000-0003-2950-642X
-<https://orcid.org/0000-0003-2950-642X> rdf:type owl:NamedIndividual ;
-                                        skos:prefLabel "WilfriedHortschitz" ;
-                                        foaf:name "Wilfried Hortschitz" ;
-                                        foaf:workplaceHomepage "https://www.donau-uni.ac.at" .
+###  Wilfried Hosrtschitz
+:WilfriedHortschitz rdf:type owl:NamedIndividual ;
+                    skos:prefLabel "WilfriedHortschitz" ;
+                    skos:altLabel "https://orcid.org/0000-0003-2950-642X" ;
+                    foaf:name "Wilfried Hortschitz" ;
+                    foaf:workplaceHomepage "https://www.donau-uni.ac.at" .
 
 
-###  https://orcid.org/0000-0001-7854-847X
-<https://orcid.org/0000-0001-7854-847X> rdf:type owl:NamedIndividual ;
-                                        skos:prefLabel "SantaPile" ;
-                                        foaf:name "Santa Pile" ;
-                                        foaf:workplaceHomepage "https://www.donau-uni.ac.at" .
+###  Santa Pile
+:SantaPile rdf:type owl:NamedIndividual ;
+           skos:prefLabel "SantaPile" ;
+           skos:altLabel "https://orcid.org/0000-0001-7854-847X" ;
+           foaf:name "Santa Pile" ;
+           foaf:workplaceHomepage "https://www.donau-uni.ac.at" .
 
 
-###  https://orcid.org/0000-0003-4598-6275
-<https://orcid.org/0000-0003-4598-6275> rdf:type owl:NamedIndividual ;
-                                        skos:prefLabel "MartinDobiasch" ;
-                                        foaf:name "Martin Dobiasch" ;
-                                        foaf:workplaceHomepage "https://www.donau-uni.ac.at" .
+###  Martin Dobiasch
+:MartinDobiasch rdf:type owl:NamedIndividual ;
+                skos:prefLabel "MartinDobiasch" ;
+                skos:altLabel "https://orcid.org/0000-0003-4598-6275" ;
+                foaf:name "Martin Dobiasch" ;
+                foaf:workplaceHomepage "https://www.donau-uni.ac.at" .
 
 
-###  https://orcid.org/0000-0002-0871-0520
-<https://orcid.org/0000-0002-0871-0520> rdf:type owl:NamedIndividual ;
-                                        skos:prefLabel "ThomasSchrefl" ;
-                                        foaf:name "Thomas Schrefl" ;
-                                        foaf:workplaceHomepage "https://www.donau-uni.ac.at" .
+###  Thomas Schrefl
+:ThomasSchrefl rdf:type owl:NamedIndividual ;
+               skos:prefLabel "ThomasSchrefl" ;
+               skos:altLabel "https://orcid.org/0000-0002-0871-0520" ;
+               foaf:name "Thomas Schrefl" ;
+               foaf:workplaceHomepage "https://www.donau-uni.ac.at" .
 
 
-###  https://orcid.org/0000-0001-5494-7193
-<https://orcid.org/0000-0001-5494-7193> rdf:type owl:NamedIndividual ;
-                                        skos:prefLabel "HansFangohr" ;
-                                        foaf:name "Hans Fangohr" ;
-                                        foaf:workplaceHomepage "https://www.mpsd.mpg.de" .
+###  Hans Fangohr
+:HansFangohr rdf:type owl:NamedIndividual ;
+             skos:prefLabel "HansFangohr" ;
+             skos:altLabel "https://orcid.org/0000-0001-5494-7193" ;
+             foaf:name "Hans Fangohr" ;
+             foaf:workplaceHomepage "https://www.mpsd.mpg.de" .
 
 
-###  https://orcid.org/0009-0005-1867-6732
-<https://orcid.org/0009-0005-1867-6732> rdf:type owl:NamedIndividual ;
-                                        skos:prefLabel "AndreaPetrocchi" ;
-                                        foaf:name "Andrea Petrocchi" ;
-                                        foaf:workplaceHomepage "https://www.mpsd.mpg.de" .
+###  Andrea Petrocchi
+:AndreaPetrocchi rdf:type owl:NamedIndividual ;
+                 skos:prefLabel "AndreaPetrocchi" ;
+                 skos:altLabel "https://orcid.org/0009-0005-1867-6732" ;
+                 foaf:name "Andrea Petrocchi" ;
+                 foaf:workplaceHomepage "https://www.mpsd.mpg.de" .
 
 
-###  https://orcid.org/0000-0003-3323-8958
-<https://orcid.org/0000-0003-3323-8958> rdf:type owl:NamedIndividual ;
-                                        skos:prefLabel "SamuelHolt" ;
-                                        foaf:name "SamuelHolt" ;
-                                        foaf:workplaceHomepage "https://www.mpsd.mpg.de" .
+###  Samuel Holt
+:SamuelHolt rdf:type owl:NamedIndividual ;
+            skos:prefLabel "SamuelHolt" ;
+            skos:altLabel "https://orcid.org/0000-0003-3323-8958" ;
+            foaf:name "SamuelHolt" ;
+            foaf:workplaceHomepage "https://www.mpsd.mpg.de" .
 
 
-###  https://orcid.org/0000-0003-3840-955X
-<https://orcid.org/0000-0003-3840-955X> rdf:type owl:NamedIndividual ;
-                                        skos:prefLabel "SwapneelAmitPathak" ;
-                                        foaf:name "Swapneel Amit Pathak" ;
-                                        foaf:workplaceHomepage "https://www.mpsd.mpg.de" .
+###  Swapneel Amit Pathak
+:SwapneelAmitPathak rdf:type owl:NamedIndividual ;
+                    skos:prefLabel "SwapneelAmitPathak" ;
+                    skos:altLabel "https://orcid.org/0000-0003-3840-955X" ;
+                    foaf:name "Swapneel Amit Pathak" ;
+                    foaf:workplaceHomepage "https://www.mpsd.mpg.de" .
 
 
-###  https://orcid.org/0000-0001-7104-7867
-<https://orcid.org/0000-0001-7104-7867> rdf:type owl:NamedIndividual ;
-                                        skos:prefLabel "MartinLang" ;
-                                        foaf:name "Martin Lang" ;
-                                        foaf:workplaceHomepage "https://www.mpsd.mpg.de" .
+###  Martin Lang
+:MartinLang rdf:type owl:NamedIndividual ;
+            skos:prefLabel "MartinLang" ;
+            skos:altLabel "https://orcid.org/0000-0001-7104-7867" ;
+            foaf:name "Martin Lang" ;
+            foaf:workplaceHomepage "https://www.mpsd.mpg.de" .
 
 
-###  https://orcid.org/0009-0000-7815-5916
-<https://orcid.org/0009-0000-7815-5916> rdf:type owl:NamedIndividual ;
-                                        skos:prefLabel "JonasWinkler" ;
-                                        foaf:name "Jonas Winkler" ;
-                                        foaf:workplaceHomepage "https://www.ifw-dresden.de/" .
+###  Jonas Winkler
+:JonasWinkler rdf:type owl:NamedIndividual ;
+              skos:prefLabel "JonasWinkler" ;
+              skos:altLabel "https://orcid.org/0009-0000-7815-5916" ;
+              foaf:name "Jonas Winkler" ;
+              foaf:workplaceHomepage "https://www.ifw-dresden.de/" .
 
 
-###  https://orcid.org/0009-0000-9775-7955
-<https://orcid.org/0009-0000-9775-7955> rdf:type owl:NamedIndividual ;
-                                        skos:prefLabel "WilliamRigaut" ;
-                                        foaf:name "William Rigaut" ;
-                                        foaf:workplaceHomepage "https://www.cnrs.fr" .
-
-
-###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
+###  William Rigaut
+:WilliamRigaut rdf:type owl:NamedIndividual ;
+               skos:prefLabel "WilliamRigaut" ;
+               skos:altLabel "https://orcid.org/0009-0000-9775-7955" ;
+               foaf:name "William Rigaut" ;
+               foaf:workplaceHomepage "https://www.cnrs.fr" .
