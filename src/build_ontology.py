@@ -51,13 +51,15 @@ def add_altLabel(entry, label):
         entry.altLabel = [label]
 
 
-# Load specific version of EMMO
+# Define ontology imports
 world = World()
-emmo = world.get_ontology("https://w3id.org/emmo/1.0.3/inferred").load()
+contributors = world.get_ontology(f"https://w3id.org/emmo/domain/magnetic-materials/{version}/contributors").load()
+dependencies = world.get_ontology(f"https://w3id.org/emmo/domain/magnetic-materials/{version}/magnetic-materials-dependencies").load()
 
-# Create a new ontology without extensions that imports EMMO
+# Create a new ontology with imports
 onto = world.get_ontology("https://w3id.org/emmo/domain/magnetic-materials#")
-onto.imported_ontologies.append(emmo)
+onto.imported_ontologies.append(contributors)
+onto.imported_ontologies.append(dependencies)
 
 # Reused/adapted concepts from domain-crystallography (grouped for provenance):
 # - Space group and unit-cell descriptors:
@@ -88,7 +90,7 @@ with onto:
 
     ## Space group and lattice constants
 
-    class SpaceGroup(emmo.NominalProperty):  # from define_ontology.py
+    class SpaceGroup(onto.NominalProperty):  # from define_ontology.py
         """A spacegroup is the symmetry group of all symmetry operations
         that apply to a crystal structure.
 
@@ -101,11 +103,11 @@ with onto:
         Crystallography."""
 
         prefLabel = en("SpaceGroup")
-        is_a = [emmo.hasStringValue.some(emmo.String)]
+        is_a = [onto.hasStringValue.some(onto.String)]
         wikidataReference = pl("https://www.wikidata.org/wiki/Q899033")
         wikipediaReference = pl("https://en.wikipedia.org/wiki/Space_group")
 
-    class LatticeConstantA(emmo.Length):
+    class LatticeConstantA(onto.Length):
         """The length of lattice vectors `a`, where lattice vectors
         `a`, `b` and `c` define the unit cell."""
 
@@ -117,7 +119,7 @@ with onto:
         wikidataReference = pl("https://www.wikidata.org/wiki/Q625641")
         wikipediaReference = pl("https://en.wikipedia.org/wiki/Lattice_constant")
 
-    class LatticeConstantB(emmo.Length):
+    class LatticeConstantB(onto.Length):
         """The length of lattice vectors `b`, where lattice vectors `a`, `b`
         and `c` define the unit cell."""
 
@@ -129,7 +131,7 @@ with onto:
         wikidataReference = pl("https://www.wikidata.org/wiki/Q625641")
         wikipediaReference = pl("https://en.wikipedia.org/wiki/Lattice_constant")
 
-    class LatticeConstantC(emmo.Length):
+    class LatticeConstantC(onto.Length):
         """The length of lattice vectors `c`, where lattice vectors `a`, `b`
         and `c` define the unit cell."""
 
@@ -141,7 +143,7 @@ with onto:
         wikidataReference = pl("https://www.wikidata.org/wiki/Q625641")
         wikipediaReference = pl("https://en.wikipedia.org/wiki/Lattice_constant")
 
-    class LatticeConstantAlpha(emmo.Angle):
+    class LatticeConstantAlpha(onto.Angle):
         """The angle between lattice vectors `b` and `c`, where lattice
         vectors `a`, `b` and `c` define the unit cell."""
 
@@ -149,7 +151,7 @@ with onto:
         altLabel = en("LatticeParameterAlpha")
         wikidataReference = pl("https://www.wikidata.org/wiki/Q625641")
 
-    class LatticeConstantBeta(emmo.Angle):
+    class LatticeConstantBeta(onto.Angle):
         """The angle between lattice vectors `a` and `c`, where lattice
         vectors `a`, `b` and `c` define the unit cell."""
 
@@ -157,7 +159,7 @@ with onto:
         altLabel = en("LatticeParameterBeta")
         wikidataReference = pl("https://www.wikidata.org/wiki/Q625641")
 
-    class LatticeConstantGamma(emmo.Angle):
+    class LatticeConstantGamma(onto.Angle):
         """The angle between lattice vectors `a` and `b`, where lattice
         vectors `a`, `b` and `c` define the unit cell."""
 
@@ -165,87 +167,87 @@ with onto:
         altLabel = en("LatticeParameterGamma")
         wikidataReference = pl("https://www.wikidata.org/wiki/Q625641")
 
-    class CellVolume(emmo.Volume):
+    class CellVolume(onto.Volume):
         """Volume of the unit cell."""
 
         prefLabel = en("CellVolume")
         altLabel = en("UnitCellVolume")
 
     # -----------------------------------------------------
-    class CrystalStructure(emmo.Property):
+    class CrystalStructure(onto.Property):
         """Description of ordered arrangement of atoms."""
 
         prefLabel = en("CrystalStructure")
         wikidataReference = pl("https://www.wikidata.org/wiki/Q895901")
         wikipediaReference = pl("https://en.wikipedia.org/wiki/Crystal_structure")
         is_a = [
-            emmo.hasProperty.exactly(1, SpaceGroup),
-            emmo.hasProperty.exactly(1, LatticeConstantA),
-            emmo.hasProperty.exactly(1, LatticeConstantB),
-            emmo.hasProperty.exactly(1, LatticeConstantC),
-            emmo.hasProperty.exactly(1, LatticeConstantAlpha),
-            emmo.hasProperty.exactly(1, LatticeConstantBeta),
-            emmo.hasProperty.exactly(1, LatticeConstantGamma),
-            emmo.hasProperty.exactly(1, CellVolume),
+            onto.hasProperty.exactly(1, SpaceGroup),
+            onto.hasProperty.exactly(1, LatticeConstantA),
+            onto.hasProperty.exactly(1, LatticeConstantB),
+            onto.hasProperty.exactly(1, LatticeConstantC),
+            onto.hasProperty.exactly(1, LatticeConstantAlpha),
+            onto.hasProperty.exactly(1, LatticeConstantBeta),
+            onto.hasProperty.exactly(1, LatticeConstantGamma),
+            onto.hasProperty.exactly(1, CellVolume),
         ]
 
     # -----------------------------------------------------
 
     # Energy densities
 
-    class EnergyDensityUnit(emmo.SIDimensionalUnit):
+    class EnergyDensityUnit(onto.SIDimensionalUnit):
         """Unit of energy density. Defined using SI base units."""
 
         prefLabel = en("EnergyDensityUnit")
-        is_a = [emmo.hasDimensionString.value("T-2 L-1 M+1 I0 Θ0 N0 J0")]
+        is_a = [onto.hasDimensionString.value("T-2 L-1 M+1 I0 Θ0 N0 J0")]
 
     # Assert JoulePerCubicMetre as subclass of EnergyDensityUnit
-    emmo.JoulePerCubicMetre.is_a.append(EnergyDensityUnit)
-    add_altLabel(emmo.JoulePerCubicMetre, enUS("JoulePerCubicMeter"))
-    add_altLabel(emmo.JoulePerCubicMetre, enGB("JoulePerCubicMetre"))
+    onto.JoulePerCubicMetre.is_a.append(EnergyDensityUnit)
+    add_altLabel(onto.JoulePerCubicMetre, enUS("JoulePerCubicMeter"))
+    add_altLabel(onto.JoulePerCubicMetre, enGB("JoulePerCubicMetre"))
     # Assert MegaJoulePerCubicMetre as subclass of EnergyDensityUnit
-    emmo.MegaJoulePerCubicMetre.is_a.append(EnergyDensityUnit)
-    add_altLabel(emmo.MegaJoulePerCubicMetre, enGB("MegaJoulePerCubicMetre"))
-    add_altLabel(emmo.MegaJoulePerCubicMetre, enUS("MegaJoulePerCubicMeter"))
+    onto.MegaJoulePerCubicMetre.is_a.append(EnergyDensityUnit)
+    add_altLabel(onto.MegaJoulePerCubicMetre, enGB("MegaJoulePerCubicMetre"))
+    add_altLabel(onto.MegaJoulePerCubicMetre, enUS("MegaJoulePerCubicMeter"))
 
-    class EnergyDensity(emmo.PhysicalQuantity):
+    class EnergyDensity(onto.PhysicalQuantity):
         """Energy Density."""
 
         prefLabel = en("EnergyDensity")
         is_a = [
-            emmo.hasMeasurementUnit.some(EnergyDensityUnit),
+            onto.hasMeasurementUnit.some(EnergyDensityUnit),
         ]
 
-    class LineEnergyUnit(emmo.SIDimensionalUnit):
+    class LineEnergyUnit(onto.SIDimensionalUnit):
         """Unit of energy per unit length. Defined using SI base units."""
 
         prefLabel = en("LineEnergyUnit")
-        is_a = [emmo.hasDimensionString.value("T-2 L+1 M+1 I0 Θ0 N0 J0")]
+        is_a = [onto.hasDimensionString.value("T-2 L+1 M+1 I0 Θ0 N0 J0")]
 
     # Assert JoulePerMetre as subclass of LineEnergyUnit
-    emmo.JoulePerMetre.is_a.append(LineEnergyUnit)
-    add_altLabel(emmo.JoulePerMetre, enUS("JoulePerMeter"))
-    add_altLabel(emmo.JoulePerMetre, enGB("JoulePerMetre"))
+    onto.JoulePerMetre.is_a.append(LineEnergyUnit)
+    add_altLabel(onto.JoulePerMetre, enUS("JoulePerMeter"))
+    add_altLabel(onto.JoulePerMetre, enGB("JoulePerMetre"))
 
-    class LineEnergy(emmo.PhysicalQuantity):
+    class LineEnergy(onto.PhysicalQuantity):
         """Energy per unit length."""
 
         prefLabel = en("LineEnergy")
         altLabel = [en("EnergyPerUnitLength"), en("EnergyPerLength")]
         is_a = [
-            emmo.hasMeasurementUnit.some(LineEnergyUnit),
+            onto.hasMeasurementUnit.some(LineEnergyUnit),
         ]
 
     # Intrinsic magnetic properties
 
     ## Magnetization
 
-    add_altLabel(emmo.Magnetization, enUS("VolumeMagnetization"))
-    add_altLabel(emmo.Magnetization, enGB("VolumeMagnetisation"))
-    add_altLabel(emmo.Magnetization, enUS("Magnetization"))
-    add_altLabel(emmo.Magnetization, enGB("Magnetisation"))
+    add_altLabel(onto.Magnetization, enUS("VolumeMagnetization"))
+    add_altLabel(onto.Magnetization, enGB("VolumeMagnetisation"))
+    add_altLabel(onto.Magnetization, enUS("Magnetization"))
+    add_altLabel(onto.Magnetization, enGB("Magnetisation"))
 
-    class MassMagnetizationUnit(emmo.SIDimensionalUnit):
+    class MassMagnetizationUnit(onto.SIDimensionalUnit):
         """Class of units of the magnetization per unit mass.
         Defined using SI base units."""
 
@@ -255,7 +257,7 @@ with onto:
             enUS("SpecificMagnetizationUnit"),
             enGB("SpecificMagnetisationUnit"),
         ]
-        is_a = [emmo.hasDimensionString.value("T0 L+2 M-1 I+1 Θ0 N0 J0")]
+        is_a = [onto.hasDimensionString.value("T0 L+2 M-1 I+1 Θ0 N0 J0")]
 
     class AmpereSquareMeterPerKilogram(MassMagnetizationUnit):
         """Unit of the magnetic moment per unit mass: Am²/kg."""
@@ -267,7 +269,7 @@ with onto:
         unitSymbol = en("A⋅m²/kg")
         ucumCode = en("A.m2.kg-1")
 
-    class MagneticMomentPerUnitMass(emmo.ElectromagneticQuantity):
+    class MagneticMomentPerUnitMass(onto.ElectromagneticQuantity):
         """Magnetic moment per unit mass, sigma."""
 
         comment = en(
@@ -282,9 +284,9 @@ with onto:
             pl("sigma"),
         ]
 
-        is_a = [emmo.hasMeasurementUnit.some(MassMagnetizationUnit)]
+        is_a = [onto.hasMeasurementUnit.some(MassMagnetizationUnit)]
 
-    class SpontaneousMagnetization(emmo.ElectromagneticQuantity):
+    class SpontaneousMagnetization(onto.ElectromagneticQuantity):
         """The spontaneous magnetization, Ms, of a ferromagnet is the result
         of alignment of the magnetic moments of individual atoms. Ms exists
         within a domain of a ferromagnet."""
@@ -294,7 +296,7 @@ with onto:
             enGB("SpontaneousMagnetisation"),
             pl("Ms"),
         ]
-        is_a = [emmo.hasMeasurementUnit.some(emmo.MagneticFieldStrengthUnit)]
+        is_a = [onto.hasMeasurementUnit.some(onto.MagneticFieldStrengthUnit)]
         IECEntry = pl(
             "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-02-41"
         )
@@ -302,7 +304,7 @@ with onto:
             "https://en.wikipedia.org/wiki/Spontaneous_magnetization"
         )
 
-    class SpontaneousMagneticPolarization(emmo.ElectromagneticQuantity):
+    class SpontaneousMagneticPolarization(onto.ElectromagneticQuantity):
         """The spontaneous magnetic polarization, Js, of a ferromagnet is the
         result of alignment of the magnetic moments of  individual atoms.
         Js exists within a domain of a ferromagnet."""
@@ -312,11 +314,11 @@ with onto:
             enGB("SpontaneousMagneticPolarisation"),
             pl("Js"),
         ]
-        is_a = [emmo.hasMeasurementUnit.some(emmo.MagneticFluxDensityUnit)]
+        is_a = [onto.hasMeasurementUnit.some(onto.MagneticFluxDensityUnit)]
 
     ## Anisotropy
 
-    class MagneticAnisotropy(emmo.Property):
+    class MagneticAnisotropy(onto.Property):
         """Magnetic anisotropy means that the magnetic properties depend on
         the direction in which they are measured."""
 
@@ -326,7 +328,7 @@ with onto:
             "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-01-08"
         )
 
-    class RectangularCuboid(emmo.EuclideanSpace):
+    class RectangularCuboid(onto.EuclideanSpace):
         """A rectangular cuboid is a special case of a cuboid with rectangular
         faces in which all of its dihedral angles are right angles."""
 
@@ -334,14 +336,14 @@ with onto:
         wikidataReference = pl("https://www.wikidata.org/wiki/Q262959")
         wikipediaReference = pl("https://en.wikipedia.org/wiki/Rectangular_cuboid")
 
-    class GeometricalSize(emmo.Property):
+    class GeometricalSize(onto.Property):
         """Spatial extension along the principal axes."""
 
         prefLabel = en("GeometricalSize")
         wikipediaReference = pl("https://en.wikipedia.org/wiki/Size")
-        is_a = [emmo.hasProperty.exactly(3, emmo.Length)]
+        is_a = [onto.hasProperty.exactly(3, onto.Length)]
 
-    class GeometricShape(emmo.Property, emmo.Geometrical):
+    class GeometricShape(onto.Property, onto.Geometrical):
         """Geometric shape.
 
         Two extrinsic properties, the remanence Mr
@@ -351,18 +353,18 @@ with onto:
         prefLabel = en("GeometricShape")
         wikidataReference = pl("https://www.wikidata.org/wiki/Q207961")
         wikipediaReference = pl("https://en.wikipedia.org/wiki/Shape")
-        is_a = [emmo.hasSpatialDirectPart.exactly(1, emmo.Cylinder | RectangularCuboid)]
+        is_a = [onto.hasSpatialDirectPart.exactly(1, onto.Cylinder | RectangularCuboid)]
 
-    class SampleGeometry(emmo.Property):
+    class SampleGeometry(onto.Property):
         """The size and shape of the magnet"""
 
         prefLabel = en("SampleGeometry")
         is_a = [
-            emmo.hasProperty.exactly(1, GeometricalSize),
-            emmo.hasProperty.exactly(1, GeometricShape),
+            onto.hasProperty.exactly(1, GeometricalSize),
+            onto.hasProperty.exactly(1, GeometricShape),
         ]
 
-    class DemagnetizingFactor(emmo.ElectromagneticQuantity):
+    class DemagnetizingFactor(onto.ElectromagneticQuantity):
         """For a uniformly magnetized ellipsoid with magnetization along a
         major axis the demagnetizing field is Hd = -N M.
 
@@ -381,7 +383,7 @@ with onto:
             pl("N"),
             pl("D"),
         ]
-        is_a = [emmo.hasMeasurementUnit.some(emmo.DimensionlessUnit)]
+        is_a = [onto.hasMeasurementUnit.some(onto.DimensionlessUnit)]
         IECEntry = pl(
             "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=121-12-63"
         )
@@ -409,8 +411,8 @@ with onto:
         )
         prefLabel = en("ShapeAnisotropy")
         is_a = [
-            emmo.hasProperty.exactly(1, DemagnetizingFactor),
-            emmo.hasProperty.exactly(1, ShapeAnisotropyConstant),
+            onto.hasProperty.exactly(1, DemagnetizingFactor),
+            onto.hasProperty.exactly(1, ShapeAnisotropyConstant),
         ]
 
     ## Magnetocrystalline anisotropy
@@ -424,7 +426,7 @@ with onto:
             "https://en.wikipedia.org/wiki/Magnetocrystalline_anisotropy"
         )
 
-    class AnisotropyField(emmo.MagneticFieldStrength):
+    class AnisotropyField(onto.MagneticFieldStrength):
         """The anisotropy field Ha is defined as the field needed to
         saturate the magnetization of a uniaxial crystal in a hard direction.
         Ha = 2 Ku/Js
@@ -455,8 +457,8 @@ with onto:
 
         prefLabel = en("UniaxialMagneticAnisotropy")
         is_a = [
-            emmo.hasProperty.exactly(1, AnisotropyField),
-            emmo.hasProperty.exactly(1, UniaxialAnisotropyConstant),
+            onto.hasProperty.exactly(1, AnisotropyField),
+            onto.hasProperty.exactly(1, UniaxialAnisotropyConstant),
         ]
 
     class InducedMagneticAnisotropy(UniaxialMagneticAnisotropy):
@@ -530,8 +532,8 @@ with onto:
 
         prefLabel = en("UniaxialMagnetocrystallineAnisotropy")
         is_a = [
-            emmo.hasProperty.exactly(1, MagnetocrystallineAnisotropyConstantK1),
-            emmo.hasProperty.min(0, MagnetocrystallineAnisotropyConstantK2),
+            onto.hasProperty.exactly(1, MagnetocrystallineAnisotropyConstantK1),
+            onto.hasProperty.min(0, MagnetocrystallineAnisotropyConstantK2),
         ]
 
     class CubicMagnetocrystallineAnisotropy(MagneticAnisotropy):
@@ -539,11 +541,11 @@ with onto:
 
         prefLabel = en("CubicMagnetocrystallineAnisotropy")
         is_a = [
-            emmo.hasProperty.exactly(1, MagnetocrystallineAnisotropyConstantK1c),
-            emmo.hasProperty.min(0, MagnetocrystallineAnisotropyConstantK2c),
+            onto.hasProperty.exactly(1, MagnetocrystallineAnisotropyConstantK1c),
+            onto.hasProperty.min(0, MagnetocrystallineAnisotropyConstantK2c),
         ]
 
-    class MagnetocrystallineAnisotropy(emmo.Property):
+    class MagnetocrystallineAnisotropy(onto.Property):
         """Magnetocrystalline anisotropy is an intrinsic property. The
         magnetisation process is different when the field is applied along
         different crystallographic directions, and the anisotropy reflects
@@ -557,7 +559,7 @@ with onto:
             "https://en.wikipedia.org/wiki/Magnetocrystalline_anisotropy"
         )
         is_a = [
-            emmo.hasProperty.exactly(
+            onto.hasProperty.exactly(
                 1,
                 UniaxialMagnetocrystallineAnisotropy
                 | CubicMagnetocrystallineAnisotropy,
@@ -577,17 +579,17 @@ with onto:
         altLabel = pl("A")
 
     # ----------------------------------------------------
-    class IntrinsicMagneticProperties(emmo.Property):
+    class IntrinsicMagneticProperties(onto.Property):
         """Intrinsic magnetic properties refer to atomic-scale magnetism and
         depend on the crystal structure."""
 
         prefLabel = en("IntrinsicMagneticProperties")
         is_a = [
-            emmo.hasProperty.some(SpontaneousMagnetization),
-            emmo.hasProperty.some(SpontaneousMagneticPolarization),
-            emmo.hasProperty.some(MagnetocrystallineAnisotropy),
-            emmo.hasProperty.some(ExchangeStiffnessConstant),
-            emmo.hasProperty.some(emmo.CurieTemperature | emmo.NeelTemperature),
+            onto.hasProperty.some(SpontaneousMagnetization),
+            onto.hasProperty.some(SpontaneousMagneticPolarization),
+            onto.hasProperty.some(MagnetocrystallineAnisotropy),
+            onto.hasProperty.some(ExchangeStiffnessConstant),
+            onto.hasProperty.some(onto.CurieTemperature | onto.NeelTemperature),
         ]
 
     # -----------------------------------------------------
@@ -596,37 +598,37 @@ with onto:
 
     ### XRD
 
-    class XrdTwoThetaAngles(emmo.Vector):
+    class XrdTwoThetaAngles(onto.Vector):
         """The 2theta angles at which the counts are measured during X-ray
         diffraction."""
 
         prefLabel = en("XrdTwoThetaAngles")
         altLabel = en("XRDTwoThetaAngles")
         is_a = [
-            emmo.hasProperty.some(emmo.Angle),
+            onto.hasProperty.some(onto.Angle),
         ]
 
-    class XrdCounts(emmo.Vector):
+    class XrdCounts(onto.Vector):
         """Counts as a function of 2theta angle obtained from X-ray
         diffraction."""
 
         prefLabel = en("XrdCounts")
         altLabel = en("XRDCounts")
         is_a = [
-            emmo.hasMeasurementUnit.some(emmo.CountingUnit),
+            onto.hasMeasurementUnit.some(onto.CountingUnit),
         ]
 
-    class XrayDiffractionData(emmo.Property, emmo.Matrix):
+    class XrayDiffractionData(onto.Property, onto.Matrix):
         """Counts as a function of 2theta angle obtained from X-ray
         diffraction."""
 
         prefLabel = en("XrayDiffractionData")
         is_a = [
-            emmo.hasProperty.exactly(1, XrdTwoThetaAngles),
-            emmo.hasProperty.exactly(1, XrdCounts),
+            onto.hasProperty.exactly(1, XrdTwoThetaAngles),
+            onto.hasProperty.exactly(1, XrdCounts),
         ]
 
-    class Xrd2dImage(emmo.Property, emmo.Matrix):
+    class Xrd2dImage(onto.Property, onto.Matrix):
         """2D array containing all pixel intensities from a 2D XRD camera.
         This is the raw XRD data from which 1D spectra are obtained."""
 
@@ -637,54 +639,54 @@ with onto:
             en("XRD2DImage"),
         ]
         is_a = [
-            emmo.hasMeasurementUnit.some(emmo.CountingUnit),
+            onto.hasMeasurementUnit.some(onto.CountingUnit),
         ]
 
     ### EDX (Energy-Dispersive X-ray Spectroscopy)
 
-    class EdxEnergy(emmo.Vector):
+    class EdxEnergy(onto.Vector):
         """The energy values at which the counts are measured during
         Energy-Dispersive X-ray spectroscopy."""
 
         prefLabel = en("EdxEnergy")
         altLabel = en("EDXEnergy")
         is_a = [
-            emmo.hasMeasurementUnit.some(emmo.EnergyUnit),
+            onto.hasMeasurementUnit.some(onto.EnergyUnit),
         ]
 
-    class EdxCounts(emmo.Vector):
+    class EdxCounts(onto.Vector):
         """Counts as a function of energy obtained from Energy-Dispersive
         X-ray spectroscopy."""
 
         prefLabel = en("EdxCounts")
         altLabel = en("EDXCounts")
         is_a = [
-            emmo.hasMeasurementUnit.some(emmo.CountingUnit),
+            onto.hasMeasurementUnit.some(onto.CountingUnit),
         ]
 
-    class EdxData(emmo.Property, emmo.Matrix):
+    class EdxData(onto.Property, onto.Matrix):
         """Counts as a function of energy obtained from Energy-Dispersive
         X-ray spectroscopy."""
 
         prefLabel = en("EdxData")
         altLabel = [en("EDXData"), en("EnergyDispersiveXraySpectroscopyData")]
         is_a = [
-            emmo.hasProperty.exactly(1, EdxEnergy),
-            emmo.hasProperty.exactly(1, EdxCounts),
+            onto.hasProperty.exactly(1, EdxEnergy),
+            onto.hasProperty.exactly(1, EdxCounts),
         ]
 
     ### MOKE (Magneto-Optic Kerr Effect)
 
-    class MokeAppliedField(emmo.Vector):
+    class MokeAppliedField(onto.Vector):
         """The applied magnetic field values during MOKE measurement."""
 
         prefLabel = en("MokeAppliedField")
         altLabel = en("MOKEAppliedField")
         is_a = [
-            emmo.hasMeasurementUnit.some(emmo.MagneticFieldStrengthUnit),
+            onto.hasMeasurementUnit.some(onto.MagneticFieldStrengthUnit),
         ]
 
-    class MokeKerrSignal(emmo.Vector):
+    class MokeKerrSignal(onto.Vector):
         """The Kerr signal (rotation or ellipticity) as a function of
         applied field obtained from MOKE measurement."""
 
@@ -694,10 +696,10 @@ with onto:
             en("KerrSignal"),
         ]
         is_a = [
-            emmo.hasMeasurementUnit.some(emmo.DimensionlessUnit),
+            onto.hasMeasurementUnit.some(onto.DimensionlessUnit),
         ]
 
-    class MokeData(emmo.Property, emmo.Matrix):
+    class MokeData(onto.Property, onto.Matrix):
         """Kerr signal as a function of applied magnetic field obtained
         from Magneto-Optic Kerr Effect measurement."""
 
@@ -713,66 +715,66 @@ with onto:
             "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=121-12-97"
         )
         is_a = [
-            emmo.hasProperty.exactly(1, MokeAppliedField),
-            emmo.hasProperty.exactly(1, MokeKerrSignal),
+            onto.hasProperty.exactly(1, MokeAppliedField),
+            onto.hasProperty.exactly(1, MokeKerrSignal),
         ]
 
     ### Profilometry
 
-    class ProfilDistance(emmo.Vector):
+    class ProfilDistance(onto.Vector):
         """The distance values along the scan direction during
         profilometry measurement."""
 
         prefLabel = en("ProfilDistance")
         altLabel = en("PROFILDistance")
         is_a = [
-            emmo.hasMeasurementUnit.some(emmo.LengthUnit),
+            onto.hasMeasurementUnit.some(onto.LengthUnit),
         ]
 
-    class ProfilTotalProfile(emmo.Vector):
+    class ProfilTotalProfile(onto.Vector):
         """The height profile as a function of distance obtained from
         profilometry measurement."""
 
         prefLabel = en("ProfilTotalProfile")
         altLabel = en("PROFILTotalProfile")
         is_a = [
-            emmo.hasMeasurementUnit.some(emmo.LengthUnit),
+            onto.hasMeasurementUnit.some(onto.LengthUnit),
         ]
 
-    class ProfilometryData(emmo.Property, emmo.Matrix):
+    class ProfilometryData(onto.Property, onto.Matrix):
         """Height profile as a function of distance obtained from
         profilometry measurement."""
 
         prefLabel = en("ProfilometryData")
         wikipediaReference = pl("https://en.wikipedia.org/wiki/Profilometer")
         is_a = [
-            emmo.hasProperty.exactly(1, ProfilDistance),
-            emmo.hasProperty.exactly(1, ProfilTotalProfile),
+            onto.hasProperty.exactly(1, ProfilDistance),
+            onto.hasProperty.exactly(1, ProfilTotalProfile),
         ]
 
     ### Magnetic materials
 
     ### Grains and granular structure
 
-    class EulerAngles(emmo.Quantity):
+    class EulerAngles(onto.Quantity):
         """Three angles introduced by Leonhard Euler to describe the
         orientation of a rigid body with respect to a fixed coordinate
         system."""
 
         prefLabel = en("EulerAngles")
         wikidataReference = pl("https://www.wikidata.org/wiki/Q751290")
-        is_a = [emmo.hasProperty.exactly(3, emmo.Angle)]
+        is_a = [onto.hasProperty.exactly(3, onto.Angle)]
 
-    class CrystallographicOrientation(emmo.Property):
+    class CrystallographicOrientation(onto.Property):
         """Relative direction of a crystallite in space with respect to
         another, disregarding distance."""
 
         prefLabel = en("CrystallographicOrientation")
         altLabel = en("CrystalOrientation")
         wikidataReference = pl("https://www.wikidata.org/wiki/Q11799166")
-        is_a = [emmo.hasProperty.exactly(1, EulerAngles)]
+        is_a = [onto.hasProperty.exactly(1, EulerAngles)]
 
-    class GrainMisalignmentAngle(emmo.Angle):
+    class GrainMisalignmentAngle(onto.Angle):
         """Standard deviation of the angle of the easy axis with respect to
         the alignment direction.
         """
@@ -780,7 +782,7 @@ with onto:
         prefLabel = en("GrainMisalignmentAngle")
         wikidataReference = pl("https://www.wikidata.org/wiki/Q117089304")
 
-    class EasyAxisDistributionSigma(emmo.Angle):
+    class EasyAxisDistributionSigma(onto.Angle):
         """Standard deviation of the grain misalignment angle in an ensembles
         of misaligned magnetic particles.
 
@@ -791,7 +793,7 @@ with onto:
 
         prefLabel = en("EasyAxisDistributionSigma")
 
-    class Grain(emmo.Crystal):
+    class Grain(onto.Crystal):
         """A grain is a small or even microscopic crystal which forms, for
         example, during the cooling of many materials."""
 
@@ -800,27 +802,27 @@ with onto:
         wikidataReference = pl("https://www.wikidata.org/wiki/Q899604")
         wikipediaReference = pl("https://en.wikipedia.org/wiki/Crystallite")
         is_a = [
-            emmo.hasProperty.exactly(1, CrystalStructure),
-            emmo.hasProperty.exactly(1, emmo.ChemicalComposition),
-            emmo.hasProperty.exactly(1, emmo.Diameter),
-            emmo.hasProperty.exactly(
+            onto.hasProperty.exactly(1, CrystalStructure),
+            onto.hasProperty.exactly(1, onto.ChemicalComposition),
+            onto.hasProperty.exactly(1, onto.Diameter),
+            onto.hasProperty.exactly(
                 1, CrystallographicOrientation | GrainMisalignmentAngle
             ),
         ]
 
-    class MeanGrainSize(emmo.Length):
+    class MeanGrainSize(onto.Length):
         """The mean of the grain diameter of grains. Diameter is the diameter
         of a sphere with equivalent volume."""
 
         prefLabel = en("MeanGrainSize")
 
-    class SigmaGrainSize(emmo.Length):
+    class SigmaGrainSize(onto.Length):
         """The standard deviation of the grain diameter of grains. Diameter is
         the diameter of a sphere with equivalent volume."""
 
         prefLabel = en("SigmaGrainSize")
 
-    class GrainSizeDistribution(emmo.Property):
+    class GrainSizeDistribution(onto.Property):
         """Function representing relative sizes of grains in a system.
         Given by its mean and standard deviation of a lognormal distribution
         """
@@ -832,23 +834,23 @@ with onto:
         )
         wikidataReference = pl("https://www.wikidata.org/wiki/Q2054937")
         is_a = [
-            emmo.hasProperty.exactly(1, MeanGrainSize),
-            emmo.hasProperty.exactly(1, SigmaGrainSize),
+            onto.hasProperty.exactly(1, MeanGrainSize),
+            onto.hasProperty.exactly(1, SigmaGrainSize),
         ]
 
-    class MagneticMaterial(emmo.MaterialByStructure):
+    class MagneticMaterial(onto.MaterialByStructure):
         """Magnetically ordered solids which have atomic magnetic moments due
         to unpaired electrons."""
 
         prefLabel = en("MagneticMaterial")
         wikidataReference = pl("https://www.wikidata.org/wiki/Q11587827")
         is_a = [
-            emmo.hasProperty.exactly(1, emmo.ChemicalComposition),
-            emmo.hasProperty.exactly(1, emmo.Density),
-            emmo.hasProperty.exactly(1, IntrinsicMagneticProperties),
+            onto.hasProperty.exactly(1, onto.ChemicalComposition),
+            onto.hasProperty.exactly(1, onto.Density),
+            onto.hasProperty.exactly(1, IntrinsicMagneticProperties),
         ]
 
-    class AmorphousMagneticMaterial(emmo.AmorphousMaterial, MagneticMaterial):
+    class AmorphousMagneticMaterial(onto.AmorphousMaterial, MagneticMaterial):
         """Any amorphous structure entails a distribution of nearest-neighbour
         environments and bond lengths for a given magnetic atom, described by
         the radial distribution function and higher-order correlation
@@ -859,25 +861,25 @@ with onto:
         prefLabel = en("AmorphousMagneticMaterial")
         wikipediaReference = pl("https://en.wikipedia.org/wiki/Amorphous_magnet")
 
-    class GranularStructure(emmo.CrystallineMaterial):
+    class GranularStructure(onto.CrystallineMaterial):
         """Ensemble of grains of 1 or more grains."""
 
         prefLabel = en("GranularStructure")
         is_a = [
-            emmo.hasProperty.exactly(1, emmo.CrystalStructure),
-            emmo.hasProperty.exactly(1, GrainSizeDistribution),
-            emmo.hasProperty.min(0, XrayDiffractionData),
-            emmo.hasSpatialPart.min(0, Grain),
+            onto.hasProperty.exactly(1, onto.CrystalStructure),
+            onto.hasProperty.exactly(1, GrainSizeDistribution),
+            onto.hasProperty.min(0, XrayDiffractionData),
+            onto.hasSpatialPart.min(0, Grain),
         ]
 
-    class NonMagneticMaterial(emmo.Material):
+    class NonMagneticMaterial(onto.Material):
         """A material which is non-magnetic."""
 
         prefLabel = en("NonMagneticMaterial")
         is_a = [
-            emmo.hasProperty.exactly(1, emmo.ChemicalComposition),
-            emmo.hasProperty.exactly(1, emmo.Density),
-            emmo.hasSpatialPart.min(0, GranularStructure),
+            onto.hasProperty.exactly(1, onto.ChemicalComposition),
+            onto.hasProperty.exactly(1, onto.Density),
+            onto.hasSpatialPart.min(0, GranularStructure),
         ]
 
     class CrystallineMagneticMaterial(GranularStructure, MagneticMaterial):
@@ -887,7 +889,7 @@ with onto:
 
     # Internal and external magnetic fields
 
-    class ExternalMagneticField(emmo.ElectromagneticQuantity):
+    class ExternalMagneticField(onto.ElectromagneticQuantity):
         """The external field H′, acting on a sample that is produced by
         electric currents or the stray field of magnets outside the sample
         volume, is often called the applied field."""
@@ -897,9 +899,9 @@ with onto:
             en("AppliedMagneticField"),
             pl("H'"),
         ]
-        is_a = [emmo.hasMeasurementUnit.some(emmo.MagneticFieldStrengthUnit)]
+        is_a = [onto.hasMeasurementUnit.some(onto.MagneticFieldStrengthUnit)]
 
-    class DemagnetizingField(emmo.ElectromagneticQuantity):
+    class DemagnetizingField(onto.ElectromagneticQuantity):
         """The magnetic field produced by the magnetization distribution
         of the sample itself."""
 
@@ -910,20 +912,20 @@ with onto:
         ]
         wikidataReference = pl("https://www.wikidata.org/wiki/Q5255001")
         wikipediaReference = pl("https://en.wikipedia.org/wiki/Demagnetizing_field")
-        is_a = [emmo.hasMeasurementUnit.some(emmo.MagneticFieldStrengthUnit)]
+        is_a = [onto.hasMeasurementUnit.some(onto.MagneticFieldStrengthUnit)]
 
-    class InternalMagneticField(emmo.ElectromagneticQuantity):
+    class InternalMagneticField(onto.ElectromagneticQuantity):
         """The internal field in the sample in the continuous medium
         approximation is the sum of the external field H′ and the
         demagnetizing field Hd."""
 
         prefLabel = en("InternalMagneticField")
         altLabel = pl("H")
-        is_a = [emmo.hasMeasurementUnit.some(emmo.MagneticFieldStrengthUnit)]
+        is_a = [onto.hasMeasurementUnit.some(onto.MagneticFieldStrengthUnit)]
 
     # Hysteresis properties
 
-    class CoercivityHc(emmo.Coercivity):
+    class CoercivityHc(onto.Coercivity):
         """The internal magnetic field -Hc at which the macroscopic
         magnetization vanishes is the coercivity or coercive force.
 
@@ -952,7 +954,7 @@ with onto:
         ]
         wikidataReference = pl("https://www.wikidata.org/wiki/Q432635")
 
-    class CoercivityBHc(emmo.Coercivity):
+    class CoercivityBHc(onto.Coercivity):
         """Defined as internal field on the B(H) loop where B = 0.
         It is also called flux coercivity BHc.
 
@@ -963,7 +965,7 @@ with onto:
         prefLabel = en("CoercivityBHc")
         altLabel = pl("BHc")
 
-    class CoercivityHcExternal(emmo.Coercivity):
+    class CoercivityHcExternal(onto.Coercivity):
         """The external magnetic field -H'c at which the macroscopic
         magnetization vanishes.
         The coercivity on M(H') loop, where H' is the external field."""
@@ -971,14 +973,14 @@ with onto:
         prefLabel = en("CoercivityHcExternal")
         altLabel = pl("H'c")
 
-    class CoercivityBHcExternal(emmo.Coercivity):
+    class CoercivityBHcExternal(onto.Coercivity):
         """Defined as external field on the B(H') loop where
         B = 0. H' is the external field."""
 
         prefLabel = en("CoercivityBHcExternal")
         altLabel = pl("BH'c")
 
-    class SwitchingFieldCoercivity(emmo.MagneticFieldStrength):
+    class SwitchingFieldCoercivity(onto.MagneticFieldStrength):
         """Defined by the maximum slope of the descending branch of
         the M-H hysteresis loop, with H the internal field."""
 
@@ -989,14 +991,14 @@ with onto:
         prefLabel = en("SwitchingFieldCoercivity")
         altLabel = pl("Hsw")
 
-    class SwitchingFieldCoercivityExternal(emmo.MagneticFieldStrength):
+    class SwitchingFieldCoercivityExternal(onto.MagneticFieldStrength):
         """Defined by the maximum slope of the descending branch of
         the M-H' hysteresis loop, with H' the external field."""
 
         prefLabel = en("SwitchingFieldCoercivityExternal")
         altLabel = pl("H'sw")
 
-    class KneeField(emmo.MagneticFieldStrength):
+    class KneeField(onto.MagneticFieldStrength):
         """The maximum working field - also named knee field H_K, is
         defined as the reverse internal field for which the magnetization
         is reduced by 10%; thus it corresponds to the point on the
@@ -1009,7 +1011,7 @@ with onto:
             pl("Hk"),
         ]
 
-    class KneeFieldExternal(emmo.MagneticFieldStrength):
+    class KneeFieldExternal(onto.MagneticFieldStrength):
         """The maximum working field - also named knee field H_K,
         is defined as the reverse external field for which the
         magnetization is reduced by 10%; thus it corresponds to the
@@ -1019,7 +1021,7 @@ with onto:
         prefLabel = en("KneeFieldExternal")
         altLabel = pl("H'k")
 
-    class Remanence(emmo.ElectromagneticQuantity):
+    class Remanence(onto.ElectromagneticQuantity):
         """The remanence Mr which remains when the applied field is
         restored to zero in the hysteresis loop"""
 
@@ -1029,14 +1031,14 @@ with onto:
             enGB("RemanentMagnetisation"),
             pl("Mr"),
         ]
-        is_a = [emmo.hasMeasurementUnit.some(emmo.MagneticFieldStrengthUnit)]
+        is_a = [onto.hasMeasurementUnit.some(onto.MagneticFieldStrengthUnit)]
         wikidataReference = pl("https://www.wikidata.org/wiki/Q4150950")
         wikipediaReference = pl("https://en.wikipedia.org/wiki/Remanence")
         IECEntry = pl(
             "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-02-40"
         )
 
-    class RemanentMagneticPolarization(emmo.ElectromagneticQuantity):
+    class RemanentMagneticPolarization(onto.ElectromagneticQuantity):
         """The remanent magnetic polarization Jr which remains when the applied
         field is restored to zero in the hysteresis loop"""
 
@@ -1045,12 +1047,12 @@ with onto:
             enGB("RemanentMagneticPolarisation"),
             pl("Jr"),
         ]
-        is_a = [emmo.hasMeasurementUnit.some(emmo.MagneticFluxDensityUnit)]
+        is_a = [onto.hasMeasurementUnit.some(onto.MagneticFluxDensityUnit)]
         IECEntry = pl(
             "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-02-39"
         )
 
-    class ExternalSusceptibility(emmo.MagneticSusceptibility):
+    class ExternalSusceptibility(onto.MagneticSusceptibility):
         """Ratio of the change of magnetization and the external
         field: M = chi' H'."""
 
@@ -1058,7 +1060,7 @@ with onto:
         altLabel = pl("chi'")
         wikidataReference = pl("https://www.wikidata.org/wiki/Q691463")
 
-    class InternalSusceptibility(emmo.MagneticSusceptibility):
+    class InternalSusceptibility(onto.MagneticSusceptibility):
         """Ratio of the change of magnetization and the internal
         field: M = chi H."""
 
@@ -1066,7 +1068,7 @@ with onto:
         altLabel = pl("chi")
         wikidataReference = pl("https://www.wikidata.org/wiki/Q691463")
 
-    class MassSusceptibility(emmo.ElectromagneticQuantity):
+    class MassSusceptibility(onto.ElectromagneticQuantity):
         """Ratio of the change of the magnetic moment per unit mass and
         the internal field: sigma = chi_m H."""
 
@@ -1074,20 +1076,20 @@ with onto:
         prefLabel = en("MassSusceptibility")
         altLabel = pl("chi_m")
         wikidataReference = pl("https://www.wikidata.org/wiki/Q104655916")
-        is_a = [emmo.hasMeasurementUnit.some(emmo.VolumePerMassUnit)]
+        is_a = [onto.hasMeasurementUnit.some(onto.VolumePerMassUnit)]
 
-    class AbsolutePermeability(emmo.ElectromagneticQuantity):
+    class AbsolutePermeability(onto.ElectromagneticQuantity):
         """Ratio of the change of magnetic flux density and the internal
         field: B = mu H."""
 
         prefLabel = en("AbsolutePermeability")
         altLabel = pl("mu")
-        is_a = [emmo.hasMeasurementUnit.some(emmo.PermeabilityUnit)]
+        is_a = [onto.hasMeasurementUnit.some(onto.PermeabilityUnit)]
         IECEntry = pl(
             "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=121-12-28"
         )
 
-    class MaximumEnergyProduct(emmo.ElectromagneticQuantity):
+    class MaximumEnergyProduct(onto.ElectromagneticQuantity):
         """The value of the maximum energy product (BH)max is deduced from a
         plot of BH(B) for all points of the second quadrant of the B-H
         hysteresis loop. BH varies with B going through a maximum value (BH)max
@@ -1104,10 +1106,10 @@ with onto:
 
         prefLabel = en("MaximumEnergyProduct")
         altLabel = pl("(BH)max")
-        is_a = [emmo.hasMeasurementUnit.some(EnergyDensityUnit)]
+        is_a = [onto.hasMeasurementUnit.some(EnergyDensityUnit)]
         wikipediaReference = pl("https://en.wikipedia.org/wiki/Maximum_energy_product")
 
-    class SaturationMagneticPolarization(emmo.ElectromagneticQuantity):
+    class SaturationMagneticPolarization(onto.ElectromagneticQuantity):
         """The Saturation magnetic polarization Jsat is the maximum
         obtainable magnetic polarization for a given substance
         at a given temperature. Jsat should be used instead of Js to avoid
@@ -1118,12 +1120,12 @@ with onto:
             enGB("SaturationMagneticPolarisation"),
             en("Jsat"),
         ]
-        is_a = [emmo.hasMeasurementUnit.some(emmo.MagneticFluxDensityUnit)]
+        is_a = [onto.hasMeasurementUnit.some(onto.MagneticFluxDensityUnit)]
         IECEntry = pl(
             "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-01-05"
         )
 
-    class SaturationMagnetization(emmo.ElectromagneticQuantity):
+    class SaturationMagnetization(onto.ElectromagneticQuantity):
         """The Saturation magnetization Msat is the maximum
         obtainable magnetic magnetization for a given substance
         at a given temperature. Msat should be used instead Ms to avoid
@@ -1134,7 +1136,7 @@ with onto:
             enGB("SaturationMagnetisation"),
             en("Msat"),
         ]
-        is_a = [emmo.hasMeasurementUnit.some(emmo.MagneticFieldStrengthUnit)]
+        is_a = [onto.hasMeasurementUnit.some(onto.MagneticFieldStrengthUnit)]
         IECEntry = pl(
             "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-01-04"
         )
@@ -1142,7 +1144,7 @@ with onto:
         wikidataReference = pl("https://www.wikidata.org/wiki/Q2630994")
 
     class LoopSquarenessFactorInternal(
-        emmo.ElectromagneticQuantity, emmo.RatioQuantity
+        onto.ElectromagneticQuantity, onto.RatioQuantity
     ):
         """The internal loop squareness factor SF is defined as the ratio of
         the internal KneeField Hk over the internal Coercivity Hc
@@ -1153,10 +1155,10 @@ with onto:
             en("SquarenessFactorInternal"),
             en("SF_internal"),
         ]
-        is_a = [emmo.hasMeasurementUnit.some(emmo.DimensionlessUnit)]
+        is_a = [onto.hasMeasurementUnit.some(onto.DimensionlessUnit)]
 
     class LoopSquarenessFactorExternal(
-        emmo.ElectromagneticQuantity, emmo.RatioQuantity
+        onto.ElectromagneticQuantity, onto.RatioQuantity
     ):
         """The external loop squareness factor is defined as the ratio of
         the external KneeField H'k over the external Coercivity H'c
@@ -1167,9 +1169,9 @@ with onto:
             en("SquarenessFactorExternal"),
             en("SF_external"),
         ]
-        is_a = [emmo.hasMeasurementUnit.some(emmo.DimensionlessUnit)]
+        is_a = [onto.hasMeasurementUnit.some(onto.DimensionlessUnit)]
 
-    class LoopSquareness(emmo.ElectromagneticQuantity, emmo.RatioQuantity):
+    class LoopSquareness(onto.ElectromagneticQuantity, onto.RatioQuantity):
         """The external loop squareness is defined as the ratio of
         the remanent polarisation over the saturation polarisation
         (SS = RemanentMagneticPolarization / SaturationMagneticPolarization)."""
@@ -1179,11 +1181,11 @@ with onto:
             en("Squareness"),
             en("SS"),
         ]
-        is_a = [emmo.hasMeasurementUnit.some(emmo.DimensionlessUnit)]
+        is_a = [onto.hasMeasurementUnit.some(onto.DimensionlessUnit)]
 
     # -----------------------------------------------------
 
-    class MagneticHysteresisProperties(emmo.Property):
+    class MagneticHysteresisProperties(onto.Property):
         """The essential practical characteristic of any ferromagnetic material
         is the irreversible nonlinear response of magnetization M to an imposed
         magnetic field H. This response is given by the hysteresis loop. The
@@ -1203,32 +1205,32 @@ with onto:
 
         prefLabel = en("MagneticHysteresisProperties")
         is_a = [
-            emmo.hasProperty.exactly(1, CoercivityHc),
-            emmo.hasProperty.min(0, CoercivityBHc),
-            emmo.hasProperty.min(0, CoercivityHcExternal),
-            emmo.hasProperty.min(0, CoercivityBHcExternal),
-            emmo.hasProperty.min(0, SwitchingFieldCoercivity),
-            emmo.hasProperty.min(0, SwitchingFieldCoercivityExternal),
-            emmo.hasProperty.min(0, KneeField),
-            emmo.hasProperty.min(0, KneeFieldExternal),
-            emmo.hasProperty.exactly(1, Remanence),
-            emmo.hasProperty.min(0, RemanentMagneticPolarization),
-            emmo.hasProperty.min(0, SaturationMagneticPolarization),
-            emmo.hasProperty.min(0, LoopSquarenessFactorInternal),
-            emmo.hasProperty.min(0, LoopSquarenessFactorExternal),
-            emmo.hasProperty.min(0, LoopSquareness),
-            emmo.hasProperty.min(0, MaximumEnergyProduct),
+            onto.hasProperty.exactly(1, CoercivityHc),
+            onto.hasProperty.min(0, CoercivityBHc),
+            onto.hasProperty.min(0, CoercivityHcExternal),
+            onto.hasProperty.min(0, CoercivityBHcExternal),
+            onto.hasProperty.min(0, SwitchingFieldCoercivity),
+            onto.hasProperty.min(0, SwitchingFieldCoercivityExternal),
+            onto.hasProperty.min(0, KneeField),
+            onto.hasProperty.min(0, KneeFieldExternal),
+            onto.hasProperty.exactly(1, Remanence),
+            onto.hasProperty.min(0, RemanentMagneticPolarization),
+            onto.hasProperty.min(0, SaturationMagneticPolarization),
+            onto.hasProperty.min(0, LoopSquarenessFactorInternal),
+            onto.hasProperty.min(0, LoopSquarenessFactorExternal),
+            onto.hasProperty.min(0, LoopSquareness),
+            onto.hasProperty.min(0, MaximumEnergyProduct),
         ]
 
-    class ExtrinsicMagneticProperties(emmo.Property):
+    class ExtrinsicMagneticProperties(onto.Property):
         """Extrinsic magnetic Properties depend on the microstructure."""
 
         prefLabel = en("ExtrinsicMagneticProperties")
         is_a = [
-            emmo.hasProperty.exactly(1, MagneticHysteresisProperties),
-            emmo.hasProperty.min(0, DemagnetizingFactor),
-            emmo.hasProperty.min(0, AbsolutePermeability),
-            emmo.hasProperty.min(0, emmo.RelativePermeability),
+            onto.hasProperty.exactly(1, MagneticHysteresisProperties),
+            onto.hasProperty.min(0, DemagnetizingFactor),
+            onto.hasProperty.min(0, AbsolutePermeability),
+            onto.hasProperty.min(0, onto.RelativePermeability),
         ]
 
     # -----------------------------------------------------
@@ -1237,25 +1239,25 @@ with onto:
 
     ## Microstructure
 
-    class MainMagneticPhase(MagneticMaterial, emmo.PhaseOfMatter):
+    class MainMagneticPhase(MagneticMaterial, onto.PhaseOfMatter):
         """Main phase of the magnet"""
 
         prefLabel = en("MainMagneticPhase")
         is_a = [
-            emmo.hasProperty.some(emmo.VolumeFraction),
-            emmo.hasSpatialPart.exactly(
+            onto.hasProperty.some(onto.VolumeFraction),
+            onto.hasSpatialPart.exactly(
                 1, AmorphousMagneticMaterial | CrystallineMagneticMaterial
             ),
         ]
 
-    class SecondaryPhase(emmo.Material, emmo.PhaseOfMatter):
+    class SecondaryPhase(onto.Material, onto.PhaseOfMatter):
         """An additional phase within a magnet, for example soft inclusions
         or triple junctions."""
 
         prefLabel = en("SecondaryPhase")
         is_a = [
-            emmo.hasProperty.some(emmo.VolumeFraction),
-            emmo.hasSpatialPart.exactly(
+            onto.hasProperty.some(onto.VolumeFraction),
+            onto.hasSpatialPart.exactly(
                 1,
                 AmorphousMagneticMaterial
                 | CrystallineMagneticMaterial
@@ -1272,20 +1274,20 @@ with onto:
         )
         prefLabel = en("GrainBoundaryPhase")
         is_a = [
-            emmo.hasProperty.some(emmo.Thickness),
+            onto.hasProperty.some(onto.Thickness),
         ]
 
-    class GranularMicrostructure(emmo.Material):
+    class GranularMicrostructure(onto.Material):
         """The granular structure of a magnetic materials."""
 
         prefLabel = en("GranularMicrostructure")
         is_a = [
-            emmo.hasSpatialPart.exactly(1, MainMagneticPhase),
-            emmo.hasSpatialPart.min(0, SecondaryPhase),
-            emmo.hasSpatialPart.min(0, GrainBoundaryPhase),
+            onto.hasSpatialPart.exactly(1, MainMagneticPhase),
+            onto.hasSpatialPart.min(0, SecondaryPhase),
+            onto.hasSpatialPart.min(0, GrainBoundaryPhase),
         ]
 
-    class Magnet(emmo.FunctionalMaterial):
+    class Magnet(onto.FunctionalMaterial):
         """Piece of matter made of one or more magnetic materials."""
 
         prefLabel = en("Magnet")
@@ -1295,26 +1297,26 @@ with onto:
             "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=151-14-06"
         )
         is_a = [
-            emmo.hasProperty.min(0, emmo.MaterialsProcessing),
-            emmo.hasProperty.min(0, emmo.WorkpieceForming),
-            emmo.hasSpatialPart.min(0, GranularMicrostructure),
-            emmo.hasProperty.exactly(1, ExtrinsicMagneticProperties),
-            emmo.hasProperty.min(0, XrayDiffractionData),
+            onto.hasProperty.min(0, onto.MaterialsProcessing),
+            onto.hasProperty.min(0, onto.WorkpieceForming),
+            onto.hasSpatialPart.min(0, GranularMicrostructure),
+            onto.hasProperty.exactly(1, ExtrinsicMagneticProperties),
+            onto.hasProperty.min(0, XrayDiffractionData),
         ]
 
-    class BulkMagnet(Magnet, emmo.MaterialBySize):
+    class BulkMagnet(Magnet, onto.MaterialBySize):
         """Piece of matter made of one or more magnetic material."""
 
         prefLabel = en("BulkMagnet")
         is_a = [
-            emmo.hasProperty.exactly(1, SampleGeometry),
-            emmo.hasProperty.exactly(1, ShapeAnisotropy),
-            emmo.hasProperty.exactly(1, DemagnetizingFactor),
+            onto.hasProperty.exactly(1, SampleGeometry),
+            onto.hasProperty.exactly(1, ShapeAnisotropy),
+            onto.hasProperty.exactly(1, DemagnetizingFactor),
         ]
 
     # Local properties
 
-    class Reflectivity(emmo.Property):
+    class Reflectivity(onto.Property):
         """Capacity of an object to reflect light."""
 
         prefLabel = en("Reflectivity")
@@ -1325,7 +1327,7 @@ with onto:
         wikidataReference = pl("https://www.wikidata.org/wiki/Q663650")
         wikipediaReference = pl("https://en.wikipedia.org/wiki/Reflectance")
         is_a = [
-            emmo.hasMeasurementUnit.some(emmo.DimensionlessUnit),
+            onto.hasMeasurementUnit.some(onto.DimensionlessUnit),
         ]
 
     class LocalReflectivity(Reflectivity):
@@ -1333,7 +1335,7 @@ with onto:
 
         prefLabel = en("LocalReflectivity")
         is_a = [
-            emmo.hasProperty.exactly(1, emmo.PositionVector),
+            onto.hasProperty.exactly(1, onto.PositionVector),
         ]
 
     class LocalCoercivity(CoercivityHcExternal):
@@ -1341,7 +1343,7 @@ with onto:
 
         prefLabel = en("LocalCoercivity")
         is_a = [
-            emmo.hasProperty.exactly(1, emmo.PositionVector),
+            onto.hasProperty.exactly(1, onto.PositionVector),
         ]
 
     class LocalXrayDiffractionData(XrayDiffractionData):
@@ -1349,7 +1351,7 @@ with onto:
 
         prefLabel = en("LocalXrayDiffractionData")
         is_a = [
-            emmo.hasProperty.exactly(1, emmo.PositionVector),
+            onto.hasProperty.exactly(1, onto.PositionVector),
         ]
 
     class LocalLatticeConstantA(LatticeConstantA):
@@ -1358,7 +1360,7 @@ with onto:
 
         prefLabel = en("LocalLatticeConstantA")
         is_a = [
-            emmo.hasProperty.exactly(1, emmo.PositionVector),
+            onto.hasProperty.exactly(1, onto.PositionVector),
         ]
 
     class LocalLatticeConstantC(LatticeConstantC):
@@ -1367,65 +1369,65 @@ with onto:
 
         prefLabel = en("LocalLatticeConstantC")
         is_a = [
-            emmo.hasProperty.exactly(1, emmo.PositionVector),
+            onto.hasProperty.exactly(1, onto.PositionVector),
         ]
 
-    class LocalThickness(emmo.Thickness):
+    class LocalThickness(onto.Thickness):
         """The thickness of the film measured locally."""
 
         prefLabel = en("LocalThickness")
         is_a = [
-            emmo.hasProperty.exactly(1, emmo.PositionVector),
+            onto.hasProperty.exactly(1, onto.PositionVector),
         ]
 
-    class LocalAtomPercent(emmo.RatioQuantity):
+    class LocalAtomPercent(onto.RatioQuantity):
         """Local atomic percentage obtained from EDX quantification."""
 
         prefLabel = en("LocalAtomPercent")
         altLabel = [en("LocalAtomicPercent"), en("at.%")]
         is_a = [
-            emmo.hasMeasurementUnit.some(emmo.Percent),
-            emmo.hasProperty.exactly(1, emmo.PositionVector),
+            onto.hasMeasurementUnit.some(onto.Percent),
+            onto.hasProperty.exactly(1, onto.PositionVector),
         ]
 
-    class LocalMassPercent(emmo.RatioQuantity):
+    class LocalMassPercent(onto.RatioQuantity):
         """Local mass percentage obtained from EDX quantification."""
 
         prefLabel = en("LocalMassPercent")
         altLabel = [en("LocalWeightPercent"), en("wt.%")]
         is_a = [
-            emmo.hasMeasurementUnit.some(emmo.Percent),
-            emmo.hasProperty.exactly(1, emmo.PositionVector),
+            onto.hasMeasurementUnit.some(onto.Percent),
+            onto.hasProperty.exactly(1, onto.PositionVector),
         ]
 
-    class LocalAnnealingTemperature(emmo.ThermodynamicTemperature):
+    class LocalAnnealingTemperature(onto.ThermodynamicTemperature):
         """Local annealing temperature from heat treatment such as
         Rapid Thermal Annealing (RTA)."""
 
         prefLabel = en("LocalAnnealingTemperature")
         is_a = [
-            emmo.hasProperty.exactly(1, emmo.PositionVector),
+            onto.hasProperty.exactly(1, onto.PositionVector),
         ]
 
-    class LocalAnnealingTime(emmo.Duration):
+    class LocalAnnealingTime(onto.Duration):
         """Local annealing time (duration) from heat treatment such as
         Rapid Thermal Annealing (RTA)."""
 
         prefLabel = en("LocalAnnealingTime")
         altLabel = en("LocalAnnealingDuration")
         is_a = [
-            emmo.hasProperty.exactly(1, emmo.PositionVector),
+            onto.hasProperty.exactly(1, onto.PositionVector),
         ]
 
-    class LocalPhaseFraction(emmo.RatioQuantity):
+    class LocalPhaseFraction(onto.RatioQuantity):
         """Local phase fraction obtained from XRD analysis, typically
         expressed in weight percent."""
 
         prefLabel = en("LocalPhaseFraction")
         altLabel = en("LocalPhaseContent")
         is_a = [
-            emmo.hasMeasurementUnit.some(emmo.Percent),
-            emmo.hasProperty.exactly(1, emmo.PositionVector),
+            onto.hasMeasurementUnit.some(onto.Percent),
+            onto.hasProperty.exactly(1, onto.PositionVector),
         ]
 
     class LocalEdxData(EdxData):
@@ -1434,7 +1436,7 @@ with onto:
         prefLabel = en("LocalEdxData")
         altLabel = en("LocalEDXData")
         is_a = [
-            emmo.hasProperty.exactly(1, emmo.PositionVector),
+            onto.hasProperty.exactly(1, onto.PositionVector),
         ]
 
     class LocalMokeData(MokeData):
@@ -1443,7 +1445,7 @@ with onto:
         prefLabel = en("LocalMokeData")
         altLabel = en("LocalMOKEData")
         is_a = [
-            emmo.hasProperty.exactly(1, emmo.PositionVector),
+            onto.hasProperty.exactly(1, onto.PositionVector),
         ]
 
     class LocalProfilometryData(ProfilometryData):
@@ -1451,40 +1453,40 @@ with onto:
 
         prefLabel = en("LocalProfilometryData")
         is_a = [
-            emmo.hasProperty.exactly(1, emmo.PositionVector),
+            onto.hasProperty.exactly(1, onto.PositionVector),
         ]
 
-    class ThinFilmMagnet(Magnet, emmo.MaterialBySize):
+    class ThinFilmMagnet(Magnet, onto.MaterialBySize):
         """Piece of matter made of one or more magnetic material
         in form a thin film."""
 
         prefLabel = en("ThinFilmMagnet")
         is_a = [
-            emmo.hasProperty.min(0, InducedMagneticAnisotropy),
-            emmo.hasProperty.min(0, SampleGeometry),
-            emmo.hasProperty.min(0, LocalThickness),
-            emmo.hasProperty.min(0, LocalCoercivity),
-            emmo.hasProperty.min(0, LocalReflectivity),
-            emmo.hasProperty.min(0, LocalXrayDiffractionData),
-            emmo.hasProperty.min(0, LocalLatticeConstantA),
-            emmo.hasProperty.min(0, LocalLatticeConstantC),
+            onto.hasProperty.min(0, InducedMagneticAnisotropy),
+            onto.hasProperty.min(0, SampleGeometry),
+            onto.hasProperty.min(0, LocalThickness),
+            onto.hasProperty.min(0, LocalCoercivity),
+            onto.hasProperty.min(0, LocalReflectivity),
+            onto.hasProperty.min(0, LocalXrayDiffractionData),
+            onto.hasProperty.min(0, LocalLatticeConstantA),
+            onto.hasProperty.min(0, LocalLatticeConstantC),
             # New properties from issue #20
-            emmo.hasProperty.min(0, LocalAtomPercent),
-            emmo.hasProperty.min(0, LocalMassPercent),
-            emmo.hasProperty.min(0, LocalAnnealingTemperature),
-            emmo.hasProperty.min(0, LocalAnnealingTime),
-            emmo.hasProperty.min(0, LocalPhaseFraction),
-            emmo.hasProperty.min(0, LocalEdxData),
-            emmo.hasProperty.min(0, LocalMokeData),
-            emmo.hasProperty.min(0, LocalProfilometryData),
-            emmo.hasProperty.min(0, Xrd2dImage),
+            onto.hasProperty.min(0, LocalAtomPercent),
+            onto.hasProperty.min(0, LocalMassPercent),
+            onto.hasProperty.min(0, LocalAnnealingTemperature),
+            onto.hasProperty.min(0, LocalAnnealingTime),
+            onto.hasProperty.min(0, LocalPhaseFraction),
+            onto.hasProperty.min(0, LocalEdxData),
+            onto.hasProperty.min(0, LocalMokeData),
+            onto.hasProperty.min(0, LocalProfilometryData),
+            onto.hasProperty.min(0, Xrd2dImage),
         ]
 
     # Magnetic multilayers
 
     ## Magnetotransport
 
-    class Magnetoresistance(emmo.RatioQuantity):
+    class Magnetoresistance(onto.RatioQuantity):
         """Change of the resistivity of a substance due to an applied
         magnetic field.
 
@@ -1499,41 +1501,41 @@ with onto:
             "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=121-12-83"
         )
         is_a = [
-            emmo.hasMeasurementUnit.some(emmo.DimensionlessUnit),
+            onto.hasMeasurementUnit.some(onto.DimensionlessUnit),
         ]
 
-    class SpacerLayer(emmo.Material):
+    class SpacerLayer(onto.Material):
         """Nonmagnetic thin film materials."""
 
         prefLabel = en("SpacerLayer")
         is_a = [
             Not(MagneticMaterial),
-            emmo.hasProperty.exactly(1, emmo.ChemicalComposition),
-            emmo.hasProperty.some(emmo.Thickness),
+            onto.hasProperty.exactly(1, onto.ChemicalComposition),
+            onto.hasProperty.some(onto.Thickness),
         ]
 
-    class StackingSequence(emmo.NominalProperty):
+    class StackingSequence(onto.NominalProperty):
         """Sequence of layers in a multilayer stack."""
 
         prefLabel = en("StackingSequence")
-        is_a = [emmo.hasStringValue.some(emmo.String)]
+        is_a = [onto.hasStringValue.some(onto.String)]
 
-    class MultilayerMagnet(emmo.SpatialTiling, Magnet):
+    class MultilayerMagnet(onto.SpatialTiling, Magnet):
         """Piece of matter made of stacked layers of one or more magnetic
         materials."""
 
         prefLabel = en("MultilayerMagnet")
         is_a = [
-            emmo.hasSpatialTile.some(ThinFilmMagnet),
-            emmo.hasSpatialTile.min(0, SpacerLayer),
-            emmo.hasProperty.exactly(1, SampleGeometry),
-            emmo.hasProperty.exactly(1, StackingSequence),
-            emmo.hasProperty.min(0, Magnetoresistance),
+            onto.hasSpatialTile.some(ThinFilmMagnet),
+            onto.hasSpatialTile.min(0, SpacerLayer),
+            onto.hasProperty.exactly(1, SampleGeometry),
+            onto.hasProperty.exactly(1, StackingSequence),
+            onto.hasProperty.min(0, Magnetoresistance),
         ]
 
     # -----------------------------------------------------
 
-    class BinderCumulant(emmo.ISQDimensionlessQuantity):
+    class BinderCumulant(onto.ISQDimensionlessQuantity):
         """A dimensionless fourth-order cumulant of magnetization, defined as U4 = 1 −
         <m^4>/(3 <m^2>^2), where m is the normalised magnetization (magnetization per
         site). It is used in finite-size scaling as an approximately scale-independent
@@ -1576,16 +1578,16 @@ onto.metadata.abstract.append(
 )
 
 onto.metadata.title.append(en("Magnetic Materials Ontology (MagMO)"))
-onto.metadata.creator.append(en("Wilfried Hortschitz"))
-onto.metadata.creator.append(en("Thomas Schrefl"))
-onto.metadata.creator.append(en("Santa Pile"))
-onto.metadata.contributor.append(en("William Rigaut"))
-onto.metadata.contributor.append(en("Andrea Petrocchi"))
-onto.metadata.contributor.append(en("Martin Lang"))
-onto.metadata.contributor.append(en("Sam Holt"))
-onto.metadata.contributor.append(en("Swapneel Amit Pathak"))
-onto.metadata.contributor.append(en("Hans Fangohr"))
-onto.metadata.contributor.append(en("Jonas Winkler"))
+onto.metadata.creator.append(contributors.WilfriedHortschitz)
+onto.metadata.creator.append(contributors.ThomasSchrefl)
+onto.metadata.creator.append(contributors.SantaPile)
+onto.metadata.contributor.append(contributors.WilliamRigaut)
+onto.metadata.contributor.append(contributors.AndreaPetrocchi)
+onto.metadata.contributor.append(contributors.MartinLang)
+onto.metadata.contributor.append(contributors.SamuelHolt)
+onto.metadata.contributor.append(contributors.SwapneelAmitPathak)
+onto.metadata.contributor.append(contributors.HansFangohr)
+onto.metadata.contributor.append(contributors.JonasWinkler)
 onto.metadata.versionInfo.append(version)
 onto.metadata.comment.append(
     en(
