@@ -4,14 +4,14 @@ platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
 name = "domain-magnetic-materials"
 version = "0.0.6"
 authors = [
-  "Andrea Petrocchi",
-  "Wilfried Hortschitz",
-  "Martin Lang",
   "Martin Dobiasch",
   "Hans Fangohr",
-  "Thomas Schrefl",
   "Samuel Holt",
+  "Wilfried Hortschitz",
+  "Martin Lang",
   "Swapneel Amit Pathak",
+  "Andrea Petrocchi",
+  "Thomas Schrefl",
 ]
 description = "Magnetic Materials Domain Ontology (MagMO)."
 
