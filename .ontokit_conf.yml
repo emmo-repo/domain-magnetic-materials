@@ -1,0 +1,21 @@
+ONTOLOGY_NAME: magnetic-materials
+ONTOLOGY_PREFIX: magmo
+ONTOLOGY_IRI: https://w3id.org/emmo/domain/magnetic-materials
+GITHUB_REPOSITORY: emmo-repo/domain-magnetic-materials
+BUILD_DIR: build
+
+# Optional: select subsections for the primary reference index.
+# Default is "all".
+# REFERENCE_SUBSECTIONS: all
+# Example subset:
+# REFERENCE_SUBSECTIONS: classes,annotation_properties,data_properties,object_properties,individuals
+#
+# Optional: additional reference indices for `ontokit docs`.
+# REFERENCE_INDICES:
+#   - ontology_file: build/other-ontology.ttl
+#     title: Other Ontology Reference
+#     docfile: other-reference.rst
+#     iri_regex: https://example.org/other
+#     imported: false
+#     recursive: false
+#     subsections: all
