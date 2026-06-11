@@ -14,11 +14,12 @@ check = "emmocheck magnetic-materials.ttl"
 reason = "ontoconvert magnetic-materials.ttl magnetic-materials.ttl --reasoner --infer"
 
 [dependencies]
+emmontopy = ">=0.11.4"
 python = ">3.11"
 graphviz = ">=12.0.0,<13"
 pandoc = "==3.1.3"
 openjdk = ">=25.0.1,<26"
 ipython = ">=9.10.0,<10"
+sphinx = ">=9.1.0,<10"
 
 [pypi-dependencies]
-emmontopy = "*"
