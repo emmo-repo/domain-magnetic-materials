@@ -621,16 +621,16 @@ emmo:Zebi rdfs:subClassOf emmo:EMMO_ac9e518d_b403_4d8b_97e2_06f9d40bac01 .
 
 <https://w3id.org/emmo/domain/magnetic-materials> a owl:Ontology ;
     dcterms:abstract "An EMMO-based domain-ontology for magnetic materials. Created within the EU project MaMMoS. Grant number 101135546 (HORIZON-CL4-2023-DIGITAL-EMERGING-01). The Magnetic Materials Ontology is released under the Creative Commons Attribution 4.0 International license (CC BY 4.0)."@en ;
-    dcterms:contributor :AndreaPetrocchi,
-        :HansFangohr,
-        :JonasWinkler,
-        :MartinLang,
-        :SamHolt,
-        :SwapneelAmitPathak,
-        :WilliamRigaut ;
-    dcterms:creator :SantaPile,
-        :ThomasSchrefl,
-        :WilfriedHortschitz ;
+    dcterms:contributor <https://orcid.org/0000-0001-5494-7193>,
+        <https://orcid.org/0000-0001-7104-7867>,
+        <https://orcid.org/0000-0003-3323-8958>,
+        <https://orcid.org/0000-0003-3840-955X>,
+        <https://orcid.org/0009-0000-7815-5916>,
+        <https://orcid.org/0009-0000-9775-7955>,
+        <https://orcid.org/0009-0005-1867-6732> ;
+    dcterms:creator <https://orcid.org/0000-0001-7854-847X>,
+        <https://orcid.org/0000-0002-0871-0520>,
+        <https://orcid.org/0000-0003-2950-642X> ;
     dcterms:title "Magnetic Materials Ontology (MagMO)"@en ;
     rdfs:comment "Created within the EU project MaMMoS. Grant number 101135546     (HORIZON-CL4-2023-DIGITAL-EMERGING-01)."^^xsd:string,
         """Contacts:
