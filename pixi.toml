@@ -19,6 +19,7 @@ description = "Magnetic Materials Domain Ontology (MagMO)."
 build = {cmd="python src/build_ontology.py", description="Build ontology"}
 reason = "ontoconvert magnetic-materials.ttl magnetic-materials.ttl --reasoner --infer --namespace emmo:https://w3id.org/emmo#"
 check = "emmocheck magnetic-materials.ttl"
+docs = { cmd="ontodoc --template=test.md --local --format=html ../magnetic-materials.ttl magnetic-materials.html", cwd = "docs" }
 all = { depends-on = ["build", "reason", "check"] } # run all steps subsequently
 
 [dependencies]
@@ -27,5 +28,11 @@ python = ">3.11"
 openjdk = ">=25.0.2,<26"
 ipython = ">=9.10.0,<10"
 sphinx = ">=9.1.0,<10"
+python-graphviz = ">=0.21,<0.22"
+pandoc = ">=3.10,<4"
+myst-parser = ">=5.1.0,<6"
+sphinx-design = ">=0.7.0,<0.8"
+pydata-sphinx-theme = ">=0.19.0,<0.20"
 
 [pypi-dependencies]
+tripper = { git = "https://github.com/EMMC-ASBL/tripper.git", rev = "master", extras = ["datadoc"] }
