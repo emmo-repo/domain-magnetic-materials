@@ -1599,7 +1599,10 @@ onto.metadata.comment.append(
 )
 
 # Set version of ontology
-onto.set_version(version=version)
+onto.set_version(
+    version=version,
+    version_iri=f"https://w3id.org/emmo/domain/magnetic-materials/{version}",
+)
 onto.save(
     "magnetic-materials.ttl",
     overwrite=True,
