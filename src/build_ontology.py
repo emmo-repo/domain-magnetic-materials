@@ -251,8 +251,9 @@ with onto:
         """Class of units of the magnetization per unit mass.
         Defined using SI base units."""
 
-        prefLabel = enUS("MassMagnetizationUnit")
+        prefLabel = en("MassMagnetizationUnit")
         altLabel = [
+            enUS("MassMagnetizationUnit"),
             enGB("MassMagnetisationUnit"),
             enUS("SpecificMagnetizationUnit"),
             enGB("SpecificMagnetisationUnit"),
@@ -262,8 +263,9 @@ with onto:
     class AmpereSquareMeterPerKilogram(MassMagnetizationUnit):
         """Unit of the magnetic moment per unit mass: Am²/kg."""
 
-        prefLabel = enUS("AmpereSquareMeterPerKilogram")
+        prefLabel = en("AmpereSquareMeterPerKilogram")
         altLabel = [
+            enUS("AmpereSquareMeterPerKilogram"),
             enGB("AmpereSquareMetrePerKilogram"),
         ]
         unitSymbol = en("A⋅m²/kg")
@@ -291,8 +293,9 @@ with onto:
         of alignment of the magnetic moments of individual atoms. Ms exists
         within a domain of a ferromagnet."""
 
-        prefLabel = enUS("SpontaneousMagnetization")
+        prefLabel = en("SpontaneousMagnetization")
         altLabel = [
+            enUS("SpontaneousMagnetization"),
             enGB("SpontaneousMagnetisation"),
             pl("Ms"),
         ]
@@ -309,8 +312,9 @@ with onto:
         result of alignment of the magnetic moments of  individual atoms.
         Js exists within a domain of a ferromagnet."""
 
-        prefLabel = enUS("SpontaneousMagneticPolarization")
+        prefLabel = en("SpontaneousMagneticPolarization")
         altLabel = [
+            enUS("SpontaneousMagneticPolarization"),
             enGB("SpontaneousMagneticPolarisation"),
             pl("Js"),
         ]
@@ -377,8 +381,9 @@ with onto:
             "H = H' - DM, where D is the demagnetizing factor, M is the \
             magnetization, and H is the internal field."
         )
-        prefLabel = enUS("DemagnetizingFactor")
+        prefLabel = en("DemagnetizingFactor")
         altLabel = [
+            enUS("DemagnetizingFactor"),
             enGB("DemagnetisingFactor"),
             pl("N"),
             pl("D"),
@@ -905,8 +910,9 @@ with onto:
         """The magnetic field produced by the magnetization distribution
         of the sample itself."""
 
-        prefLabel = enUS("DemagnetizingField")
+        prefLabel = en("DemagnetizingField")
         altLabel = [
+            enUS("DemagnetizingField"),
             enGB("DemagnetisingField"),
             pl("Hd"),
         ]
@@ -1042,8 +1048,9 @@ with onto:
         """The remanent magnetic polarization Jr which remains when the applied
         field is restored to zero in the hysteresis loop"""
 
-        prefLabel = enUS("RemanentMagneticPolarization")
+        prefLabel = en("RemanentMagneticPolarization")
         altLabel = [
+            enUS("RemanentMagneticPolarization"),
             enGB("RemanentMagneticPolarisation"),
             pl("Jr"),
         ]
@@ -1115,8 +1122,9 @@ with onto:
         at a given temperature. Jsat should be used instead of Js to avoid
         confusion with the symbol for the spontaneous polarization"""
 
-        prefLabel = enUS("SaturationMagneticPolarization")
+        prefLabel = en("SaturationMagneticPolarization")
         altLabel = [
+            enUS("SaturationMagneticPolarization"),
             enGB("SaturationMagneticPolarisation"),
             en("Jsat"),
         ]
@@ -1131,8 +1139,9 @@ with onto:
         at a given temperature. Msat should be used instead Ms to avoid
         confusion with the symbol for the SpontaneousMagnetization"""
 
-        prefLabel = enUS("SaturationMagnetization")
+        prefLabel = en("SaturationMagnetization")
         altLabel = [
+            enUS("SaturationMagnetization"),
             enGB("SaturationMagnetisation"),
             en("Msat"),
         ]
