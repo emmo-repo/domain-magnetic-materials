@@ -72,6 +72,9 @@ jobs:
         mkdir -p "${BUILD_DIR}"
         cp README.md LICENSE "${BUILD_DIR}/."
 
+    - name: Copy images on readme to gh-pages
+      run: cp -r images "${BUILD_DIR}/."
+
     - name: Create dependencies on gh-pages
       run: |
         ontoconvert \
