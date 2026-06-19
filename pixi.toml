@@ -20,6 +20,9 @@ build = {cmd="python src/build_ontology.py", description="Build ontology"}
 reason = "ontoconvert magnetic-materials.ttl magnetic-materials.ttl --reasoner --infer --namespace emmo:https://w3id.org/emmo#"
 check = "emmocheck magnetic-materials.ttl"
 all = { depends-on = ["build", "reason", "check"] } # run all steps subsequently
+prepare-test = "rm -rf build && mkdir build"
+test-build-ontology = {cmd = "python ../src/build_ontology.py && ontoconvert magnetic-materials.ttl ../generated.ttl --reasoner --infer --namespace emmo:https://w3id.org/emmo# && emmocheck ../generated.ttl", cwd = "build", depends-on=["prepare-test"]}
+test = {cmd = "pytest -vv", depends-on=["prepare-test", "test-build-ontology"]}
 
 [dependencies]
 emmontopy = ">=0.11.4"
@@ -27,5 +30,6 @@ python = ">3.11"
 openjdk = ">=25.0.2,<26"
 ipython = ">=9.10.0,<10"
 sphinx = ">=9.1.0,<10"
+pytest = ">=9"
 
 [pypi-dependencies]
