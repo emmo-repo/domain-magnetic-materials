@@ -1611,3 +1611,22 @@ onto.save(
     },
 )
 # world.save()
+
+# fixes
+
+## fix 1: add versionIRI to imports
+# EMMOntoPy writes imports with their base IRI, without version number
+# issue raised in https://github.com/emmo-repo/EMMOntoPy/issues/1010
+with open("magnetic-materials.ttl") as f:
+    text = f.read()
+
+text = text.replace(
+    "<https://w3id.org/emmo/domain/magnetic-materials/contributors>",
+    f"<https://w3id.org/emmo/domain/magnetic-materials/{version}/contributors>"
+)
+text = text.replace(
+    "<https://w3id.org/emmo/domain/magnetic-materials/dependencies>",
+    f"<https://w3id.org/emmo/domain/magnetic-materials/{version}/dependencies>"
+)
+with open("magnetic-materials.ttl", "w") as f:
+    f.write(text)
