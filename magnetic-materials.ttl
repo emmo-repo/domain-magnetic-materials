@@ -346,7 +346,6 @@ emmo:EMMO_b12e3fea-4467-5a08-9b14-67c51def1431 rdfs:subClassOf emmo:EMMO_52fa9c7
 
 emmo:EMMO_b23e7251_a488_4732_8268_027ad76d7e37 skos:altLabel "Magnetisation"@en-GB,
         "VolumeMagnetisation"@en-GB,
-        "Magnetization"@en-US,
         "VolumeMagnetization"@en-US .
 
 emmo:EMMO_b2e41936-a44f-578d-960b-91f8f0135b2b rdfs:subClassOf emmo:EMMO_52fa9c76_fc42_4eca_a5c1_6095a1c9caab,
@@ -521,12 +520,10 @@ emmo:Joule rdfs:subClassOf emmo:EMMO_52fa9c76_fc42_4eca_a5c1_6095a1c9caab,
         emmo:EMMO_ac9e518d_b403_4d8b_97e2_06f9d40bac01 .
 
 emmo:JoulePerCubicMetre rdfs:subClassOf :EMMO_8f4dc04f-d753-55b3-b405-996199149372 ;
-    skos:altLabel "JoulePerCubicMetre"@en-GB,
-        "JoulePerCubicMeter"@en-US .
+    skos:altLabel "JoulePerCubicMeter"@en-US .
 
 emmo:JoulePerMetre rdfs:subClassOf :EMMO_3fb622c3-dc0a-5a10-a8b8-cbd040626244 ;
-    skos:altLabel "JoulePerMetre"@en-GB,
-        "JoulePerMeter"@en-US .
+    skos:altLabel "JoulePerMeter"@en-US .
 
 emmo:Katal rdfs:subClassOf emmo:EMMO_52fa9c76_fc42_4eca_a5c1_6095a1c9caab,
         emmo:EMMO_ac9e518d_b403_4d8b_97e2_06f9d40bac01 .
@@ -551,8 +548,7 @@ emmo:Lux rdfs:subClassOf emmo:EMMO_52fa9c76_fc42_4eca_a5c1_6095a1c9caab,
 emmo:Mebi rdfs:subClassOf emmo:EMMO_ac9e518d_b403_4d8b_97e2_06f9d40bac01 .
 
 emmo:MegaJoulePerCubicMetre rdfs:subClassOf :EMMO_8f4dc04f-d753-55b3-b405-996199149372 ;
-    skos:altLabel "MegaJoulePerCubicMetre"@en-GB,
-        "MegaJoulePerCubicMeter"@en-US .
+    skos:altLabel "MegaJoulePerCubicMeter"@en-US .
 
 emmo:Metre rdfs:subClassOf emmo:EMMO_52fa9c76_fc42_4eca_a5c1_6095a1c9caab,
         emmo:EMMO_ac9e518d_b403_4d8b_97e2_06f9d40bac01 .
@@ -729,8 +725,7 @@ extrapolation to infinite system size."""@en ;
             owl:someValuesFrom emmo:EMMO_e6b83139_ba92_4fbd_a8b2_c8dde55844a1 ],
         emmo:EMMO_af794e9d_dc7d_4756_83e1_2cd0e2ec864e ;
     skos:altLabel "Msat"@en,
-        "SaturationMagnetisation"@en-GB,
-        "SaturationMagnetization"@en-US ;
+        "SaturationMagnetisation"@en-GB ;
     skos:prefLabel "SaturationMagnetization"@en ;
     emmo:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 """The Saturation magnetization Msat is the maximum
 obtainable magnetic magnetization for a given substance
@@ -754,8 +749,7 @@ field: M = chi H."""@en ;
             owl:someValuesFrom emmo:EMMO_e6b83139_ba92_4fbd_a8b2_c8dde55844a1 ],
         emmo:EMMO_af794e9d_dc7d_4756_83e1_2cd0e2ec864e ;
     skos:altLabel "Hd"^^rdf:langString,
-        "DemagnetisingField"@en-GB,
-        "DemagnetizingField"@en-US ;
+        "DemagnetisingField"@en-GB ;
     skos:prefLabel "DemagnetizingField"@en ;
     emmo:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 """The magnetic field produced by the magnetization distribution
 of the sample itself."""@en ;
@@ -823,8 +817,7 @@ volume, is often called the applied field."""@en .
 
 :EMMO_dc6e9b19-6f19-5106-a014-5fba0dab0d1e a owl:Class ;
     rdfs:subClassOf :EMMO_5375f349-61e9-5985-9a7b-9f5464248145 ;
-    skos:altLabel "AmpereSquareMetrePerKilogram"@en-GB,
-        "AmpereSquareMeterPerKilogram"@en-US ;
+    skos:altLabel "AmpereSquareMetrePerKilogram"@en-GB ;
     skos:prefLabel "AmpereSquareMeterPerKilogram"@en ;
     emmo:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 "Unit of the magnetic moment per unit mass: Am²/kg."@en .
 
@@ -880,8 +873,7 @@ X-ray spectroscopy."""@en .
             owl:someValuesFrom emmo:EMMO_e6b83139_ba92_4fbd_a8b2_c8dde55844a1 ],
         emmo:EMMO_af794e9d_dc7d_4756_83e1_2cd0e2ec864e ;
     skos:altLabel "Ms"^^rdf:langString,
-        "SpontaneousMagnetisation"@en-GB,
-        "SpontaneousMagnetization"@en-US ;
+        "SpontaneousMagnetisation"@en-GB ;
     skos:prefLabel "SpontaneousMagnetization"@en ;
     emmo:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 """The spontaneous magnetization, Ms, of a ferromagnet is the result
 of alignment of the magnetic moments of individual atoms. Ms exists
@@ -1182,8 +1174,7 @@ a simple structure."""@en .
             owl:someValuesFrom emmo:EMMO_ec903946_ddc9_464a_903c_7373e0d1eeb5 ],
         emmo:EMMO_af794e9d_dc7d_4756_83e1_2cd0e2ec864e ;
     skos:altLabel "Jr"^^rdf:langString,
-        "RemanentMagneticPolarisation"@en-GB,
-        "RemanentMagneticPolarization"@en-US ;
+        "RemanentMagneticPolarisation"@en-GB ;
     skos:prefLabel "RemanentMagneticPolarization"@en ;
     emmo:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 """The remanent magnetic polarization Jr which remains when the applied
 field is restored to zero in the hysteresis loop"""@en ;
@@ -1505,8 +1496,7 @@ profilometry measurement."""@en .
             owl:someValuesFrom emmo:EMMO_ec903946_ddc9_464a_903c_7373e0d1eeb5 ],
         emmo:EMMO_af794e9d_dc7d_4756_83e1_2cd0e2ec864e ;
     skos:altLabel "Jsat"@en,
-        "SaturationMagneticPolarisation"@en-GB,
-        "SaturationMagneticPolarization"@en-US ;
+        "SaturationMagneticPolarisation"@en-GB ;
     skos:prefLabel "SaturationMagneticPolarization"@en ;
     emmo:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 """The Saturation magnetic polarization Jsat is the maximum
 obtainable magnetic polarization for a given substance
@@ -1890,8 +1880,7 @@ Rapid Thermal Annealing (RTA)."""@en .
             owl:someValuesFrom emmo:EMMO_ec903946_ddc9_464a_903c_7373e0d1eeb5 ],
         emmo:EMMO_af794e9d_dc7d_4756_83e1_2cd0e2ec864e ;
     skos:altLabel "Js"^^rdf:langString,
-        "SpontaneousMagneticPolarisation"@en-GB,
-        "SpontaneousMagneticPolarization"@en-US ;
+        "SpontaneousMagneticPolarisation"@en-GB ;
     skos:prefLabel "SpontaneousMagneticPolarization"@en ;
     emmo:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 """The spontaneous magnetic polarization, Js, of a ferromagnet is the
 result of alignment of the magnetic moments of  individual atoms.
@@ -2074,7 +2063,6 @@ is magnetized along its short and long axis."""@en .
         emmo:EMMO_9895a1b4_f0a5_4167_ac5e_97db40b8bfcc ;
     skos:altLabel "MassMagnetisationUnit"@en-GB,
         "SpecificMagnetisationUnit"@en-GB,
-        "MassMagnetizationUnit"@en-US,
         "SpecificMagnetizationUnit"@en-US ;
     skos:prefLabel "MassMagnetizationUnit"@en ;
     emmo:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 """Class of units of the magnetization per unit mass.
@@ -2217,8 +2205,7 @@ The coercivity on M(H') loop, where H' is the external field."""@en .
         emmo:EMMO_af794e9d_dc7d_4756_83e1_2cd0e2ec864e ;
     skos:altLabel "D"^^rdf:langString,
         "N"^^rdf:langString,
-        "DemagnetisingFactor"@en-GB,
-        "DemagnetizingFactor"@en-US ;
+        "DemagnetisingFactor"@en-GB ;
     skos:prefLabel "DemagnetizingFactor"@en ;
     emmo:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 """For a uniformly magnetized ellipsoid with magnetization along a
 major axis the demagnetizing field is Hd = -N M.
