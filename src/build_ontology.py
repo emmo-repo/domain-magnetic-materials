@@ -204,10 +204,8 @@ with onto:
     # Assert JoulePerCubicMetre as subclass of EnergyDensityUnit
     onto.JoulePerCubicMetre.is_a.append(EnergyDensityUnit)
     add_altLabel(onto.JoulePerCubicMetre, enUS("JoulePerCubicMeter"))
-    add_altLabel(onto.JoulePerCubicMetre, enGB("JoulePerCubicMetre"))
     # Assert MegaJoulePerCubicMetre as subclass of EnergyDensityUnit
     onto.MegaJoulePerCubicMetre.is_a.append(EnergyDensityUnit)
-    add_altLabel(onto.MegaJoulePerCubicMetre, enGB("MegaJoulePerCubicMetre"))
     add_altLabel(onto.MegaJoulePerCubicMetre, enUS("MegaJoulePerCubicMeter"))
 
     class EnergyDensity(onto.PhysicalQuantity):
@@ -227,7 +225,6 @@ with onto:
     # Assert JoulePerMetre as subclass of LineEnergyUnit
     onto.JoulePerMetre.is_a.append(LineEnergyUnit)
     add_altLabel(onto.JoulePerMetre, enUS("JoulePerMeter"))
-    add_altLabel(onto.JoulePerMetre, enGB("JoulePerMetre"))
 
     class LineEnergy(onto.PhysicalQuantity):
         """Energy per unit length."""
@@ -244,7 +241,6 @@ with onto:
 
     add_altLabel(onto.Magnetization, enUS("VolumeMagnetization"))
     add_altLabel(onto.Magnetization, enGB("VolumeMagnetisation"))
-    add_altLabel(onto.Magnetization, enUS("Magnetization"))
     add_altLabel(onto.Magnetization, enGB("Magnetisation"))
 
     class MassMagnetizationUnit(onto.SIDimensionalUnit):
@@ -253,7 +249,6 @@ with onto:
 
         prefLabel = en("MassMagnetizationUnit")
         altLabel = [
-            enUS("MassMagnetizationUnit"),
             enGB("MassMagnetisationUnit"),
             enUS("SpecificMagnetizationUnit"),
             enGB("SpecificMagnetisationUnit"),
@@ -265,7 +260,6 @@ with onto:
 
         prefLabel = en("AmpereSquareMeterPerKilogram")
         altLabel = [
-            enUS("AmpereSquareMeterPerKilogram"),
             enGB("AmpereSquareMetrePerKilogram"),
         ]
         unitSymbol = en("A⋅m²/kg")
@@ -295,7 +289,6 @@ with onto:
 
         prefLabel = en("SpontaneousMagnetization")
         altLabel = [
-            enUS("SpontaneousMagnetization"),
             enGB("SpontaneousMagnetisation"),
             pl("Ms"),
         ]
@@ -314,7 +307,6 @@ with onto:
 
         prefLabel = en("SpontaneousMagneticPolarization")
         altLabel = [
-            enUS("SpontaneousMagneticPolarization"),
             enGB("SpontaneousMagneticPolarisation"),
             pl("Js"),
         ]
@@ -383,7 +375,6 @@ with onto:
         )
         prefLabel = en("DemagnetizingFactor")
         altLabel = [
-            enUS("DemagnetizingFactor"),
             enGB("DemagnetisingFactor"),
             pl("N"),
             pl("D"),
@@ -912,7 +903,6 @@ with onto:
 
         prefLabel = en("DemagnetizingField")
         altLabel = [
-            enUS("DemagnetizingField"),
             enGB("DemagnetisingField"),
             pl("Hd"),
         ]
@@ -1050,7 +1040,6 @@ with onto:
 
         prefLabel = en("RemanentMagneticPolarization")
         altLabel = [
-            enUS("RemanentMagneticPolarization"),
             enGB("RemanentMagneticPolarisation"),
             pl("Jr"),
         ]
@@ -1124,7 +1113,6 @@ with onto:
 
         prefLabel = en("SaturationMagneticPolarization")
         altLabel = [
-            enUS("SaturationMagneticPolarization"),
             enGB("SaturationMagneticPolarisation"),
             en("Jsat"),
         ]
@@ -1141,7 +1129,6 @@ with onto:
 
         prefLabel = en("SaturationMagnetization")
         altLabel = [
-            enUS("SaturationMagnetization"),
             enGB("SaturationMagnetisation"),
             en("Msat"),
         ]
