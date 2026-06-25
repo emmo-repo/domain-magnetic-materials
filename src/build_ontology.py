@@ -204,10 +204,8 @@ with onto:
     # Assert JoulePerCubicMetre as subclass of EnergyDensityUnit
     onto.JoulePerCubicMetre.is_a.append(EnergyDensityUnit)
     add_altLabel(onto.JoulePerCubicMetre, enUS("JoulePerCubicMeter"))
-    add_altLabel(onto.JoulePerCubicMetre, enGB("JoulePerCubicMetre"))
     # Assert MegaJoulePerCubicMetre as subclass of EnergyDensityUnit
     onto.MegaJoulePerCubicMetre.is_a.append(EnergyDensityUnit)
-    add_altLabel(onto.MegaJoulePerCubicMetre, enGB("MegaJoulePerCubicMetre"))
     add_altLabel(onto.MegaJoulePerCubicMetre, enUS("MegaJoulePerCubicMeter"))
 
     class EnergyDensity(onto.PhysicalQuantity):
@@ -227,7 +225,6 @@ with onto:
     # Assert JoulePerMetre as subclass of LineEnergyUnit
     onto.JoulePerMetre.is_a.append(LineEnergyUnit)
     add_altLabel(onto.JoulePerMetre, enUS("JoulePerMeter"))
-    add_altLabel(onto.JoulePerMetre, enGB("JoulePerMetre"))
 
     class LineEnergy(onto.PhysicalQuantity):
         """Energy per unit length."""
@@ -244,14 +241,13 @@ with onto:
 
     add_altLabel(onto.Magnetization, enUS("VolumeMagnetization"))
     add_altLabel(onto.Magnetization, enGB("VolumeMagnetisation"))
-    add_altLabel(onto.Magnetization, enUS("Magnetization"))
     add_altLabel(onto.Magnetization, enGB("Magnetisation"))
 
     class MassMagnetizationUnit(onto.SIDimensionalUnit):
         """Class of units of the magnetization per unit mass.
         Defined using SI base units."""
 
-        prefLabel = enUS("MassMagnetizationUnit")
+        prefLabel = en("MassMagnetizationUnit")
         altLabel = [
             enGB("MassMagnetisationUnit"),
             enUS("SpecificMagnetizationUnit"),
@@ -262,7 +258,7 @@ with onto:
     class AmpereSquareMeterPerKilogram(MassMagnetizationUnit):
         """Unit of the magnetic moment per unit mass: Am²/kg."""
 
-        prefLabel = enUS("AmpereSquareMeterPerKilogram")
+        prefLabel = en("AmpereSquareMeterPerKilogram")
         altLabel = [
             enGB("AmpereSquareMetrePerKilogram"),
         ]
@@ -291,7 +287,7 @@ with onto:
         of alignment of the magnetic moments of individual atoms. Ms exists
         within a domain of a ferromagnet."""
 
-        prefLabel = enUS("SpontaneousMagnetization")
+        prefLabel = en("SpontaneousMagnetization")
         altLabel = [
             enGB("SpontaneousMagnetisation"),
             pl("Ms"),
@@ -309,7 +305,7 @@ with onto:
         result of alignment of the magnetic moments of  individual atoms.
         Js exists within a domain of a ferromagnet."""
 
-        prefLabel = enUS("SpontaneousMagneticPolarization")
+        prefLabel = en("SpontaneousMagneticPolarization")
         altLabel = [
             enGB("SpontaneousMagneticPolarisation"),
             pl("Js"),
@@ -377,7 +373,7 @@ with onto:
             "H = H' - DM, where D is the demagnetizing factor, M is the \
             magnetization, and H is the internal field."
         )
-        prefLabel = enUS("DemagnetizingFactor")
+        prefLabel = en("DemagnetizingFactor")
         altLabel = [
             enGB("DemagnetisingFactor"),
             pl("N"),
@@ -905,7 +901,7 @@ with onto:
         """The magnetic field produced by the magnetization distribution
         of the sample itself."""
 
-        prefLabel = enUS("DemagnetizingField")
+        prefLabel = en("DemagnetizingField")
         altLabel = [
             enGB("DemagnetisingField"),
             pl("Hd"),
@@ -1042,7 +1038,7 @@ with onto:
         """The remanent magnetic polarization Jr which remains when the applied
         field is restored to zero in the hysteresis loop"""
 
-        prefLabel = enUS("RemanentMagneticPolarization")
+        prefLabel = en("RemanentMagneticPolarization")
         altLabel = [
             enGB("RemanentMagneticPolarisation"),
             pl("Jr"),
@@ -1115,7 +1111,7 @@ with onto:
         at a given temperature. Jsat should be used instead of Js to avoid
         confusion with the symbol for the spontaneous polarization"""
 
-        prefLabel = enUS("SaturationMagneticPolarization")
+        prefLabel = en("SaturationMagneticPolarization")
         altLabel = [
             enGB("SaturationMagneticPolarisation"),
             en("Jsat"),
@@ -1131,7 +1127,7 @@ with onto:
         at a given temperature. Msat should be used instead Ms to avoid
         confusion with the symbol for the SpontaneousMagnetization"""
 
-        prefLabel = enUS("SaturationMagnetization")
+        prefLabel = en("SaturationMagnetization")
         altLabel = [
             enGB("SaturationMagnetisation"),
             en("Msat"),
