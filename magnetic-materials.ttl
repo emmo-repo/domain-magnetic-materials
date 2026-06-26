@@ -635,19 +635,14 @@ emmo:Zebi rdfs:subClassOf emmo:EMMO_ac9e518d_b403_4d8b_97e2_06f9d40bac01 .
     bibo:status <http://purl.org/ontology/bibo/term_status/unstable> ;
     vann:preferredNamespacePrefix "magmo"^^xsd:string ;
     vann:preferredNamespaceUri "https://w3id.org/emmo/domain/magnetic-materials"^^xsd:string ;
-    rdfs:comment "Created within the EU project MaMMoS. Grant number 101135546     (HORIZON-CL4-2023-DIGITAL-EMERGING-01)."^^xsd:string,
-        """Contacts:
-Wilfried Hortschitz
-DISS-UWK
-email: wilfried.hortschitz@donau-uni.ac.at
-"""@en ;
+    rdfs:comment "Created within the EU project MaMMoS. Grant number 101135546 (HORIZON-CL4-2023-DIGITAL-EMERGING-01)."^^xsd:string,
+        "Contacts: Wilfried Hortschitz (DISS-UWK), wilfried.hortschitz@donau-uni.ac.at"@en ;
     owl:imports <https://w3id.org/emmo/domain/magnetic-materials/0.0.6/contributors>,
         <https://w3id.org/emmo/domain/magnetic-materials/0.0.6/dependencies> ;
     owl:versionIRI <https://w3id.org/emmo/domain/magnetic-materials/0.0.6> ;
     owl:versionInfo "0.0.6"^^xsd:string .
 
 :EMMO_405ae501-8898-59c0-b2db-0afa09d561f9 a owl:AnnotationProperty ;
-    ns1:python_name "EMMO_405ae501-8898-59c0-b2db-0afa09d561f9"^^xsd:string ;
     skos:prefLabel "wikipediaReference"@en .
 
 :EMMO_49768356-1ec9-5316-adbc-81001ecd770f a owl:Class ;
@@ -693,7 +688,7 @@ the internal field: sigma = chi_m H."""@en ;
 materials."""@en .
 
 :EMMO_6183019b-73eb-51bc-87ca-06a7a1ad9cb1 a owl:Class ;
-    rdfs:comment "The magnetization is obtained by multiplying sigma with                      the density"@en ;
+    rdfs:comment "The magnetization is obtained by multiplying sigma with the density"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty emmo:EMMO_bed1d005_b04e_4a90_94cf_02bc678a8569 ;
             owl:someValuesFrom :EMMO_5375f349-61e9-5985-9a7b-9f5464248145 ],
@@ -1057,7 +1052,7 @@ the M-H' hysteresis loop, with H' the external field."""@en .
     emmo:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 "Volume of the unit cell."@en .
 
 :EMMO_2bb87117-30f9-5b3a-b406-731836a3902f a owl:Class ;
-    rdfs:comment "Ea = K1 sin^2(phi) + K2 sin^4(phi) where Ea is the is the             anisotropy energy density and phi is the angle of the             magnetization with respect to the c-axis of the crystal."^^rdf:langString ;
+    rdfs:comment "Ea = K1 sin^2(phi) + K2 sin^4(phi) where Ea is the is the anisotropy energy density and phi is the angle of the magnetization with respect to the c-axis of the crystal."^^rdf:langString ;
     rdfs:subClassOf :EMMO_56258d3a-f2ee-554e-af99-499dd8620457 ;
     skos:altLabel "K1"^^rdf:langString ;
     skos:prefLabel "MagnetocrystallineAnisotropyConstantK1"@en ;
@@ -1150,7 +1145,7 @@ A is roughly k_B T_c/(2 a_0), where a_0 is the lattice parameter in
 a simple structure."""@en .
 
 :EMMO_527989d5-7417-5d94-83bf-4db785827a88 a owl:Class ;
-    rdfs:comment "Ea = K1c(a1²a2²+a2²a3²+a1²a3²)+K2c(a1²a2²a3²) where Ea is             the anisotropy energy density and a1,a2,a3 are the direction             cosines of the magnetization"^^rdf:langString ;
+    rdfs:comment "Ea = K1c(a1²a2²+a2²a3²+a1²a3²)+K2c(a1²a2²a3²) where Ea is the anisotropy energy density and a1,a2,a3 are the direction cosines of the magnetization"^^rdf:langString ;
     rdfs:subClassOf :EMMO_56258d3a-f2ee-554e-af99-499dd8620457 ;
     skos:altLabel "K1c"^^rdf:langString ;
     skos:prefLabel "MagnetocrystallineAnisotropyConstantK1c"@en ;
@@ -1279,7 +1274,7 @@ Crystallography."""@en ;
     :EMMO_4d45da04-cf90-5d4a-bc11-f76fbd5b5036 "https://www.wikidata.org/wiki/Q899033"^^rdf:langString .
 
 :EMMO_675fa9ea-408a-51f6-a001-2e6715568a71 a owl:Class ;
-    rdfs:comment "Ea = K1 sin^2(phi) + K2 sin^4(phi) where Ea is the is the             anisotropy energy density and phi is the angle of the             magnetization with respect to the c-axis of the crystal."^^rdf:langString ;
+    rdfs:comment "Ea = K1 sin^2(phi) + K2 sin^4(phi) where Ea is the is the anisotropy energy density and phi is the angle of the magnetization with respect to the c-axis of the crystal."^^rdf:langString ;
     rdfs:subClassOf :EMMO_56258d3a-f2ee-554e-af99-499dd8620457 ;
     skos:altLabel "K2"^^rdf:langString ;
     skos:prefLabel "MagnetocrystallineAnisotropyConstantK2"@en ;
@@ -1449,7 +1444,7 @@ the external KneeField H'k over the external Coercivity H'c
 profilometry measurement."""@en .
 
 :EMMO_871868f1-1486-55df-b351-23a4076f1bb3 a owl:Class ;
-    rdfs:comment "In permanent magnets, the grain boundary phase inhibits             the propagation of the magnetic reversal from grain to grain."@en ;
+    rdfs:comment "In permanent magnets, the grain boundary phase inhibits                 the propagation of the magnetic reversal from grain to grain."@en ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 ;
             owl:someValuesFrom emmo:EMMO_43003c86_9d15_433b_9789_ee2940920656 ],
@@ -1748,7 +1743,7 @@ system."""@en ;
     :EMMO_4d45da04-cf90-5d4a-bc11-f76fbd5b5036 "https://www.wikidata.org/wiki/Q751290"^^rdf:langString .
 
 :EMMO_bc54c47f-8560-516a-b95b-cce9f1b7344f a owl:Class ;
-    rdfs:comment "This field is often used when analysing the temperature            dependent coercivity for deriving microstructural parameters."^^rdf:langString ;
+    rdfs:comment "This field is often used when analysing the temperature                dependent coercivity for deriving microstructural parameters."^^rdf:langString ;
     rdfs:subClassOf emmo:EMMO_b4895f75_41c8_4fd9_b6d6_4d5f7c99c423 ;
     skos:altLabel "Hsw"^^rdf:langString ;
     skos:prefLabel "SwitchingFieldCoercivity"@en ;
@@ -1783,7 +1778,7 @@ interaction."""@en ;
     emmo:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 "Local reflectivity measured with the magneto-optic Kerr effect."@en .
 
 :EMMO_c4aefa50-a3d0-548d-96ea-dd863ba27234 a owl:Class ;
-    rdfs:comment "Ea = K1c(a1²a2²+a2²a3²+a1²a3²)+K2c(a1²a2²a3²) where Ea is the             anisotropy energy density and a1,a2,a3 are the direction             cosines of the magnetization"^^rdf:langString ;
+    rdfs:comment "Ea = K1c(a1²a2²+a2²a3²+a1²a3²)+K2c(a1²a2²a3²) where Ea is the anisotropy energy density and a1,a2,a3 are the direction cosines of the magnetization"^^rdf:langString ;
     rdfs:subClassOf :EMMO_56258d3a-f2ee-554e-af99-499dd8620457 ;
     skos:altLabel "K2c"^^rdf:langString ;
     skos:prefLabel "MagnetocrystallineAnisotropyConstantK2c"@en ;
@@ -1828,7 +1823,7 @@ profilometry measurement."""@en .
 This is the raw XRD data from which 1D spectra are obtained."""@en .
 
 :EMMO_cd58ebab-4351-5d0d-ad45-bbddd6efead3 a owl:Class ;
-    rdfs:comment "Beware of taking the idea of anisotropy field too literally.             Except at small angles, the energy variation in a field is             not the same as the leading term in the anisotropy.             A magnetic field defines an easy direction, not an easy axis."@en ;
+    rdfs:comment "Beware of taking the idea of anisotropy field too literally. Except at small angles, the energy variation in a field is not the same as the leading term in the anisotropy. A magnetic field defines an easy direction, not an easy axis."@en ;
     rdfs:subClassOf emmo:EMMO_b4895f75_41c8_4fd9_b6d6_4d5f7c99c423 ;
     skos:altLabel "Ha"^^rdf:langString ;
     skos:prefLabel "AnisotropyField"@en ;
@@ -1980,7 +1975,7 @@ the remanent polarisation over the saturation polarisation
 (SS = RemanentMagneticPolarization / SaturationMagneticPolarization)."""@en .
 
 :EMMO_f8f03807-d6b6-5ebf-8e0b-418311e8e1e5 a owl:Class ;
-    rdfs:comment "Shape anisotropy is restricted to small particles, where             the inter-atomic exchange ensures a uniform  magnetization."@en ;
+    rdfs:comment "Shape anisotropy is restricted to small particles, where the inter-atomic exchange ensures a uniform  magnetization."@en ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onClass :EMMO_0f2b5cc9-d00a-5030-8448-99ba6b7dfd1e ;
             owl:onProperty emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 ;
@@ -2201,7 +2196,7 @@ The coercivity on M(H') loop, where H' is the external field."""@en .
     :EMMO_eb748e96-0aee-5b55-b6be-56b8c6bdaed6 "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=151-14-06"^^rdf:langString .
 
 :EMMO_0f2b5cc9-d00a-5030-8448-99ba6b7dfd1e a owl:Class ;
-    rdfs:comment "H = H' - DM, where D is the demagnetizing factor, M is the             magnetization, and H is the internal field."^^rdf:langString ;
+    rdfs:comment "H = H' - DM, where D is the demagnetizing factor, M is the magnetization, and H is the internal field."^^rdf:langString ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty emmo:EMMO_bed1d005_b04e_4a90_94cf_02bc678a8569 ;
             owl:someValuesFrom emmo:EMMO_3227b821_26a5_4c7c_9c01_5c24483e0bd0 ],
