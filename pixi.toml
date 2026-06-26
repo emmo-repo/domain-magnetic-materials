@@ -23,12 +23,14 @@ all = { depends-on = ["build", "reason", "check"] } # run all steps subsequently
 prepare-test = "rm -rf build && mkdir build && cp contributors.ttl catalog-v001.xml magnetic-materials-dependencies.ttl build"
 test-build-ontology = {cmd = "python ../src/build_ontology.py && ontoconvert magnetic-materials.ttl ../generated.ttl --reasoner --infer --namespace emmo:https://w3id.org/emmo# && emmocheck ../generated.ttl", cwd = "build", depends-on=["prepare-test"]}
 test = {cmd = "pytest -vv", depends-on=["prepare-test", "test-build-ontology"]}
+ruff = "ruff check && ruff format"
 
 [dependencies]
 emmontopy = ">=0.11.4"
 python = ">3.11"
 openjdk = ">=25.0.2,<26"
 ipython = ">=9.10.0,<10"
+ruff = "*"
 sphinx = ">=9.1.0,<10"
 pytest = ">=9"
 
