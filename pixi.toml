@@ -27,6 +27,7 @@ BUILD_DIR = "build"
 prepare-test = "rm -rf build && mkdir build && cp contributors.ttl catalog-v001.xml $ONTOLOGY_NAME-dependencies.ttl build"
 test-build-ontology = {cmd = 'python ../src/build_ontology.py && ontoconvert $ONTOLOGY_NAME.ttl ../generated.ttl --reasoner --infer --namespace="emmo:$EMMO_IRI" && emmocheck --configfile=../.github/emmocheck_conf.yml ../generated.ttl', cwd = "build", depends-on=["prepare-test"]}
 test = {cmd = "pytest -vv", depends-on=["prepare-test", "test-build-ontology"]}
+ruff = "ruff check && ruff format"
 
 [tasks.build]
 cmd = '''
@@ -51,6 +52,7 @@ description = "Initialize new development branch with given version string. This
 python = ">3.11"
 openjdk = ">=25.0.2,<26"
 ipython = ">=9.10.0,<10"
+ruff = "*"
 sphinx = ">=9.1.0,<10"
 pytest = ">=9"
 gh = ">=2.97.0,<3"
