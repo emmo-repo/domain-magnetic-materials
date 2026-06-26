@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import re
+
 from ontopy import World
 from owlready2 import (
     locstr,
@@ -1617,12 +1619,12 @@ onto.save(
 
 # fixes
 
-## fix 1: add versionIRI to imports
-# EMMOntoPy writes imports with their base IRI, without version number
-# issue raised in https://github.com/emmo-repo/EMMOntoPy/issues/1010
 with open("magnetic-materials.ttl") as f:
     text = f.read()
 
+## fix 1: add versionIRI to imports
+# EMMOntoPy writes imports with their base IRI, without version number
+# issue raised in https://github.com/emmo-repo/EMMOntoPy/issues/1010
 text = text.replace(
     "<https://w3id.org/emmo/domain/magnetic-materials/contributors>",
     f"<https://w3id.org/emmo/domain/magnetic-materials/{version}/contributors>"
@@ -1631,5 +1633,17 @@ text = text.replace(
     "<https://w3id.org/emmo/domain/magnetic-materials/dependencies>",
     f"<https://w3id.org/emmo/domain/magnetic-materials/{version}/dependencies>"
 )
+
+
+## fix 2: define mediator metadata
+# dcterms:mediator is not found when importing the dependencies
+# issue raised https://github.com/emmo-repo/EMMOntoPy/issues/1003
+indent = " " * len(re.search(r"\n +dcterms:license", text).group().lstrip(r"\n").rstrip("dcterms:license"))
+text = text.replace(
+    f"dcterms:license <{license_iri}> ;",
+    f"dcterms:license <{license_iri}> ;\n{indent}dcterms:mediator emmo:EMMC_ASBL ;",
+)
+
+## write fixed text
 with open("magnetic-materials.ttl", "w") as f:
     f.write(text)
