@@ -628,6 +628,7 @@ emmo:Zebi rdfs:subClassOf emmo:EMMO_ac9e518d_b403_4d8b_97e2_06f9d40bac01 .
         <https://orcid.org/0000-0002-0871-0520>,
         <https://orcid.org/0000-0003-2950-642X> ;
     dcterms:title "Magnetic Materials Ontology (MagMO)"@en ;
+    bibo:status <http://purl.org/ontology/bibo/term_status/unstable> ;
     rdfs:comment "Created within the EU project MaMMoS. Grant number 101135546     (HORIZON-CL4-2023-DIGITAL-EMERGING-01)."^^xsd:string,
         """Contacts:
 Wilfried Hortschitz
@@ -637,7 +638,6 @@ email: wilfried.hortschitz@donau-uni.ac.at
     dcterms:license <https://creativecommons.org/licenses/by/4.0/legalcode> ;
     dcterms:mediator emmo:EMMC_ASBL ;
     dcterms:publisher <https://mammos-project.github.io/> ;
-    bibo:status "unstable" ;
     vann:preferredNamespacePrefix "MagMO" ;
     vann:preferredNamespaceUri "https://w3id.org/emmo/domain/magnetic-materials" ;
     owl:imports <https://w3id.org/emmo/domain/magnetic-materials/0.0.6/contributors>,
@@ -833,6 +833,8 @@ volume, is often called the applied field."""@en .
     skos:prefLabel "IECEntry"@en .
 
 <https://www.w3.org/TR/turtle> a owl:Thing .
+
+<http://purl.org/ontology/bibo/term_status/unstable> a owl:Thing .
 
 :EMMO_00b80934-8716-5e19-8ba9-73251ef414d3 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;

@@ -1584,6 +1584,7 @@ onto.metadata.contributor.append(contributors.SamuelHolt)
 onto.metadata.contributor.append(contributors.SwapneelAmitPathak)
 onto.metadata.contributor.append(contributors.HansFangohr)
 onto.metadata.contributor.append(contributors.JonasWinkler)
+onto.metadata.status.append(world.get_ontology("http://purl.org/ontology/bibo/term_status/unstable"))
 onto.metadata.versionInfo.append(version)
 onto.metadata.comment.append(
     en(
