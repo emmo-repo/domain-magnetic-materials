@@ -394,10 +394,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
             """
 
             comment = pl(
-                (
-                    "H = H' - DM, where D is the demagnetizing factor, M is "
-                    "the magnetization, and H is the internal field."
-                )
+                "H = H' - DM, where D is the demagnetizing factor, M is the magnetization, and H is the internal field."
             )
             prefLabel = en("DemagnetizingFactor")
             altLabel = [
@@ -426,10 +423,8 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
             """
 
             comment = en(
-                (
-                    "Shape anisotropy is restricted to small particles, where "
-                    "the inter-atomic exchange ensures a uniform  magnetization."
-                )
+                "Shape anisotropy is restricted to small particles, where "
+                "the inter-atomic exchange ensures a uniform  magnetization."
             )
             prefLabel = en("ShapeAnisotropy")
             is_a = [
@@ -453,11 +448,9 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
             """
 
             comment = en(
-                (
-                    "Beware of taking the idea of anisotropy field too literally. "
-                    "Except at small angles, the energy variation in a field is not the same as the leading "
-                    "term in the anisotropy. A magnetic field defines an easy direction, not an easy axis."
-                )
+                "Beware of taking the idea of anisotropy field too literally. "
+                "Except at small angles, the energy variation in a field is not the same as the leading "
+                "term in the anisotropy. A magnetic field defines an easy direction, not an easy axis."
             )
             prefLabel = en("AnisotropyField")
             altLabel = pl("Ha")
@@ -493,10 +486,8 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
             hexagonal crystals."""
 
             comment = pl(
-                (
-                    "Ea = K1 sin^2(phi) + K2 sin^4(phi) where Ea is the is the anisotropy energy density "
-                    "and phi is the angle of the magnetization with respect to the c-axis of the crystal."
-                )
+                "Ea = K1 sin^2(phi) + K2 sin^4(phi) where Ea is the is the anisotropy energy density "
+                "and phi is the angle of the magnetization with respect to the c-axis of the crystal."
             )
             prefLabel = en("MagnetocrystallineAnisotropyConstantK1")
             altLabel = pl("K1")
@@ -507,11 +498,8 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
             hexagonal crystals."""
 
             comment = pl(
-                (
-                    "Ea = K1 sin^2(phi) + K2 sin^4(phi) where Ea is the is the anisotropy energy density "
-                    "and phi is the angle of the magnetization with respect to the c-axis of the crystal."
-                )
-
+                "Ea = K1 sin^2(phi) + K2 sin^4(phi) where Ea is the is the anisotropy energy density "
+                "and phi is the angle of the magnetization with respect to the c-axis of the crystal."
             )
             prefLabel = en("MagnetocrystallineAnisotropyConstantK2")
             altLabel = pl("K2")
@@ -521,10 +509,8 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
             """The magnetocrystalline constant K1c for cubic crystals."""
 
             comment = pl(
-                (
-                    "Ea = K1c(a1²a2²+a2²a3²+a1²a3²)+K2c(a1²a2²a3²) where Ea is the anisotropy energy "
-                    "density and a1,a2,a3 are the direction cosines of the magnetization"
-                )
+                "Ea = K1c(a1²a2²+a2²a3²+a1²a3²)+K2c(a1²a2²a3²) where Ea is the anisotropy energy "
+                "density and a1,a2,a3 are the direction cosines of the magnetization"
             )
             prefLabel = en("MagnetocrystallineAnisotropyConstantK1c")
             altLabel = pl("K1c")
@@ -534,10 +520,8 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
             """The magnetocrystalline constant K2c for cubic crystals."""
 
             comment = pl(
-                (
-                    "Ea = K1c(a1²a2²+a2²a3²+a1²a3²)+K2c(a1²a2²a3²) where Ea is the anisotropy "
-                    "energy density and a1,a2,a3 are the direction cosines of the magnetization"
-                )
+                "Ea = K1c(a1²a2²+a2²a3²+a1²a3²)+K2c(a1²a2²a3²) where Ea is the anisotropy "
+                "energy density and a1,a2,a3 are the direction cosines of the magnetization"
             )
             prefLabel = en("MagnetocrystallineAnisotropyConstantK2c")
             altLabel = pl("K2c")
@@ -1537,8 +1521,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
 
     if annotate_metadata:
         onto.metadata.comment.append(
-            "Created within the EU project MaMMoS. Grant number 101135546 \
-            (HORIZON-CL4-2023-DIGITAL-EMERGING-01)."
+            "Created within the EU project MaMMoS. Grant number 101135546 (HORIZON-CL4-2023-DIGITAL-EMERGING-01)."
         )
 
         onto.metadata.abstract.append(
@@ -1569,7 +1552,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
         onto.metadata.publisher.append(world.get_ontology("https://mammos-project.github.io"))
         onto.metadata.versionInfo.append(VERSION)
         onto.metadata.comment.append(
-            en("Contacts:\nWilfried Hortschitz\nDISS-UWK\nemail: wilfried.hortschitz@donau-uni.ac.at\n")
+            en("Contacts: Wilfried Hortschitz (DISS-UWK), wilfried.hortschitz@donau-uni.ac.at")
         )
 
         # Define mediator annotation
