@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import os
+from pathlib import Path
 import re
 from typing import TYPE_CHECKING
 
@@ -37,6 +38,7 @@ if TYPE_CHECKING:
 
 VERSION = "0.0.6"
 MAGMO_IRI = "https://w3id.org/emmo/domain/magnetic-materials"
+ROOT_DIR = Path(__file__).parent.parent.resolve()
 
 
 def en(s):
@@ -71,16 +73,21 @@ def add_altLabel(entry, label):
         entry.altLabel = [label]
 
 
-def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
+def define_ontology(annotate_metadata: bool = True, local_imports: bool = False) -> ontopy.ontology.Ontology:
     """Define ontology classes.
 
     Args:
         annotate_metadata: Whether to fill the ontology metadata.
+        local_imports: Use local imports instead of loading online dependencies.
     """
     # Define ontology imports
     world = World()
-    contributors = world.get_ontology(f"{MAGMO_IRI}/{VERSION}/contributors").load()
-    dependencies = world.get_ontology(f"{MAGMO_IRI}/{VERSION}/magnetic-materials-dependencies").load()
+    if local_imports:
+        contributors = world.get_ontology(f"{ROOT_DIR}/contributors.ttl").load()
+        dependencies = world.get_ontology(f"{ROOT_DIR}/magnetic-materials-dependencies").load()
+    else:
+        contributors = world.get_ontology(f"{MAGMO_IRI}/{VERSION}/contributors").load()
+        dependencies = world.get_ontology(f"{MAGMO_IRI}/{VERSION}/magnetic-materials-dependencies").load()
 
     # Create a new ontology with imports
     onto = world.get_ontology(f"{MAGMO_IRI}#")
@@ -1635,7 +1642,7 @@ def apply_fix_2(text: str) -> str:
 def main(
     output: os.PathLike,
     annotate_metadata: bool = True,
-    local: bool = False,
+    local_imports: bool = False,
     skip_fixes: bool = False,
 ) -> None:
     """Build ontology.
@@ -1643,12 +1650,12 @@ def main(
     Args:
         output: Output
         annotate_metadata: Whether to add metadata to the ontology.
-        local: Whether to build the ontology by reading local dependencies instead of
+        local_imports: Whether to build the ontology by reading local dependencies instead of
             reading them from `https://w3id.org/emmo/domain/magnetic-materials/`.
         skip_fixes: Whether to skip fixes to owlready2 and EMMOntoPy, such as fixes
             to the imports IRIs.
     """
-    onto = define_ontology(local, annotate_metadata=annotate_metadata)
+    onto = define_ontology(annotate_metadata=annotate_metadata, local_imports=local_imports)
     save_ontology(onto, output)
     if not skip_fixes:
         apply_fixes()
@@ -1663,7 +1670,7 @@ if __name__ == "__main__":
         help="path to output ttl file",
     )
     parser.add_argument(
-        "--local",
+        "--local_imports",
         action="store_true",
         help="build ontology by reading local dependencies",
     )
@@ -1676,6 +1683,6 @@ if __name__ == "__main__":
     main(
         output=args.output,
         annotate_metadata=True,
-        local=args.local,
+        local_imports=args.local_imports,
         skip_fixes=args.skip_fixes,
     )
