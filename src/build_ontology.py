@@ -1585,6 +1585,8 @@ onto.metadata.contributor.append(contributors.SwapneelAmitPathak)
 onto.metadata.contributor.append(contributors.HansFangohr)
 onto.metadata.contributor.append(contributors.JonasWinkler)
 onto.metadata.status.append(world.get_ontology("http://purl.org/ontology/bibo/term_status/unstable"))
+license_iri = "https://creativecommons.org/licenses/by/4.0/legalcode"
+onto.metadata.license.append(world.get_ontology(license_iri))
 onto.metadata.versionInfo.append(version)
 onto.metadata.comment.append(
     en(
