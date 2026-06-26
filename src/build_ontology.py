@@ -1560,8 +1560,7 @@ def define_ontology(annotate_metadata: bool = True, local_imports: bool = False)
         onto.metadata.status.append(world.get_ontology("http://purl.org/ontology/bibo/term_status/unstable"))
         onto.metadata.preferredNamespacePrefix.append("magmo")
         onto.metadata.preferredNamespaceUri.append("https://w3id.org/emmo/domain/magnetic-materials")
-        license_iri = "https://creativecommons.org/licenses/by/4.0/legalcode"
-        onto.metadata.license.append(world.get_ontology(license_iri))
+        onto.metadata.license.append(world.get_ontology("https://creativecommons.org/licenses/by/4.0/legalcode"))
         onto.metadata.publisher.append(world.get_ontology("https://mammos-project.github.io"))
         onto.metadata.versionInfo.append(VERSION)
         onto.metadata.comment.append(
@@ -1632,11 +1631,14 @@ def apply_fix_2(text: str) -> str:
     Metadata `dcterms:mediator` is not found when importing the dependencies.
     Issue raised https://github.com/emmo-repo/EMMOntoPy/issues/1003.
     """
-    indent = " " * len(re.search(r"\n +dcterms:license", text).group().lstrip(r"\n").rstrip("dcterms:license"))
+    license_line = re.search(r"\n +dcterms:license <.+> ;", text).group()
+    post_indent = license_line.find("dcterms:license")
+    indent = " " * len(license_line[:post_indent].lstrip(r"\n"))
     text = text.replace(
-        f"dcterms:license <{license_iri}> ;",
-        f"dcterms:license <{license_iri}> ;\n{indent}dcterms:mediator emmo:EMMC_ASBL ;",
+        license_line,
+        license_line + f"\n{indent}dcterms:mediator emmo:EMMC_ASBL ;",
     )
+    return text
 
 
 def main(
