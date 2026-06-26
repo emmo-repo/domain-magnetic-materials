@@ -615,7 +615,8 @@ emmo:Yobi rdfs:subClassOf emmo:EMMO_ac9e518d_b403_4d8b_97e2_06f9d40bac01 .
 
 emmo:Zebi rdfs:subClassOf emmo:EMMO_ac9e518d_b403_4d8b_97e2_06f9d40bac01 .
 
-<https://w3id.org/emmo/domain/magnetic-materials> a owl:Ontology ;
+<https://w3id.org/emmo/domain/magnetic-materials> a owl:Ontology,
+        owl:Thing ;
     dcterms:abstract "An EMMO-based domain-ontology for magnetic materials. Created within the EU project MaMMoS. Grant number 101135546 (HORIZON-CL4-2023-DIGITAL-EMERGING-01). The Magnetic Materials Ontology is released under the Creative Commons Attribution 4.0 International license (CC BY 4.0)."@en ;
     dcterms:contributor <https://orcid.org/0000-0001-5494-7193>,
         <https://orcid.org/0000-0001-7104-7867>,
