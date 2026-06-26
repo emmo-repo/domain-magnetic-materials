@@ -38,6 +38,7 @@ if TYPE_CHECKING:
 VERSION = "0.0.6"
 MAGMO_IRI = "https://w3id.org/emmo/domain/magnetic-materials"
 
+
 def en(s):
     """Return `s` as an English location string."""
     return locstr(s, lang="en")
@@ -78,12 +79,8 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
     """
     # Define ontology imports
     world = World()
-    contributors = world.get_ontology(
-        f"{MAGMO_IRI}/{VERSION}/contributors"
-    ).load()
-    dependencies = world.get_ontology(
-        f"{MAGMO_IRI}/{VERSION}/magnetic-materials-dependencies"
-    ).load()
+    contributors = world.get_ontology(f"{MAGMO_IRI}/{VERSION}/contributors").load()
+    dependencies = world.get_ontology(f"{MAGMO_IRI}/{VERSION}/magnetic-materials-dependencies").load()
 
     # Create a new ontology with imports
     onto = world.get_ontology(f"{MAGMO_IRI}#")
@@ -143,9 +140,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
 
             prefLabel = en("LatticeConstantA")
             altLabel = en("LatticeParameterA")
-            IECEntry = pl(
-                "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=561-07-13"
-            )
+            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=561-07-13")
             wikidataReference = pl("https://www.wikidata.org/wiki/Q625641")
             wikipediaReference = pl("https://en.wikipedia.org/wiki/Lattice_constant")
 
@@ -155,9 +150,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
 
             prefLabel = en("LatticeConstantB")
             altLabel = en("LatticeParameterB")
-            IECEntry = pl(
-                "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=561-07-13"
-            )
+            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=561-07-13")
             wikidataReference = pl("https://www.wikidata.org/wiki/Q625641")
             wikipediaReference = pl("https://en.wikipedia.org/wiki/Lattice_constant")
 
@@ -167,9 +160,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
 
             prefLabel = en("LatticeConstantC")
             altLabel = en("LatticeParameterC")
-            IECEntry = pl(
-                "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=561-07-13"
-            )
+            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=561-07-13")
             wikidataReference = pl("https://www.wikidata.org/wiki/Q625641")
             wikipediaReference = pl("https://en.wikipedia.org/wiki/Lattice_constant")
 
@@ -298,9 +289,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
         class MagneticMomentPerUnitMass(onto.ElectromagneticQuantity):
             """Magnetic moment per unit mass, sigma."""
 
-            comment = en(
-                "The magnetization is obtained by multiplying sigma with the density"
-            )
+            comment = en("The magnetization is obtained by multiplying sigma with the density")
             prefLabel = en("MagneticMomentPerUnitMass")
             altLabel = [
                 en("SpecificMagneticMoment"),
@@ -322,12 +311,8 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
                 pl("Ms"),
             ]
             is_a = [onto.hasMeasurementUnit.some(onto.MagneticFieldStrengthUnit)]
-            IECEntry = pl(
-                "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-02-41"
-            )
-            wikipediaReference = pl(
-                "https://en.wikipedia.org/wiki/Spontaneous_magnetization"
-            )
+            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-02-41")
+            wikipediaReference = pl("https://en.wikipedia.org/wiki/Spontaneous_magnetization")
 
         class SpontaneousMagneticPolarization(onto.ElectromagneticQuantity):
             """The spontaneous magnetic polarization, Js, of a ferromagnet is the
@@ -349,9 +334,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
 
             prefLabel = en("MagneticAnisotropy")
             wikipediaReference = pl("https://en.wikipedia.org/wiki/Magnetic_anisotropy")
-            IECEntry = pl(
-                "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-01-08"
-            )
+            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-01-08")
 
         class RectangularCuboid(onto.EuclideanSpace):
             """A rectangular cuboid is a special case of a cuboid with rectangular
@@ -411,9 +394,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
                 pl("D"),
             ]
             is_a = [onto.hasMeasurementUnit.some(onto.DimensionlessUnit)]
-            IECEntry = pl(
-                "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=121-12-63"
-            )
+            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=121-12-63")
 
         class ShapeAnisotropyConstant(EnergyDensity):
             """The energy density of a small particle given by
@@ -433,8 +414,10 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
             """
 
             comment = en(
-                "Shape anisotropy is restricted to small particles, where \
-                the inter-atomic exchange ensures a uniform  magnetization."
+                (
+                    "Shape anisotropy is restricted to small particles, where "
+                    "the inter-atomic exchange ensures a uniform  magnetization."
+                )
             )
             prefLabel = en("ShapeAnisotropy")
             is_a = [
@@ -449,9 +432,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
 
             prefLabel = en("MagnetocrystallineAnisotropyEnergy")
             altLabel = pl("MAE")
-            wikipediaReference = pl(
-                "https://en.wikipedia.org/wiki/Magnetocrystalline_anisotropy"
-            )
+            wikipediaReference = pl("https://en.wikipedia.org/wiki/Magnetocrystalline_anisotropy")
 
         class AnisotropyField(onto.MagneticFieldStrength):
             """The anisotropy field Ha is defined as the field needed to
@@ -460,10 +441,11 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
             """
 
             comment = en(
-                "Beware of taking the idea of anisotropy field too literally. \
-                Except at small angles, the energy variation in a field is \
-                not the same as the leading term in the anisotropy. \
-                A magnetic field defines an easy direction, not an easy axis."
+                (
+                    "Beware of taking the idea of anisotropy field too literally. "
+                    "Except at small angles, the energy variation in a field is not the same as the leading "
+                    "term in the anisotropy. A magnetic field defines an easy direction, not an easy axis."
+                )
             )
             prefLabel = en("AnisotropyField")
             altLabel = pl("Ha")
@@ -499,58 +481,55 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
             hexagonal crystals."""
 
             comment = pl(
-                "Ea = K1 sin^2(phi) + K2 sin^4(phi) where Ea is the is the \
-                anisotropy energy density and phi is the angle of the \
-                magnetization with respect to the c-axis of the crystal."
+                (
+                    "Ea = K1 sin^2(phi) + K2 sin^4(phi) where Ea is the is the anisotropy energy density "
+                    "and phi is the angle of the magnetization with respect to the c-axis of the crystal."
+                )
             )
             prefLabel = en("MagnetocrystallineAnisotropyConstantK1")
             altLabel = pl("K1")
-            wikipediaReference = pl(
-                "https://en.wikipedia.org/wiki/Magnetocrystalline_anisotropy"
-            )
+            wikipediaReference = pl("https://en.wikipedia.org/wiki/Magnetocrystalline_anisotropy")
 
         class MagnetocrystallineAnisotropyConstantK2(EnergyDensity):
             """The magnetocrystalline constant K2 for tetragonal or
             hexagonal crystals."""
 
             comment = pl(
-                "Ea = K1 sin^2(phi) + K2 sin^4(phi) where Ea is the is the \
-                anisotropy energy density and phi is the angle of the \
-                magnetization with respect to the c-axis of the crystal."
+                (
+                    "Ea = K1 sin^2(phi) + K2 sin^4(phi) where Ea is the is the anisotropy energy density "
+                    "and phi is the angle of the magnetization with respect to the c-axis of the crystal."
+                )
+
             )
             prefLabel = en("MagnetocrystallineAnisotropyConstantK2")
             altLabel = pl("K2")
-            wikipediaReference = pl(
-                "https://en.wikipedia.org/wiki/Magnetocrystalline_anisotropy"
-            )
+            wikipediaReference = pl("https://en.wikipedia.org/wiki/Magnetocrystalline_anisotropy")
 
         class MagnetocrystallineAnisotropyConstantK1c(EnergyDensity):
             """The magnetocrystalline constant K1c for cubic crystals."""
 
             comment = pl(
-                "Ea = K1c(a1²a2²+a2²a3²+a1²a3²)+K2c(a1²a2²a3²) where Ea is \
-                the anisotropy energy density and a1,a2,a3 are the direction \
-                cosines of the magnetization"
+                (
+                    "Ea = K1c(a1²a2²+a2²a3²+a1²a3²)+K2c(a1²a2²a3²) where Ea is the anisotropy energy "
+                    "density and a1,a2,a3 are the direction cosines of the magnetization"
+                )
             )
             prefLabel = en("MagnetocrystallineAnisotropyConstantK1c")
             altLabel = pl("K1c")
-            wikipediaReference = pl(
-                "https://en.wikipedia.org/wiki/Magnetocrystalline_anisotropy"
-            )
+            wikipediaReference = pl("https://en.wikipedia.org/wiki/Magnetocrystalline_anisotropy")
 
         class MagnetocrystallineAnisotropyConstantK2c(EnergyDensity):
             """The magnetocrystalline constant K2c for cubic crystals."""
 
             comment = pl(
-                "Ea = K1c(a1²a2²+a2²a3²+a1²a3²)+K2c(a1²a2²a3²) where Ea is the \
-                anisotropy energy density and a1,a2,a3 are the direction \
-                cosines of the magnetization"
+                (
+                    "Ea = K1c(a1²a2²+a2²a3²+a1²a3²)+K2c(a1²a2²a3²) where Ea is the anisotropy "
+                    "energy density and a1,a2,a3 are the direction cosines of the magnetization"
+                )
             )
             prefLabel = en("MagnetocrystallineAnisotropyConstantK2c")
             altLabel = pl("K2c")
-            wikipediaReference = pl(
-                "https://en.wikipedia.org/wiki/Magnetocrystalline_anisotropy"
-            )
+            wikipediaReference = pl("https://en.wikipedia.org/wiki/Magnetocrystalline_anisotropy")
 
         class UniaxialMagnetocrystallineAnisotropy(UniaxialMagneticAnisotropy):
             """The uniaxial anisotropy depends on only a single angle, the angle
@@ -582,14 +561,11 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
 
             prefLabel = en("MagnetocrystallineAnisotropy")
             wikidataReference = pl("https://www.wikidata.org/wiki/Q6731660")
-            wikipediaReference = pl(
-                "https://en.wikipedia.org/wiki/Magnetocrystalline_anisotropy"
-            )
+            wikipediaReference = pl("https://en.wikipedia.org/wiki/Magnetocrystalline_anisotropy")
             is_a = [
                 onto.hasProperty.exactly(
                     1,
-                    UniaxialMagnetocrystallineAnisotropy
-                    | CubicMagnetocrystallineAnisotropy,
+                    UniaxialMagnetocrystallineAnisotropy | CubicMagnetocrystallineAnisotropy,
                 )
             ]
 
@@ -735,12 +711,8 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
                 en("MOKEData"),
                 en("MagnetoOpticKerrEffectData"),
             ]
-            wikipediaReference = pl(
-                "https://en.wikipedia.org/wiki/Magneto-optic_Kerr_effect"
-            )
-            IECEntry = pl(
-                "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=121-12-97"
-            )
+            wikipediaReference = pl("https://en.wikipedia.org/wiki/Magneto-optic_Kerr_effect")
+            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=121-12-97")
             is_a = [
                 onto.hasProperty.exactly(1, MokeAppliedField),
                 onto.hasProperty.exactly(1, MokeKerrSignal),
@@ -832,9 +804,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
                 onto.hasProperty.exactly(1, CrystalStructure),
                 onto.hasProperty.exactly(1, onto.ChemicalComposition),
                 onto.hasProperty.exactly(1, onto.Diameter),
-                onto.hasProperty.exactly(
-                    1, CrystallographicOrientation | GrainMisalignmentAngle
-                ),
+                onto.hasProperty.exactly(1, CrystallographicOrientation | GrainMisalignmentAngle),
             ]
 
         class MeanGrainSize(onto.Length):
@@ -856,9 +826,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
 
             prefLabel = en("GrainSizeDistribution")
             altLabel = en("ParticleSizeDistribution")
-            wikipediaReference = pl(
-                "https://en.wikipedia.org/wiki/Particle-size_distribution"
-            )
+            wikipediaReference = pl("https://en.wikipedia.org/wiki/Particle-size_distribution")
             wikidataReference = pl("https://www.wikidata.org/wiki/Q2054937")
             is_a = [
                 onto.hasProperty.exactly(1, MeanGrainSize),
@@ -969,15 +937,9 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
                 pl("Hc"),
             ]
             IECEntry = [
-                pl(
-                    "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-02-35"
-                ),
-                pl(
-                    "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=121-12-69"
-                ),
-                pl(
-                    "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-02-36"
-                ),
+                pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-02-35"),
+                pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=121-12-69"),
+                pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-02-36"),
             ]
             wikidataReference = pl("https://www.wikidata.org/wiki/Q432635")
 
@@ -1061,9 +1023,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
             is_a = [onto.hasMeasurementUnit.some(onto.MagneticFieldStrengthUnit)]
             wikidataReference = pl("https://www.wikidata.org/wiki/Q4150950")
             wikipediaReference = pl("https://en.wikipedia.org/wiki/Remanence")
-            IECEntry = pl(
-                "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-02-40"
-            )
+            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-02-40")
 
         class RemanentMagneticPolarization(onto.ElectromagneticQuantity):
             """The remanent magnetic polarization Jr which remains when the applied
@@ -1075,9 +1035,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
                 pl("Jr"),
             ]
             is_a = [onto.hasMeasurementUnit.some(onto.MagneticFluxDensityUnit)]
-            IECEntry = pl(
-                "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-02-39"
-            )
+            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-02-39")
 
         class ExternalSusceptibility(onto.MagneticSusceptibility):
             """Ratio of the change of magnetization and the external
@@ -1112,9 +1070,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
             prefLabel = en("AbsolutePermeability")
             altLabel = pl("mu")
             is_a = [onto.hasMeasurementUnit.some(onto.PermeabilityUnit)]
-            IECEntry = pl(
-                "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=121-12-28"
-            )
+            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=121-12-28")
 
         class MaximumEnergyProduct(onto.ElectromagneticQuantity):
             """The value of the maximum energy product (BH)max is deduced from a
@@ -1148,9 +1104,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
                 en("Jsat"),
             ]
             is_a = [onto.hasMeasurementUnit.some(onto.MagneticFluxDensityUnit)]
-            IECEntry = pl(
-                "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-01-05"
-            )
+            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-01-05")
 
         class SaturationMagnetization(onto.ElectromagneticQuantity):
             """The Saturation magnetization Msat is the maximum
@@ -1164,15 +1118,11 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
                 en("Msat"),
             ]
             is_a = [onto.hasMeasurementUnit.some(onto.MagneticFieldStrengthUnit)]
-            IECEntry = pl(
-                "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-01-04"
-            )
+            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-01-04")
             wikipediaReference = pl("https://en.wikipedia.org/wiki/Saturation_(magnetic)")
             wikidataReference = pl("https://www.wikidata.org/wiki/Q2630994")
 
-        class LoopSquarenessFactorInternal(
-            onto.ElectromagneticQuantity, onto.RatioQuantity
-        ):
+        class LoopSquarenessFactorInternal(onto.ElectromagneticQuantity, onto.RatioQuantity):
             """The internal loop squareness factor SF is defined as the ratio of
             the internal KneeField Hk over the internal Coercivity Hc
             (SF = KneeFieldInternal / CoercivityHcInternal)."""
@@ -1184,9 +1134,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
             ]
             is_a = [onto.hasMeasurementUnit.some(onto.DimensionlessUnit)]
 
-        class LoopSquarenessFactorExternal(
-            onto.ElectromagneticQuantity, onto.RatioQuantity
-        ):
+        class LoopSquarenessFactorExternal(onto.ElectromagneticQuantity, onto.RatioQuantity):
             """The external loop squareness factor is defined as the ratio of
             the external KneeField H'k over the external Coercivity H'c
             (SF' = KneeFieldExternal / CoercivityHcExternal)."""
@@ -1272,9 +1220,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
             prefLabel = en("MainMagneticPhase")
             is_a = [
                 onto.hasProperty.some(onto.VolumeFraction),
-                onto.hasSpatialPart.exactly(
-                    1, AmorphousMagneticMaterial | CrystallineMagneticMaterial
-                ),
+                onto.hasSpatialPart.exactly(1, AmorphousMagneticMaterial | CrystallineMagneticMaterial),
             ]
 
         class SecondaryPhase(onto.Material, onto.PhaseOfMatter):
@@ -1286,9 +1232,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
                 onto.hasProperty.some(onto.VolumeFraction),
                 onto.hasSpatialPart.exactly(
                     1,
-                    AmorphousMagneticMaterial
-                    | CrystallineMagneticMaterial
-                    | NonMagneticMaterial,
+                    AmorphousMagneticMaterial | CrystallineMagneticMaterial | NonMagneticMaterial,
                 ),
             ]
 
@@ -1320,9 +1264,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
             prefLabel = en("Magnet")
             wikidataReference = pl("https://www.wikidata.org/wiki/Q11421")
             wikipediaReference = pl("https://en.wikipedia.org/wiki/Magnet")
-            IECEntry = pl(
-                "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=151-14-06"
-            )
+            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=151-14-06")
             is_a = [
                 onto.hasProperty.min(0, onto.MaterialsProcessing),
                 onto.hasProperty.min(0, onto.WorkpieceForming),
@@ -1524,9 +1466,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
             altLabel = pl("MR")
             wikidataReference = pl("https://www.wikidata.org/wiki/Q58347")
             wikipediaReference = pl("https://en.wikipedia.org/wiki/Magnetoresistance")
-            IECEntry = pl(
-                "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=121-12-83"
-            )
+            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=121-12-83")
             is_a = [
                 onto.hasMeasurementUnit.some(onto.DimensionlessUnit),
             ]
@@ -1574,17 +1514,14 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
             comment = pl(
                 'Binder, K. (1981). "Finite size scaling analysis of ising model block '
                 'distribution functions". Zeitschrift für Physik B: '
-                'Condensed Matter. 43 (2): 119–140. https://doi.org/10.1007/bf01293604'
+                "Condensed Matter. 43 (2): 119–140. https://doi.org/10.1007/bf01293604"
             )
             prefLabel = en("BinderCumulant")
             altLabel = [pl("U_L"), en("BinderParameter")]
             wikidataReference = pl("https://www.wikidata.org/wiki/Q4913987")
             wikipediaReference = pl("https://en.wikipedia.org/wiki/Binder_parameter")
 
-
-    onto.sync_attributes(
-        name_policy="uuid", class_docstring="elucidation", name_prefix="EMMO_"
-    )
+    onto.sync_attributes(name_policy="uuid", class_docstring="elucidation", name_prefix="EMMO_")
 
     if annotate_metadata:
         onto.metadata.comment.append(
@@ -1621,12 +1558,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
         onto.metadata.publisher.append(world.get_ontology("https://mammos-project.github.io"))
         onto.metadata.versionInfo.append(VERSION)
         onto.metadata.comment.append(
-            en(
-                "Contacts:\n"
-                "Wilfried Hortschitz\n"
-                "DISS-UWK\n"
-                "email: wilfried.hortschitz@donau-uni.ac.at\n"
-            )
+            en("Contacts:\nWilfried Hortschitz\nDISS-UWK\nemail: wilfried.hortschitz@donau-uni.ac.at\n")
         )
 
     # Set version of ontology
@@ -1639,10 +1571,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
     return onto
 
 
-def save_ontology(
-    onto: ontopy.ontology.Ontology,
-    output_ttl: os.PathLike = "magnetic-materials.ttl"
-) -> None:
+def save_ontology(onto: ontopy.ontology.Ontology, output_ttl: os.PathLike = "magnetic-materials.ttl") -> None:
     """Save ontology as turtle file.
 
     Args:
@@ -1660,7 +1589,7 @@ def save_ontology(
 
 def apply_fixes(
     input_ttl: os.PathLike = "magnetic-materials.ttl",
-    output_ttl: os.PathLike = "magnetic-materials.ttl"
+    output_ttl: os.PathLike = "magnetic-materials.ttl",
 ) -> None:
     """Apply fixes to adhere to the best practices.
 
@@ -1685,14 +1614,8 @@ def apply_fix_1(text: str) -> str:
     EMMOntoPy writes imports with their base IRI, without version number.
     Issue raised in https://github.com/emmo-repo/EMMOntoPy/issues/1010.
     """
-    text = text.replace(
-        f"<{MAGMO_IRI}/contributors>",
-        f"<{MAGMO_IRI}/{VERSION}/contributors>"
-    )
-    text = text.replace(
-        f"<{MAGMO_IRI}/dependencies>",
-        f"<{MAGMO_IRI}/{VERSION}/dependencies>"
-    )
+    text = text.replace(f"<{MAGMO_IRI}/contributors>", f"<{MAGMO_IRI}/{VERSION}/contributors>")
+    text = text.replace(f"<{MAGMO_IRI}/dependencies>", f"<{MAGMO_IRI}/{VERSION}/dependencies>")
     return text
 
 
@@ -1713,7 +1636,7 @@ def main(
     output: os.PathLike,
     annotate_metadata: bool = True,
     local: bool = False,
-    skip_fixes: bool = False
+    skip_fixes: bool = False,
 ) -> None:
     """Build ontology.
 
@@ -1733,13 +1656,26 @@ def main(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("-o", "--output", default="magnetic-materials.ttl", help="path to output ttl file")
-    parser.add_argument("--local", action="store_true", help="build ontology by reading local dependencies")
-    parser.add_argument("--skip-fixes", action="store_true", help="skip ontology fixes such as iri fixes")
+    parser.add_argument(
+        "-o",
+        "--output",
+        default="magnetic-materials.ttl",
+        help="path to output ttl file",
+    )
+    parser.add_argument(
+        "--local",
+        action="store_true",
+        help="build ontology by reading local dependencies",
+    )
+    parser.add_argument(
+        "--skip-fixes",
+        action="store_true",
+        help="skip ontology fixes such as iri fixes",
+    )
     args = parser.parse_args()
     main(
         output=args.output,
         annotate_metadata=True,
         local=args.local,
-        skip_fixes=args.skip_fixes
+        skip_fixes=args.skip_fixes,
     )
