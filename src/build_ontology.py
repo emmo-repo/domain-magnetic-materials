@@ -1598,6 +1598,7 @@ onto.metadata.comment.append(
 onto.set_version(
     version=version,
     version_iri=f"https://w3id.org/emmo/domain/magnetic-materials/{version}",
+    set_priorVersion=False,
 )
 onto.save(
     "magnetic-materials.ttl",
