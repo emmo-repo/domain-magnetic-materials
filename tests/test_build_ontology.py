@@ -1,6 +1,7 @@
 """Test that generated ontology is equivalent to the committed one."""
 
 from pathlib import Path
+import tomllib
 
 import pytest
 from ontopy import World
@@ -80,6 +81,19 @@ def test_metadata(generated_metadata, committed_metadata, subtests):
     for k in generated_metadata.keys():
         with subtests.test(msg=k):
             assert _compare(generated_metadata[k], committed_metadata[k])
+
+
+def test_versions(generated_ontology, committed_ontology):
+    """Test that the two ontologies have the same version information as the Python builder."""
+    dependencies = World().get_ontology("magnetic-materials-dependencies.ttl").load()
+    contributors = World().get_ontology("contributors.ttl").load()
+    with open(Path(__file__).parent.parent / "pixi.toml", "rb") as f:
+        pixi_toml = tomllib.load(f)
+    pixi_toml_version = pixi_toml["workspace"]["version"]
+    assert generated_ontology.get_version() == pixi_toml_version
+    assert committed_ontology.get_version() == pixi_toml_version
+    assert dependencies.get_version() == pixi_toml_version
+    assert contributors.get_version() == pixi_toml_version
 
 
 def test_same_classes_iris(generated_ontology, committed_ontology):
