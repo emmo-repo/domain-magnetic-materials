@@ -21,8 +21,8 @@ from __future__ import annotations
 
 import argparse
 import os
-from pathlib import Path
 import re
+from pathlib import Path
 from typing import TYPE_CHECKING
 
 from ontopy import World
@@ -31,9 +31,9 @@ from annotation_properties import add_annotation_properties
 from characterization_data import add_characterization_data_entities
 from crystal_structure import add_crystal_structure_entities
 from energy import add_energy_entities
-from intrinsic_magnetic_properties import add_intrinsic_magnetic_properties_entities
 from granular_structure import add_granular_structure_entities
 from hysteresis_properties import add_hysteresis_properties_entities
+from intrinsic_magnetic_properties import add_intrinsic_magnetic_properties_entities
 from local_properties import add_local_properties_entities
 from magnetic_fields import add_magnetic_fields_entities
 from magnetotransport import add_magnetotransport_entities
