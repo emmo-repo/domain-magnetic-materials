@@ -71,7 +71,8 @@ def define_ontology(annotate_metadata: bool = True, local_imports: bool = False)
     onto.imported_ontologies.append(contributors)
     onto.imported_ontologies.append(dependencies)
 
-    # Add new classes and object/data properties needed by the use case
+    # Add new classes and object/data properties needed by the use case.
+    # The order is important. Some entities depend on other entities.
     add_annotation_properties(onto)
     add_crystal_structure_entities(onto)
     add_energy_entities(onto)
