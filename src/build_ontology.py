@@ -75,6 +75,12 @@ onto.imported_ontologies.append(dependencies)
 # - EMMO releases:
 #   https://github.com/emmo-repo/EMMO/releases
 
+# Define mediator annotation
+dcterms = World().get_ontology("http://purl.org/dc/terms/").load()
+with dcterms:
+    class mediator(AnnotationProperty):
+        namespace = onto.get_namespace("http://purl.org/dc/terms/")
+
 # Add new classes and object/data properties needed by the use case
 with onto:
     # Additional Annotation Properties
@@ -1591,6 +1597,7 @@ onto.metadata.preferredNamespacePrefix.append("magmo")
 onto.metadata.preferredNamespaceUri.append("https://w3id.org/emmo/domain/magnetic-materials")
 license_iri = "https://creativecommons.org/licenses/by/4.0/legalcode"
 onto.metadata.license.append(world.get_ontology(license_iri))
+onto.metadata.mediator.append(onto.EMMC_ASBL)
 onto.metadata.publisher.append(world.get_ontology("https://mammos-project.github.io"))
 onto.metadata.versionInfo.append(version)
 onto.metadata.comment.append(
