@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import re
-
 from ontopy import World
 from owlready2 import (
     locstr,
@@ -1639,16 +1637,6 @@ text = text.replace(
 text = text.replace(
     "<https://w3id.org/emmo/domain/magnetic-materials/dependencies>",
     f"<https://w3id.org/emmo/domain/magnetic-materials/{version}/dependencies>"
-)
-
-
-## fix 2: define mediator metadata
-# dcterms:mediator is not found when importing the dependencies
-# issue raised https://github.com/emmo-repo/EMMOntoPy/issues/1003
-indent = " " * len(re.search(r"\n +dcterms:license", text).group().lstrip(r"\n").rstrip("dcterms:license"))
-text = text.replace(
-    f"dcterms:license <{license_iri}> ;",
-    f"dcterms:license <{license_iri}> ;\n{indent}dcterms:mediator emmo:EMMC_ASBL ;",
 )
 
 ## write fixed text
