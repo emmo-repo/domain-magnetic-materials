@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from pathlib import Path
+
 from ontopy import World
 from owlready2 import (
     locstr,
@@ -8,6 +10,8 @@ from owlready2 import (
 )
 
 version = "0.0.6"
+
+root_dir = Path(__file__).parent.parent.resolve()
 
 # Default annotation language policy:
 # - Use English (@en) as default for labels and textual annotations.
@@ -53,8 +57,8 @@ def add_altLabel(entry, label):
 
 # Define ontology imports
 world = World()
-contributors = world.get_ontology(f"https://w3id.org/emmo/domain/magnetic-materials/{version}/contributors").load()
-dependencies = world.get_ontology(f"https://w3id.org/emmo/domain/magnetic-materials/{version}/magnetic-materials-dependencies").load()
+contributors = world.get_ontology(root_dir / "contributors.ttl").load()
+dependencies = world.get_ontology(root_dir / "magnetic-materials-dependencies.ttl").load()
 
 # Create a new ontology with imports
 onto = world.get_ontology("https://w3id.org/emmo/domain/magnetic-materials#")
