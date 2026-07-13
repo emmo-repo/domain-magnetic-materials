@@ -1562,7 +1562,7 @@ with onto:
 
 
 onto.sync_attributes(
-    name_policy="uuid", class_docstring="elucidation", name_prefix="EMMO_"
+    name_policy="uuid", class_docstring="elucidation", name_prefix="MagMO_"
 )
 
 #################################################################
