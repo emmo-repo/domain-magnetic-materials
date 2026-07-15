@@ -1,0 +1,10 @@
+line-length = 120
+
+[lint]
+select = [
+  "E4", # pycodestyle import errors (included by default)
+  "E7",  # pycodestyle mixed checks (included by default)
+  "E9",  # pycodestyle i/o errors (included by default)
+  "F",  # pyflakes (included by default)
+  "I",  # isort for imports format
+]

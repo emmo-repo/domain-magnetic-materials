@@ -83,7 +83,9 @@ def test_metadata(generated_metadata, committed_metadata, subtests):
 
 
 def test_same_classes_iris(generated_ontology, committed_ontology):
-    assert set(entity.iri for entity in generated_ontology.classes()) == set(entity.iri for entity in committed_ontology.classes())
+    assert set(entity.iri for entity in generated_ontology.classes()) == set(
+        entity.iri for entity in committed_ontology.classes()
+    )
 
 
 @pytest.mark.parametrize("field", ["prefLabel", "altLabel", "elucidation"])
