@@ -110,7 +110,30 @@ def test_all_annotations(generated_ontology, committed_ontology, subtests):
         com_anns = committed_ontology[entity.iri].get_annotations()
         assert gen_anns.keys() == com_anns.keys()
 
-        label = entity.get_preferred_label()
-        for field, annotation in gen_anns.items():
-            with subtests.test(msg=f"{label}: {field}"):
-                assert _compare(annotation, com_anns[field])
+
+def test_same_individuals(generated_ontology, committed_ontology, subtests):
+    """Test that individuals entities are the same.
+
+    Each individual has certain annotations in the form of dictionary
+    `{annotation_name: list_of_things}`.
+
+    For each individual we test:
+    1. that it has the same annotation fields in both ontologies,
+    2. that the IRI stays the same in both ontologies,
+    3. that the content of the annotations stays the same in both ontologies.
+    """
+    for ind in generated_ontology.individuals(imported=True):
+        com_ind = committed_ontology[ind.iri]  # respective individual in the committed ontology
+        gen_individual_annotations = set(ind.get_individual_annotations().keys())
+        com_individual_annotations = set(com_ind.get_individual_annotations().keys())
+        assert gen_individual_annotations == com_individual_annotations
+
+        if ind.prefLabel:
+            msg = f"{ind.prefLabel[0]} ({ind.name})"
+        else:
+            msg = f"({ind.name})"
+        with subtests.test(msg=f"{msg}: iri"):
+            assert ind.iri == committed_ontology[ind.iri].iri
+        for prop, annotation in ind.get_individual_annotations().items():
+            with subtests.test(msg=f"{msg}: {prop}"):
+                assert _compare(annotation, com_ind.get_individual_annotations()[prop])
