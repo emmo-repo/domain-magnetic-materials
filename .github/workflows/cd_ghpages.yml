@@ -22,6 +22,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: Setup Pixi
+      uses: prefix-dev/setup-pixi@v0.8.8
+
     - name: Load ontokit configuration
       run: |
         if [ ! -f .ontokit_conf.yml ]; then
@@ -67,13 +70,8 @@ jobs:
       run: |
         wget --quiet https://github.com/dgarijo/Widoco/releases/download/v1.4.25/widoco-1.4.25-jar-with-dependencies_JDK-17.jar
 
-    - name: Copy readme and license files to gh-pages
-      run: |
-        mkdir -p "${BUILD_DIR}"
-        cp README.md LICENSE "${BUILD_DIR}/."
-
-    - name: Copy images on readme to gh-pages
-      run: cp -r images "${BUILD_DIR}/."
+    - name: Generate ontology graphs
+      run: pixi run docs-generate-graphs
 
     - name: Create dependencies on gh-pages
       run: |
@@ -138,7 +136,7 @@ jobs:
             -includeAnnotationProperties
 
     - name: Generate Ontokit documentation to public
-      run: ontokit docs --iri-regex=${ONTOLOGY_IRI} . && touch public/.nojekyll
+      run: ontokit docs --iri-regex=${ONTOLOGY_IRI} --docs-dir=docs . && touch public/.nojekyll
 
     # Copy turtle files from build to public
     - name: Copy ontologies to public
