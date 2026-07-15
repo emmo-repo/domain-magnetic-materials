@@ -86,27 +86,62 @@ def test_same_classes_iris(generated_ontology, committed_ontology):
     assert set(entity.iri for entity in generated_ontology.classes()) == set(entity.iri for entity in committed_ontology.classes())
 
 
-@pytest.mark.parametrize("field", ["prefLabel", "altLabel", "elucidation"])
-def test_same_field(generated_ontology, committed_ontology, field, subtests):
-    for entity in generated_ontology.classes(imported=True):
-        if entity.prefLabel:
-            msg = f"{entity.prefLabel[0]} ({entity.name})"
-        else:
-            msg = f"({entity.name})"
-        with subtests.test(msg=msg):
-            assert _compare(entity[field], committed_ontology[entity.iri][field])
+def test_annotations(generated_ontology, committed_ontology, subtests):
+    """Test that the annotations of all entity classes match between the different ontologies.
 
+    This test checks all annotations at the same time:
+    - IECEntry
+    - altLabel
+    - comment
+    - elucidation
+    - prefLabel
+    - wikidataReference
+    - wikipediaReference
 
-def test_same_comments(generated_ontology, committed_ontology, subtests):
-    """Test that entities have the same comment.
+    Not all entities classes have all of the annotations defined.
 
-    We cannot integrate this test in `test_same_field` because entity["comment"] does
-    not work in same way as `prefLabel`, `altLabel`, and `elucidation`.
+    For each entity we first check that it contains the same annotation fields
+    in the different ontologies. Then, we check the content of the annotations
+    to make sure they match.
     """
     for entity in generated_ontology.classes(imported=True):
+        gen_anns = entity.get_annotations()
+        com_anns = committed_ontology[entity.iri].get_annotations()
+        assert gen_anns.keys() == com_anns.keys()
+
         if entity.prefLabel:
             msg = f"{entity.prefLabel[0]} ({entity.name})"
         else:
             msg = f"({entity.name})"
-        with subtests.test(msg=msg):
-            assert _compare(entity.comment, committed_ontology[entity.iri].comment)
+        for field, annotation in gen_anns.items():
+            with subtests.test(msg=f"{msg}: {field}"):
+                assert _compare(annotation, com_anns[field])
+
+
+def test_annotation_properties(generated_ontology, committed_ontology, subtests):
+    """Test all additional annotation properties.
+
+    While in the above tests we test certain fields of entity classes,
+    here we check iris and annotations of the annotation properties themselves.
+
+    In particular, we only test the annotation properties we define,
+    such as `IECEntry`, `wikidataReference`, and `wikipediaReference`.
+    """
+    gen_iri_set = set(prop.iri for prop in generated_ontology.annotation_properties())
+    com_iri_set = set(prop.iri for prop in committed_ontology.annotation_properties())
+    assert gen_iri_set == com_iri_set
+
+    for prop in generated_ontology.annotation_properties():
+        gen_prop_anns = prop.get_annotations()
+        com_prop_anns = committed_ontology[prop.iri].get_annotations()
+        assert gen_prop_anns.keys() == com_prop_anns.keys()
+
+        if prop.prefLabel:
+            msg = f"{prop.prefLabel[0]} ({prop.name})"
+        else:
+            msg = f"({prop.name})"
+        with subtests.test(msg=f"{msg}: iri"):
+            assert prop.iri == committed_ontology[prop.iri].iri
+        for field, annotation in gen_prop_anns.items():
+            with subtests.test(msg=f"{msg}: {field}"):
+                assert _compare(annotation, com_prop_anns[field])
