@@ -43,6 +43,7 @@ This is a summary of all the relevant files.
   - `pixi run check`: Run ontology tests via `emmocheck`.
   - `pixi run all`: Run the tasks `build`, `reason`, `check` in order.
   - `pixi run test`: Run tests in order to check consistency among all the tracked files.
+  - `pixi run start-new-release-branch <version_string>`: This branch can be run to branch out of `main` into a new branch called `<version_string>`, e.g. `0.0.6`. More details are available in [the section about creating new releases](###what-must-be-in-a-new-release).
 
 
 ## Making changes
@@ -86,6 +87,14 @@ Ideally the first push to a new development branch should replace the version st
 - in the [dependencies turtle file](./magnetic-materials-dependencies.ttl).
 
 After running `pixi run all`, the ontology file `magnetic-materials.ttl` should declare its `versionIRI` using the new version string and import the new `dependencies` and `contributors`. Such file should also be included in the first push to the new development branch.
+
+The task `pixi run start-new-release-branch <version_string>` facilitates this first step. It accepts a version string (such as `0.0.6`) as input and runs the following steps:
+
+- it branches out of the `main` branch, creating the branch `<version_string>`.
+- it replaces the current version with the new `<version_string>` in the catalog file, the contributors file, the main ontology, the dependencies file, the `pixi.toml`, and the Python ontology builder.
+
+It is up to the user to update the `README.md` and update the table with different version strings and dependencies.
+
 
 ### Creating a GitHub release
 
