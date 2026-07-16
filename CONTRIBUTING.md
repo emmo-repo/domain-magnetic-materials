@@ -61,7 +61,7 @@ After the first push to the development branch, [different CI steps](.github/wor
 
 ### Development via Pull Requests
 
-Changes that need to be included in the new version should be development in different PRs and then merged into the development branch. For example, if a new feature is being developed in the branch `new-feature`, we create a PR on GitHub by selecting `base: 0.0.6` and `compare: new-feature`.
+Changes that need to be included in the new version should be development in different branches and then merged into the development branch via a PR. For example, if a new feature is being developed in the branch `new-feature`, we create a PR on GitHub by selecting `base: 0.0.6` and `compare: new-feature`.
 
 For changes that are not version-dependent (such as changes in the `README.md`), PRs can be merged to `main`.
 
