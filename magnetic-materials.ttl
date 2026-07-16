@@ -2,7 +2,6 @@
 @prefix bibo: <http://purl.org/ontology/bibo/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix emmo: <https://w3id.org/emmo#> .
-@prefix ns1: <http://www.lesfleursdunormal.fr/static/_downloads/owlready_ontology.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -647,7 +646,6 @@ email: wilfried.hortschitz@donau-uni.ac.at
     owl:versionInfo "0.0.6"^^xsd:string .
 
 :EMMO_405ae501-8898-59c0-b2db-0afa09d561f9 a owl:AnnotationProperty ;
-    ns1:python_name "EMMO_405ae501-8898-59c0-b2db-0afa09d561f9"^^xsd:string ;
     skos:prefLabel "wikipediaReference"@en .
 
 :EMMO_49768356-1ec9-5316-adbc-81001ecd770f a owl:Class ;
@@ -663,7 +661,6 @@ the internal field: sigma = chi_m H."""@en ;
     :EMMO_4d45da04-cf90-5d4a-bc11-f76fbd5b5036 "https://www.wikidata.org/wiki/Q104655916"^^rdf:langString .
 
 :EMMO_4d45da04-cf90-5d4a-bc11-f76fbd5b5036 a owl:AnnotationProperty ;
-    ns1:python_name "EMMO_4d45da04-cf90-5d4a-bc11-f76fbd5b5036"^^xsd:string ;
     skos:prefLabel "wikidataReference"@en .
 
 :EMMO_4ee603fc-7a1e-51f0-bf75-8e66f9a5539b a owl:Class ;
@@ -830,7 +827,6 @@ volume, is often called the applied field."""@en .
     :EMMO_405ae501-8898-59c0-b2db-0afa09d561f9 "https://en.wikipedia.org/wiki/Magnetocrystalline_anisotropy"^^rdf:langString .
 
 :EMMO_eb748e96-0aee-5b55-b6be-56b8c6bdaed6 a owl:AnnotationProperty ;
-    ns1:python_name "EMMO_eb748e96-0aee-5b55-b6be-56b8c6bdaed6"^^xsd:string ;
     skos:prefLabel "IECEntry"@en .
 
 <https://www.w3.org/TR/turtle> a owl:Thing .
