@@ -62,7 +62,7 @@ All modification should follow EMMO's [Domain Ontologies Best Practices](https:/
 
 Development is carried out in the branch named after the next possible release. For example, if `0.0.5` is the latest release, the `0.0.6` branch will contain all changes to be released next.
 
-After the first push to the development branch, [different CI steps](.github/workflows/) allow the IRI https://w3id.org/emmo/domain/magnetic-materials/0.0.6/magnetic-materials to be resolved.
+After the first push to the development branch, all URLs containing the new version number, e.g. `https://w3id.org/emmo/domain/magnetic-materials/0.0.6/magnetic-materials`, are created via [GitHub's CI](.github/workflows/).
 
 
 ### Development via Pull Requests
