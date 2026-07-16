@@ -829,6 +829,8 @@ volume, is often called the applied field."""@en .
 :EMMO_eb748e96-0aee-5b55-b6be-56b8c6bdaed6 a owl:AnnotationProperty ;
     skos:prefLabel "IECEntry"@en .
 
+<https://w3id.org/emmo/inferred> a owl:Thing .
+
 <https://www.w3.org/TR/turtle> a owl:Thing .
 
 <http://purl.org/ontology/bibo/term_status/unstable> a owl:Thing .
@@ -2004,8 +2006,6 @@ is magnetized along its short and long axis."""@en .
         "wt.%"@en ;
     skos:prefLabel "LocalMassPercent"@en ;
     emmo:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 "Local mass percentage obtained from EDX quantification."@en .
-
-<https://w3id.org/emmo/inferred> a owl:Thing .
 
 :EMMO_2c96e798-57dc-5c12-ad10-f3ec261549d3 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
