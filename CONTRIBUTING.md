@@ -76,7 +76,7 @@ For changes that are not version-dependent (such as changes in the `README.md`),
 
 ### What **must** be in a new release
 
-Important is to change the version of the ontology every time this is relevant:
+Ideally the first push to a new development branch should replace the version string (to the name of the branch) in the following places:
 
 - in the ontology builder [`src/build_ontology.py`](./src/build_ontology.py),
 - in the [`pixi.toml`](./pixi.toml),
@@ -84,6 +84,8 @@ Important is to change the version of the ontology every time this is relevant:
 - in the [catalog](./catalog-v001.xml),
 - in the [contributors turtle file](./contributors.ttl),
 - in the [dependencies turtle file](./magnetic-materials-dependencies.ttl).
+
+After running `pixi run all`, the ontology file `magnetic-materials.ttl` should declare its `versionIRI` using the new version string and import the new `dependencies` and `contributors`. Such file should also be included in the first push to the new development branch.
 
 ### Creating a GitHub release
 
