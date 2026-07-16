@@ -82,6 +82,6 @@ Important is to change the version of the ontology every time this is relevant:
 ### Creating a GitHub release
 
 Once the branch is ready for a release, it is necessary to:
-1. merge the development branch to `main` via a PR,
-2. delete the development branch,
+1. merge the development branch (e.g. `0.0.6`) to `main` via a PR,
+2. delete the development branch (e.g. `0.0.6`),
 2. create a GitHub release manually with the tag being the same name as the development branch (e.g. `0.0.6` without the letter `v`).
