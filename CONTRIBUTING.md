@@ -95,4 +95,4 @@ All modification should follow EMMO's [Domain Ontologies Best Practices](https:/
 Once the branch is ready for a release, it is necessary to:
 1. merge the development branch (e.g. `0.0.6`) to `main` via a PR,
 2. delete the development branch (e.g. `0.0.6`),
-2. create a GitHub release manually with the tag being the same name as the development branch (e.g. `0.0.6` without the letter `v`).
+3. create a GitHub release manually with the tag being the same name as the development branch (e.g. `0.0.6` without the letter `v`).
