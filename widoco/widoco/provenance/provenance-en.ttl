@@ -1,0 +1,28 @@
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix : <> .
+<https://w3id.org/emmo/domain/0.0.5/magnetic-materials> a prov:Entity;
+	 dc:title "Magnetic Materials Ontology (MagMO)";
+	 prov:wasAttributedTo <https://w3id.org/emmo/domain/magnetic-materials#SantaPile>;
+	 dc:creator <https://w3id.org/emmo/domain/magnetic-materials#SantaPile>;
+	 prov:wasAttributedTo <https://w3id.org/emmo/domain/magnetic-materials#ThomasSchrefl>;
+	 dc:creator <https://w3id.org/emmo/domain/magnetic-materials#ThomasSchrefl>;
+	 prov:wasAttributedTo <https://w3id.org/emmo/domain/magnetic-materials#WilfriedHortschitz>;
+	 dc:creator <https://w3id.org/emmo/domain/magnetic-materials#WilfriedHortschitz>;
+	 prov:wasAttributedTo <https://w3id.org/emmo/domain/magnetic-materials#AndreaPetrocchi>;
+	 dc:contributor <https://w3id.org/emmo/domain/magnetic-materials#AndreaPetrocchi>;
+	 prov:wasAttributedTo <https://w3id.org/emmo/domain/magnetic-materials#HansFangohr>;
+	 dc:contributor <https://w3id.org/emmo/domain/magnetic-materials#HansFangohr>;
+	 prov:wasAttributedTo <https://w3id.org/emmo/domain/magnetic-materials#JonasWinkler>;
+	 dc:contributor <https://w3id.org/emmo/domain/magnetic-materials#JonasWinkler>;
+	 prov:wasAttributedTo <https://w3id.org/emmo/domain/magnetic-materials#MartinLang>;
+	 dc:contributor <https://w3id.org/emmo/domain/magnetic-materials#MartinLang>;
+	 prov:wasAttributedTo <https://w3id.org/emmo/domain/magnetic-materials#SamHolt>;
+	 dc:contributor <https://w3id.org/emmo/domain/magnetic-materials#SamHolt>;
+	 prov:wasAttributedTo <https://w3id.org/emmo/domain/magnetic-materials#SwapneelAmitPathak>;
+	 dc:contributor <https://w3id.org/emmo/domain/magnetic-materials#SwapneelAmitPathak>;
+	 prov:wasAttributedTo <https://w3id.org/emmo/domain/magnetic-materials#WilliamRigaut>;
+	 dc:contributor <https://w3id.org/emmo/domain/magnetic-materials#WilliamRigaut>;
+	 prov:wasAttributedTo <https://github.com/dgarijo/Widoco/>,<http://www.essepuntato.it/lode/>;
+.

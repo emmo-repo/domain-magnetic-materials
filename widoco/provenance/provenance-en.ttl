@@ -1,0 +1,28 @@
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix : <> .
+<https://w3id.org/emmo/domain/0.0.6/magnetic-materials> a prov:Entity;
+	 dc:title "Magnetic Materials Ontology (MagMO)";
+	 prov:wasAttributedTo <https://orcid.org/0000-0001-7854-847X>;
+	 dc:creator <https://orcid.org/0000-0001-7854-847X>;
+	 prov:wasAttributedTo <https://orcid.org/0000-0002-0871-0520>;
+	 dc:creator <https://orcid.org/0000-0002-0871-0520>;
+	 prov:wasAttributedTo <https://orcid.org/0000-0003-2950-642X>;
+	 dc:creator <https://orcid.org/0000-0003-2950-642X>;
+	 prov:wasAttributedTo <https://orcid.org/0000-0001-5494-7193>;
+	 dc:contributor <https://orcid.org/0000-0001-5494-7193>;
+	 prov:wasAttributedTo <https://orcid.org/0000-0001-7104-7867>;
+	 dc:contributor <https://orcid.org/0000-0001-7104-7867>;
+	 prov:wasAttributedTo <https://orcid.org/0000-0003-3323-8958>;
+	 dc:contributor <https://orcid.org/0000-0003-3323-8958>;
+	 prov:wasAttributedTo <https://orcid.org/0000-0003-3840-955X>;
+	 dc:contributor <https://orcid.org/0000-0003-3840-955X>;
+	 prov:wasAttributedTo <https://orcid.org/0009-0000-7815-5916>;
+	 dc:contributor <https://orcid.org/0009-0000-7815-5916>;
+	 prov:wasAttributedTo <https://orcid.org/0009-0000-9775-7955>;
+	 dc:contributor <https://orcid.org/0009-0000-9775-7955>;
+	 prov:wasAttributedTo <https://orcid.org/0009-0005-1867-6732>;
+	 dc:contributor <https://orcid.org/0009-0005-1867-6732>;
+	 prov:wasAttributedTo <https://github.com/dgarijo/Widoco/>,<http://www.essepuntato.it/lode/>;
+.
