@@ -1,25 +1,64 @@
 [workspace]
 channels = ["conda-forge"]
-platforms = ["linux-64"]
+platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
 name = "domain-magnetic-materials"
-version = "0.0.5"
+version = "0.0.6"
 authors = [
-  "Andrea Petrocchi <andrea.petrocchi@mpsd.mpg.de>",
-  "Wilfried Hortschitz, DISS-UWK",
+  "Martin Dobiasch",
+  "Hans Fangohr",
+  "Samuel Holt",
+  "Wilfried Hortschitz",
+  "Martin Lang",
+  "Swapneel Amit Pathak",
+  "Andrea Petrocchi",
+  "Thomas Schrefl",
 ]
-description = "Domain Ontology for Magnetic Materials (domm)."
+description = "Magnetic Materials Domain Ontology (MagMO)."
+
+[activation.env]
+EMMO_IRI = "https://w3id.org/emmo#"
+ONTOLOGY_NAME = "magnetic-materials"
+ONTOLOGY_PREFIX = "magmo"
+ONTOLOGY_IRI = "https://w3id.org/emmo/domain/magnetic-materials"
+GITHUB_REPOSITORY = "emmo-repo/domain-magnetic-materials"
+BUILD_DIR = "build"
 
 [tasks]
-check = "emmocheck magnetic-materials.ttl"
-reason = "ontoconvert magnetic-materials.ttl magnetic-materials.ttl --reasoner --infer"
+build = {cmd="python src/build_ontology.py", description="Build ontology"}
+reason = 'ontoconvert $ONTOLOGY_NAME.ttl $ONTOLOGY_NAME.ttl --reasoner --infer --namespace="emmo:$EMMO_IRI"'
+check = "emmocheck $ONTOLOGY_NAME.ttl"
+all = { depends-on = ["build", "reason", "check"] } # run all steps subsequently
+prepare-test = "rm -rf build && mkdir build && cp contributors.ttl catalog-v001.xml $ONTOLOGY_NAME-dependencies.ttl build"
+test-build-ontology = {cmd = 'python ../src/build_ontology.py && ontoconvert $ONTOLOGY_NAME.ttl ../generated.ttl --reasoner --infer --namespace="emmo:$EMMO_IRI" && emmocheck ../generated.ttl', cwd = "build", depends-on=["prepare-test"]}
+test = {cmd = "pytest -vv", depends-on=["prepare-test", "test-build-ontology"]}
 
 [dependencies]
 emmontopy = ">=0.11.4"
 python = ">3.11"
-graphviz = ">=12.0.0,<13"
-pandoc = "==3.1.3"
-openjdk = ">=25.0.1,<26"
+openjdk = ">=25.0.2,<26"
 ipython = ">=9.10.0,<10"
 sphinx = ">=9.1.0,<10"
+pytest = ">=9"
 
 [pypi-dependencies]
+
+[feature.docs.dependencies]
+myst-parser = "*"
+pydata-sphinx-theme = "*"
+python-graphviz = "*"
+sphinx-design = "*"
+
+[feature.docs.pypi-dependencies]
+tripper = { git = "https://github.com/EMMC-ASBL/tripper.git", extras=["datadoc"] }
+
+[feature.docs.tasks]
+docs-cleanup = 'rm -rf "$BUILD_DIR" public && mkdir -p "$BUILD_DIR" public'
+docs-generate-graphs = "python docs/generate_graphs.py"
+docs-generate-dependencies = 'ontoconvert -saw --namespace="emmo:$EMMO_IRI" --namespace="$ONTOLOGY_PREFIX:$ONTOLOGY_IRI#" $ONTOLOGY_NAME-dependencies.ttl "$BUILD_DIR/$ONTOLOGY_NAME-dependencies.ttl"'
+docs-generate-squashed = 'ontoconvert -sawe --namespace="emmo:$EMMO_IRI" --namespace="$ONTOLOGY_PREFIX:$ONTOLOGY_IRI#" --base-iri="$ONTOLOGY_IRI#" --iri="$ONTOLOGY_IRI" $ONTOLOGY_NAME.ttl "$BUILD_DIR/$ONTOLOGY_NAME.ttl"'
+docs-generate-ontokit = 'ontokit docs --iri-regex="$ONTOLOGY_IRI" --docs-dir=docs . && touch public/.nojekyll'
+docs-copy-ontologies-to-public = 'cp $BUILD_DIR/*.ttl public/'
+docs-all = { depends-on = ["docs-cleanup", "docs-generate-graphs", "docs-generate-dependencies", "docs-generate-squashed", "docs-generate-ontokit", "docs-copy-ontologies-to-public"] }
+
+[environments]
+docs = ["docs"]
