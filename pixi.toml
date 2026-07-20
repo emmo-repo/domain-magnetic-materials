@@ -35,7 +35,8 @@ test = {cmd = "pytest -vv", depends-on=["prepare-test", "test-build-ontology"]}
 [tasks.start-new-release-branch]
 args = ["new_version"]
 cmd = """
-git checkout -b {{ new_version }} main \
+git fetch origin main \
+git checkout -b {{ new_version }} origin/main \
 && CURRENT_VERSION=$(toml get --toml-path pixi.toml workspace.version | sed 's/\\./\\\\./g') \
 && echo $CURRENT_VERSION \
 && sed -i "s/$CURRENT_VERSION/{{new_version}}/g" catalog-v001.xml contributors.ttl magnetic-materials.ttl magnetic-materials-dependencies.ttl pixi.toml src/build_ontology.py
