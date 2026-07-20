@@ -20,10 +20,7 @@ This is a summary of all the relevant files.
   ```console
   git clone git@github.com:emmo-repo/domain-magnetic-materials.git
   ```
-  or https if you don't have an ssh key:
-  ```console
-  git clone https://github.com/emmo-repo/domain-magnetic-materials.git
-  ```
+  If the user has not yet set up an SSH key, follow GitHub's guide [Add a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
   Then enter into the repository:
   ```console
   cd mammos
