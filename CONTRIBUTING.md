@@ -88,9 +88,7 @@ While the `magnetic-materials.ttl` ontology file should not be modified directly
 All modification should follow EMMO's [Domain Ontologies Best Practices](https://github.com/emmo-repo/.github/wiki/DomainOntologiesBestPractices).
 
 
-## Releasing a new version
-
-### Creating a GitHub release
+## Create a GitHub release
 
 Once the branch is ready for a release, it is necessary to:
 1. merge the development branch (e.g. `0.0.6`) to `main` via a PR,
