@@ -32,6 +32,17 @@ prepare-test = "rm -rf build && mkdir build && cp contributors.ttl catalog-v001.
 test-build-ontology = {cmd = 'python ../src/build_ontology.py && ontoconvert $ONTOLOGY_NAME.ttl ../generated.ttl --reasoner --infer --namespace="emmo:$EMMO_IRI" && emmocheck ../generated.ttl', cwd = "build", depends-on=["prepare-test"]}
 test = {cmd = "pytest -vv", depends-on=["prepare-test", "test-build-ontology"]}
 
+[tasks.start-new-release-branch]
+args = ["new_version"]
+cmd = """
+git fetch origin main \
+git checkout -b {{ new_version }} origin/main \
+&& CURRENT_VERSION=$(toml get --toml-path pixi.toml workspace.version | sed 's/\\./\\\\./g') \
+&& echo $CURRENT_VERSION \
+&& sed -i "s/$CURRENT_VERSION/{{new_version}}/g" catalog-v001.xml contributors.ttl magnetic-materials.ttl magnetic-materials-dependencies.ttl pixi.toml src/build_ontology.py
+"""
+description = "Initialize new development branch with given version string. This task takes a new version string as an input and substitutes the old version number with the new one in several files. Read the contributing guide for more information."
+
 [dependencies]
 emmontopy = ">=0.11.4"
 python = ">3.11"
@@ -41,6 +52,7 @@ sphinx = ">=9.1.0,<10"
 pytest = ">=9"
 
 [pypi-dependencies]
+toml-cli = ">=0.8.2, <0.9"
 
 [feature.docs.dependencies]
 myst-parser = "*"
