@@ -48,7 +48,7 @@ This is a summary of all the relevant files.
 
 ## Making changes
 
-Changes in the `magnetic-materials.ttl` ontology should be made manually in the [Python builder script](./src/build_ontology.py) and not made using external software such as Protégé.
+Changes to the ontology should always be made in the [Python build script](./src/build_ontology.py). The file `magnetic-materials.ttl` ontology should not be edited by hand or using external software such as Protégé.
 
 Once the changes have been completed, the ontology must be rebuilt and reasoned (via `pixi run all`). If the ontology checks do not fail, both the Python build script and the ontology `magnetic-materials.ttl` should be committed.
 
@@ -61,7 +61,7 @@ All modification should follow EMMO's [Domain Ontologies Best Practices](https:/
 
 ## Branching model
 
-Development is carried out in the branch named after the next possible release. For example, if `0.0.5` is the latest release, the `0.0.6` branch will contain all changes to be released next.
+Development is carried out in the branch named after the next release. For example, if `0.0.5` is the latest release, the `0.0.6` branch will contain all changes to be released next.
 
 After the first push to the development branch, all URLs containing the new version number, e.g. `https://w3id.org/emmo/domain/magnetic-materials/0.0.6/magnetic-materials`, are created via [GitHub's CI](.github/workflows/).
 
@@ -77,7 +77,7 @@ For changes that are not version-dependent (such as changes in the `README.md`),
 
 ### What **must** be in a new release
 
-Ideally the first push to a new development branch should replace the version string (to the name of the branch) in the following places:
+The first push to a new development branch must replace the version string (to the name of the branch) in the following places:
 
 - in the ontology builder [`src/build_ontology.py`](./src/build_ontology.py),
 - in the [`pixi.toml`](./pixi.toml),
