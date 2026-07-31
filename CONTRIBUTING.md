@@ -20,7 +20,8 @@ This is a summary of all the relevant files.
   ```console
   git clone git@github.com:emmo-repo/domain-magnetic-materials.git
   ```
-  If the user has not yet set up an SSH key, follow GitHub's guide [Add a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+  If you have not yet set up an SSH key, follow GitHub's guide [Add a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+
   Then enter into the repository:
   ```console
   cd mammos
@@ -40,7 +41,7 @@ This is a summary of all the relevant files.
   - `pixi run check`: Run ontology tests via `emmocheck`.
   - `pixi run all`: Run the tasks `build`, `reason`, `check` in order.
   - `pixi run test`: Run tests in order to check consistency among all the tracked files.
-  - `pixi run start-new-release-branch <version_string>`: This branch can be run to branch out of `main` into a new branch called `<version_string>`, e.g. `0.0.6`. More details are available in [the section about creating new releases](###what-must-be-in-a-new-release).
+  - `pixi run start-new-release-branch <version_string>`: This task can be run to branch out of `main` into a new branch called `<version_string>`, e.g. `0.0.6`. More details are available in [the section about creating new releases](###what-must-be-in-a-new-release).
 
 
 ## Branching model
@@ -70,7 +71,7 @@ After the first push to the development branch, all URLs containing the new vers
 
 ### Development via Pull Requests
 
-Changes that need to be included in the new version should be development in different branches and then merged into the development branch via a PR. For example, if a new feature is being developed in the branch `new-feature`, we create a PR on GitHub by selecting `base: 0.0.6` and `compare: new-feature`.
+Changes that need to be included in the new version should be developed in different branches and then merged into the development branch via a PR. For example, if a new feature is being developed in the branch `new-feature`, we create a PR on GitHub by selecting `base: 0.0.6` and `compare: new-feature`.
 
 For changes that are not version-dependent (such as changes in the `README.md`), PRs can be merged to `main`.
 
