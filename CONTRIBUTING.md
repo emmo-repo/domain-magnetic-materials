@@ -41,8 +41,8 @@ This is a summary of all the relevant files.
   - `pixi run check`: Run ontology tests via `emmocheck`.
   - `pixi run all`: Run the tasks `build`, `reason`, `check` in order.
   - `pixi run test`: Run tests in order to check consistency among all the tracked files.
-  - `pixi run start-new-release-branch <version_string>`: This task can be run to branch out of `main` into a new branch called `<version_string>`, e.g. `0.0.6`. More details are available in the [Branching model](##branching-model) section.
-  - `create-github-release <version_string>`: This task can be executed after the development branch has been merged into `main` to make a GitHub release. More details are available in the [Create a GitHub release](##create-a-github-release) section.
+  - `pixi run start-new-release-branch <version_string>`: This task can be run to branch out of `main` into a new branch called `<version_string>`, e.g. `0.0.6`. More details are available in the [Branching model](#branching-model) section.
+  - `create-github-release <version_string>`: This task can be executed after the development branch has been merged into `main` to make a GitHub release. More details are available in the [Create a GitHub release](#create-a-github-release) section.
 
 
 ## Branching model
