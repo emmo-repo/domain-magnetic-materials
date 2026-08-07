@@ -43,6 +43,14 @@ git fetch origin main \
 """
 description = "Initialize new development branch with given version string. This task takes a new version string as an input and substitutes the old version number with the new one in several files. Read the contributing guide for more information."
 
+[tasks.create-github-release]
+args = ["version"]
+cmd = """
+git push origin -d {{ version }} \
+& gh release create {{ version }} --fail-on-no-commits
+"""
+description = "Create a tag and a GitHub release with the specified version string. This task includes deleting the remote branch first. It is necessary to have merged the development branch to main before using this task."
+
 [dependencies]
 emmontopy = ">=0.11.4"
 python = ">3.11"
@@ -50,6 +58,7 @@ openjdk = ">=25.0.2,<26"
 ipython = ">=9.10.0,<10"
 sphinx = ">=9.1.0,<10"
 pytest = ">=9"
+gh = ">=2.97.0,<3"
 
 [pypi-dependencies]
 toml-cli = ">=0.8.2, <0.9"
