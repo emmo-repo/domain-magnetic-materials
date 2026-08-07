@@ -58,14 +58,14 @@ The first push to a new development branch must replace the version string (to t
 - in the [contributors turtle file](./contributors.ttl),
 - in the [dependencies turtle file](./magnetic-materials-dependencies.ttl).
 
-After running `pixi run all`, the ontology file `magnetic-materials.ttl` should declare its `versionIRI` using the new version string and import the new `dependencies` and `contributors`. This change to the ontology file should also be included in the first push to the new development branch.
-
 The task `pixi run start-new-release-branch <version_string>` facilitates this first push to a new version. It accepts a version string (such as `0.0.6`) as input and runs the following steps:
 
 - it branches out of the `main` branch, creating the branch `<version_string>`.
 - it replaces the current version with the new `<version_string>` in the catalog file, the contributors file, the main ontology, the dependencies file, the `pixi.toml`, and the Python ontology builder.
 
 It is up to the user to update the `README.md` and update the table with different version strings and dependencies.
+
+After running `pixi run all`, the ontology file `magnetic-materials.ttl` should declare its `versionIRI` using the new version string and import the new `dependencies` and `contributors`. This change to the ontology file should also be included in the first push to the new development branch.
 
 After the first push to the development branch, all URLs containing the new version number, e.g. `https://w3id.org/emmo/domain/magnetic-materials/0.0.6/magnetic-materials`, are created via [GitHub's CI](.github/workflows/).
 
