@@ -26,6 +26,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 from ontopy import World
+from owlready2 import AnnotationProperty
 
 from annotation_properties import add_annotation_properties
 from characterization_data import add_characterization_data_entities
@@ -50,21 +51,16 @@ MAGMO_IRI = "https://w3id.org/emmo/domain/magnetic-materials"
 ROOT_DIR = Path(__file__).parent.parent.resolve()
 
 
-def define_ontology(annotate_metadata: bool = True, local_imports: bool = False) -> ontopy.ontology.Ontology:
+def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
     """Define ontology classes.
 
     Args:
         annotate_metadata: Whether to fill the ontology metadata.
-        local_imports: Use local imports instead of loading online dependencies.
     """
     # Define ontology imports
     world = World()
-    if local_imports:
-        contributors = world.get_ontology(f"{ROOT_DIR}/contributors.ttl").load()
-        dependencies = world.get_ontology(f"{ROOT_DIR}/magnetic-materials-dependencies").load()
-    else:
-        contributors = world.get_ontology(f"{MAGMO_IRI}/{VERSION}/contributors").load()
-        dependencies = world.get_ontology(f"{MAGMO_IRI}/{VERSION}/magnetic-materials-dependencies").load()
+    contributors = world.get_ontology(ROOT_DIR / "contributors.ttl").load()
+    dependencies = world.get_ontology(ROOT_DIR / "magnetic-materials-dependencies.ttl").load()
 
     # Create a new ontology with imports
     onto = world.get_ontology(f"{MAGMO_IRI}#")
@@ -124,6 +120,13 @@ def define_ontology(annotate_metadata: bool = True, local_imports: bool = False)
             en("Contacts: Wilfried Hortschitz (DISS-UWK), wilfried.hortschitz@donau-uni.ac.at")
         )
 
+        # Define mediator annotation
+        dcterms = World().get_ontology("http://purl.org/dc/terms/").load()
+        with dcterms:
+            class mediator(AnnotationProperty):
+                namespace = onto.get_namespace("http://purl.org/dc/terms/")
+        onto.metadata.mediator.append(onto.EMMC_ASBL)
+
     # Set version of ontology
     onto.set_version(
         version=VERSION,
@@ -166,7 +169,6 @@ def apply_fixes(
     with open(input_ttl) as f:
         text = f.read()
     text = apply_fix_1(text)
-    text = apply_fix_2(text)
     with open(output_ttl, mode="w") as f:
         f.write(text)
 
@@ -182,26 +184,9 @@ def apply_fix_1(text: str) -> str:
     return text
 
 
-def apply_fix_2(text: str) -> str:
-    """Apply fix: define dcterms:mediator metadata.
-
-    Metadata `dcterms:mediator` is not found when importing the dependencies.
-    Issue raised https://github.com/emmo-repo/EMMOntoPy/issues/1003.
-    """
-    license_line = re.search(r"\n +dcterms:license <.+> ;", text).group()
-    post_indent = license_line.find("dcterms:license")
-    indent = " " * len(license_line[:post_indent].lstrip(r"\n"))
-    text = text.replace(
-        license_line,
-        license_line + f"\n{indent}dcterms:mediator emmo:EMMC_ASBL ;",
-    )
-    return text
-
-
 def main(
     output: os.PathLike,
     annotate_metadata: bool = True,
-    local_imports: bool = False,
     skip_fixes: bool = False,
 ) -> None:
     """Build ontology.
@@ -209,12 +194,10 @@ def main(
     Args:
         output: Output
         annotate_metadata: Whether to add metadata to the ontology.
-        local_imports: Whether to build the ontology by reading local dependencies instead of
-            reading them from `https://w3id.org/emmo/domain/magnetic-materials/`.
         skip_fixes: Whether to skip fixes to owlready2 and EMMOntoPy, such as fixes
             to the imports IRIs.
     """
-    onto = define_ontology(annotate_metadata=annotate_metadata, local_imports=local_imports)
+    onto = define_ontology(annotate_metadata=annotate_metadata)
     save_ontology(onto, output)
     if not skip_fixes:
         apply_fixes()
@@ -229,11 +212,6 @@ if __name__ == "__main__":
         help="path to output ttl file",
     )
     parser.add_argument(
-        "--local_imports",
-        action="store_true",
-        help="build ontology by reading local dependencies",
-    )
-    parser.add_argument(
         "--skip-fixes",
         action="store_true",
         help="skip ontology fixes such as iri fixes",
@@ -242,6 +220,5 @@ if __name__ == "__main__":
     main(
         output=args.output,
         annotate_metadata=True,
-        local_imports=args.local_imports,
         skip_fixes=args.skip_fixes,
     )
