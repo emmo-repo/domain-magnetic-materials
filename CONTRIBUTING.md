@@ -42,7 +42,6 @@ This is a summary of all the relevant files.
   - `pixi run all`: Run the tasks `build`, `reason`, `check` in order.
   - `pixi run test`: Run tests in order to check consistency among all the tracked files.
   - `pixi run start-new-release-branch <version_string>`: This task can be run to branch out of `main` into a new branch called `<version_string>`, e.g. `0.0.6`. More details are available in the [Branching model](#branching-model) section.
-  - `create-github-release <version_string>`: This task can be executed after the development branch has been merged into `main` to make a GitHub release. More details are available in the [Create a GitHub release](#create-a-github-release) section.
 
 
 ## Branching model
@@ -94,4 +93,4 @@ All modification should follow EMMO's [Domain Ontologies Best Practices](https:/
 
 Once the branch is ready for a release, it is necessary to:
 1. merge the development branch (e.g. `0.0.6`) to `main` via a PR,
-2. delete the development branch (e.g. `0.0.6`) and create a GitHub release manually with the tag being the same name as the development branch (e.g. `0.0.6` without the letter `v`), for example running the command `gh release create 0.0.6` using the `gh` CLI tool. The task `create-github-release <version_string>` executes both commands of this step. It is fundamental to have merged the development branch to main first.
+2. delete the development branch (e.g. `0.0.6`) and create a GitHub release manually with the tag being the same name as the development branch (e.g. `0.0.6` without the letter `v`), for example running the command `gh release create 0.0.6` using the `gh` CLI tool.
