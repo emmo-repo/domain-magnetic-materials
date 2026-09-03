@@ -75,6 +75,8 @@ Changes that need to be included in the new version should be developed in diffe
 
 For changes that are not version-dependent (such as changes in the `README.md`), PRs can be merged to `main`.
 
+Make sure that tests pass before pushing changes to a PR. Locally, the `test` pixi task can be run by running `pixi run test`.
+
 
 ## Making changes
 
