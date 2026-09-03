@@ -1369,6 +1369,19 @@ with onto:
             onto.hasProperty.exactly(1, onto.PositionVector),
         ]
 
+    class LocalLatticeConstantB(LatticeConstantB):
+        """The length of lattice vectors `b`, where lattice vectors
+        `a`, `b` and `c` defines the unit cell, measured locally."""
+
+        comment = en(
+            "For tetragonal crystals, the value should be "
+            "the same as LocalLatticeConstantA."
+        )
+        prefLabel = en("LocalLatticeConstantB")
+        is_a = [
+            emmo.hasProperty.exactly(1, emmo.PositionVector),
+        ]
+
     class LocalLatticeConstantC(LatticeConstantC):
         """The length of lattice vectors `c`, where lattice vectors
         `a`, `b` and `c` defines the unit cell, measured locally."""
@@ -1475,6 +1488,7 @@ with onto:
             onto.hasProperty.min(0, LocalReflectivity),
             onto.hasProperty.min(0, LocalXrayDiffractionData),
             onto.hasProperty.min(0, LocalLatticeConstantA),
+            onto.hasProperty.min(0, LocalLatticeConstantB),
             onto.hasProperty.min(0, LocalLatticeConstantC),
             # New properties from issue #20
             onto.hasProperty.min(0, LocalAtomPercent),
