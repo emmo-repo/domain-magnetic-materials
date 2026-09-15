@@ -8,7 +8,7 @@ GIT_BASE_URL: github.com
 REFERENCE_SUBSECTIONS: all
 REFERENCE_IMPORTED: 'false'
 REFERENCE_RECURSIVE: 'true'
-REFERENCE_IRI_REGEX: None#
+REFERENCE_IRI_REGEX: https://w3id.org/emmo/domain/magnetic-materials#
 
 # Optional settings for `ontokit docs` reference indices.
 # Select subsections for the primary reference index. Default is "all".
