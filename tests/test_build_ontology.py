@@ -1,0 +1,139 @@
+"""Test that generated ontology is equivalent to the committed one."""
+
+from pathlib import Path
+
+import pytest
+from ontopy import World
+
+
+def _compare(iter_1, iter_2):
+    """Compare two iterables by strings.
+
+    In most of these tests we need to compare set of strings generated
+    by two iterables `iter_1` and `iter_2`.
+    """
+    return set(str(obj) for obj in iter_1) == set(str(obj) for obj in iter_2)
+
+
+def test_existence_turtle_files():
+    """Test that the two ontologies exist.
+
+    `generated` is the ontology generated from `build_ontology.py`.
+    `magnetic-materials.ttl` is the committed ontology.
+    """
+    assert Path("generated.ttl").exists()
+    assert Path("magnetic-materials.ttl").exists()
+
+
+@pytest.fixture(scope="session")
+def generated_ontology():
+    return World().get_ontology("generated.ttl").load()
+
+
+@pytest.fixture(scope="session")
+def committed_ontology():
+    return World().get_ontology("magnetic-materials.ttl").load()
+
+
+# Explanation for accessing 'metadata.type' in the two metadata fixtures
+#
+# When I load an ontology, the first time I run `magmo.metadata.type` I get
+# back a list of strings: `['http://www.w3.org/2002/07/owl#Ontology']`.
+# From the second time, `magmo.metadata.type` returns a list of
+# Things: `[owl.Ontology]`.
+# If I run `magmo.metadata` and then `magmo.metadata.type`, I get a list of
+# things.
+# If I assign `md = magmo.metadata`:
+# - `md.type` is a list of strings
+# - `magmo.metadata.type` is a list of strings.
+# So what we are assuming is that something is called either when calling the
+# `type` field directly or during the `str` and `repr` of magmo.metadata
+# (which is a `owlready2.namespace.Metadata` object) that makes owlready2 load
+# the Things.
+# Weirdly enough, the Thing is returned after the first call (even directly
+# `magmo.metadata.type[0]` returns at first the string
+# `'http://www.w3.org/2002/07/owl#Ontology'` and from the second time the
+# Thing).
+
+
+@pytest.fixture
+def generated_metadata(generated_ontology):
+    metadata = generated_ontology.metadata
+    _ = metadata.type
+    return metadata
+
+
+@pytest.fixture
+def committed_metadata(committed_ontology):
+    metadata = committed_ontology.metadata
+    _ = metadata.type
+    return metadata
+
+
+def test_metadata(generated_metadata, committed_metadata, subtests):
+    """Test that the metadata between the two ontologies matches.
+
+    First we test that the metadata object from both ontologies has the same keys.
+    Then we iterate for each key and test that the stored information matches.
+    """
+    assert set(str(k) for k in generated_metadata.keys()) == set(str(k) for k in committed_metadata.keys())
+    for k in generated_metadata.keys():
+        with subtests.test(msg=k):
+            assert _compare(generated_metadata[k], committed_metadata[k])
+
+
+def test_same_classes_iris(generated_ontology, committed_ontology):
+    assert set(entity.iri for entity in generated_ontology.classes()) == set(entity.iri for entity in committed_ontology.classes())
+
+
+def test_all_annotations(generated_ontology, committed_ontology, subtests):
+    """Test that the annotations of all entity objects match between the different ontologies.
+
+    This tests check annotation of all classes and properties.
+    Individuals are excluded as their annotations are found using a
+    different properties.
+
+    For each entity we first check that it contains the same annotation fields
+    in the different ontologies. Then, we check the content of the annotations
+    to make sure they match.
+    """
+    for entity in generated_ontology.get_entities(
+        imported=True,
+        classes=True,
+        individuals=False,
+        object_properties=True,
+        data_properties=True,
+        annotation_properties=True,
+        properties=True,
+    ):
+        gen_anns = entity.get_annotations()
+        com_anns = committed_ontology[entity.iri].get_annotations()
+        assert gen_anns.keys() == com_anns.keys()
+
+
+def test_same_individuals(generated_ontology, committed_ontology, subtests):
+    """Test that individuals entities are the same.
+
+    Each individual has certain annotations in the form of dictionary
+    `{annotation_name: list_of_things}`.
+
+    For each individual we test:
+    1. that it has the same annotation fields in both ontologies,
+    2. that the IRI stays the same in both ontologies,
+    3. that the content of the annotations stays the same in both ontologies.
+    """
+    for ind in generated_ontology.individuals(imported=True):
+        com_ind = committed_ontology[ind.iri]  # respective individual in the committed ontology
+        gen_individual_annotations = set(ind.get_individual_annotations().keys())
+        com_individual_annotations = set(com_ind.get_individual_annotations().keys())
+        assert gen_individual_annotations == com_individual_annotations
+
+        if ind.prefLabel:
+            msg = f"{ind.prefLabel[0]} ({ind.name})"
+        else:
+            msg = f"({ind.name})"
+        with subtests.test(msg=f"{msg}: iri"):
+            assert ind.iri == committed_ontology[ind.iri].iri
+        for prop, annotation in ind.get_individual_annotations().items():
+            with subtests.test(msg=f"{msg}: {prop}"):
+                assert _compare(annotation, com_ind.get_individual_annotations()[prop])
