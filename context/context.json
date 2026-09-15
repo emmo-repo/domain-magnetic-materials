@@ -1,0 +1,490 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "magnetic-materials": "https://w3id.org/emmo/domain/magnetic-materials#",
+    "IECEntry": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_eb748e96-0aee-5b55-b6be-56b8c6bdaed6",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#plainLiteral"
+    },
+    "wikidataReference": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_4d45da04-cf90-5d4a-bc11-f76fbd5b5036",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#plainLiteral"
+    },
+    "wikipediaReference": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_405ae501-8898-59c0-b2db-0afa09d561f9",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#plainLiteral"
+    },
+    "AbsolutePermeability": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_98f7a685-fa5a-54f1-8504-f398047f3ab6",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "AmorphousMagneticMaterial": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_694b3915-3326-5fb2-87a1-20ccf1dc79dc",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "AmpereSquareMeterPerKilogram": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_dc6e9b19-6f19-5106-a014-5fba0dab0d1e",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "AnisotropyField": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_cd58ebab-4351-5d0d-ad45-bbddd6efead3",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "BinderCumulant": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_a3596efd-1d89-5253-8ddc-000bfadc4201",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "BulkMagnet": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_d28323da-810f-5cbe-a770-eab7e7fdb493",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "CellVolume": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_2b7f8b13-d0c3-590c-9851-ca89ce5b7395",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "CoercivityBHc": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_69772e86-d7fb-5b43-9cd4-2f0770c6701f",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "CoercivityBHcExternal": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_a4bc4536-f381-5bcd-b6ca-34fb1a913efd",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "CoercivityHc": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_0d67d6c5-a8a7-57d4-930a-e99412baa2c2",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "CoercivityHcExternal": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_fe101d1d-f1f7-54f8-886b-fa6d6052ce98",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "CrystalStructure": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_2c96e798-57dc-5c12-ad10-f3ec261549d3",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "CrystallineMagneticMaterial": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_aaa107b8-4dd9-5fc8-b135-a604a0cb38b1",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "CrystallographicOrientation": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_4f709756-86ee-5307-880a-696d08ae9732",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "CubicMagnetocrystallineAnisotropy": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_af109e05-abbd-5964-8e39-8249b9eda7da",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "DemagnetizingFactor": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_0f2b5cc9-d00a-5030-8448-99ba6b7dfd1e",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "DemagnetizingField": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_ace0a9bf-0b4d-5cd2-be02-3c3b816a279b",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "EasyAxisDistributionSigma": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_af13f0cd-63c7-50f5-9f20-59d54fc09710",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "EdxCounts": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_00b80934-8716-5e19-8ba9-73251ef414d3",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "EdxData": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_e91449bb-6e20-5a3f-b345-a2f0717fb0a6",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "EdxEnergy": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_b159f5d4-a3da-5850-aac9-39016907aee6",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "EnergyDensity": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_56258d3a-f2ee-554e-af99-499dd8620457",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "EnergyDensityUnit": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_8f4dc04f-d753-55b3-b405-996199149372",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "EulerAngles": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_bc4030ff-d125-5e63-b8f8-b2ef3d08b6d5",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "ExchangeStiffnessConstant": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_526ed2a5-a017-590e-8eb8-8a900f2b3b78",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "ExternalMagneticField": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_da08f0d3-fe19-58bc-8fb6-ecc8992d5eb3",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "ExternalSusceptibility": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_d96c3ad6-5fcc-5628-93b6-bfac2fca8249",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "ExtrinsicMagneticProperties": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_8a0c8d0a-3dc7-5f3f-ab20-24b38d188827",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "GeometricShape": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_aa999d91-076f-512a-85a0-c2f751c083b1",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "GeometricalSize": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_0213900b-ab6d-56be-82fb-4db874974de1",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "Grain": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_b0f0e57e-464d-562f-80ec-b216c92d5e88",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "GrainBoundaryPhase": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_871868f1-1486-55df-b351-23a4076f1bb3",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "GrainMisalignmentAngle": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_5408b3d3-4971-564b-a34c-53e4e3c3f44d",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "GrainSizeDistribution": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_ada88738-c901-5d83-884b-5f84d27ce527",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "GranularMicrostructure": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_cf5261fe-bdab-5c7b-b6a8-f9a313687bc2",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "GranularStructure": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_75b995e0-2bac-5812-a7f6-f8c1731d1d5c",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "InducedMagneticAnisotropy": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_eac1f731-95b1-5f31-ab94-2615535ea223",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "InternalMagneticField": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_b727c447-8428-56ca-9e5a-5ced008760ad",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "InternalSusceptibility": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_ab8a0d3e-6d0f-599e-a119-a91aa99bd881",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "IntrinsicMagneticProperties": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_af8d3fb8-20fe-5f9f-9f85-fd298e26ad7e",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "KneeField": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_ad0c038b-a09a-560c-b149-066de8f8e307",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "KneeFieldExternal": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_45a36799-2309-5097-969f-4e5c002ae2f0",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LatticeConstantA": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_ef314f95-f3b5-5cb7-ac56-7bfc54f0d955",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LatticeConstantAlpha": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_b2a130c3-9688-5358-94ca-f226b85b3009",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LatticeConstantB": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_a1f03bbf-c503-5759-9a26-2562527c0db2",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LatticeConstantBeta": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_2ca16b3d-f83e-583c-8292-beb6473ea021",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LatticeConstantC": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_9977edfa-2b42-55e4-bea0-f39fadca7126",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LatticeConstantGamma": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_a205766b-7c02-5c56-90e5-96c553c316c8",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LineEnergy": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_70f92e7c-fa16-51d5-9ca0-5ad635cb1322",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LineEnergyUnit": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_3fb622c3-dc0a-5a10-a8b8-cbd040626244",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LocalAnnealingTemperature": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_39f76436-174c-51d5-b531-0fc50fb1aebe",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LocalAnnealingTime": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_d29449e0-e261-5d06-871a-4f61e547497a",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LocalAtomPercent": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_5301f12c-a2b9-593d-aca2-54070821a720",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LocalCoercivity": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_17f52ffb-c461-546a-8af6-299a506c8657",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LocalEdxData": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_0829e261-a75d-5ed7-95c8-4a8e7865c76f",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LocalLatticeConstantA": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_c6ed4948-e599-5f09-aa07-b70121c41fcf",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LocalLatticeConstantC": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_dbb7c1bc-034f-5f4b-9329-d23ed8915961",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LocalMassPercent": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_ff8c1d96-1eb2-5385-8036-82aff23797df",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LocalMokeData": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_b923524a-a735-53a4-9762-3409ed485e5a",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LocalPhaseFraction": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_5bf7a2a2-d466-588a-b794-af4ac13285df",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LocalProfilometryData": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_18ac758e-3896-59cf-a7c6-7999dd6ef1af",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LocalReflectivity": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_c44c0546-452e-592f-b6bc-27a64e79244c",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LocalThickness": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_efffe3e8-6bd8-5944-ba38-6facf656c61d",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LocalXrayDiffractionData": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_6aac026a-3928-5c21-9bb6-94497607bef2",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LoopSquareness": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_f3d81518-1594-5eb0-bd68-42466e0c37d8",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LoopSquarenessFactorExternal": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_8108b720-e94e-5201-86e6-1434344cffca",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "LoopSquarenessFactorInternal": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_4746f629-2b2f-5d43-b698-a81519eb2b2b",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "Magnet": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_099b796d-3163-56c7-bc90-3a304256ca5d",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MagneticAnisotropy": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_3a63baaf-4d7c-5ea5-93ce-9c8917a3290c",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MagneticHysteresisProperties": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_14a12902-9845-5be6-bd0b-511dcea31985",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MagneticMaterial": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_c5ca93ce-ad27-5f4a-95ef-aca0990c6937",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MagneticMomentPerUnitMass": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_6183019b-73eb-51bc-87ca-06a7a1ad9cb1",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MagnetocrystallineAnisotropy": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_c0a72108-de97-5dff-a830-e4b617adaeef",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MagnetocrystallineAnisotropyConstantK1": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_2bb87117-30f9-5b3a-b406-731836a3902f",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MagnetocrystallineAnisotropyConstantK1c": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_527989d5-7417-5d94-83bf-4db785827a88",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MagnetocrystallineAnisotropyConstantK2": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_675fa9ea-408a-51f6-a001-2e6715568a71",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MagnetocrystallineAnisotropyConstantK2c": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_c4aefa50-a3d0-548d-96ea-dd863ba27234",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MagnetocrystallineAnisotropyEnergy": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_e9e3b7d2-d4fa-5140-88dc-2f0d60cf6d15",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "Magnetoresistance": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_5be2f193-36d0-5aac-90b8-52db055d8252",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MainMagneticPhase": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_8894d78f-5d53-540e-a278-17c93e1be2ab",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MassMagnetizationUnit": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_5375f349-61e9-5985-9a7b-9f5464248145",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MassSusceptibility": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_49768356-1ec9-5316-adbc-81001ecd770f",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MaximumEnergyProduct": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_e1028129-c23e-57ac-9174-2f34ddbf3926",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MeanGrainSize": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_8d2f8eff-85d7-5819-8dcd-a77674c40aff",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MokeAppliedField": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_90498908-fc7e-5c6e-8d31-f18a19f63428",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MokeData": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_593f0012-bdf1-5e7a-ace0-648babc7db3f",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MokeKerrSignal": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_32ce4184-6d36-5ce5-8026-95e51f23b2cf",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "MultilayerMagnet": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_4ee603fc-7a1e-51f0-bf75-8e66f9a5539b",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "NonMagneticMaterial": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_1bda25f0-3b11-5547-a27c-4e3a638b740a",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "ProfilDistance": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_c51601b4-701b-5eff-8465-3083cf830c97",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "ProfilTotalProfile": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_85ec26ba-17db-5ea6-9d27-ddde5ee31706",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "ProfilometryData": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_6a3ee380-bdbf-53bb-af82-c2011af61652",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "RectangularCuboid": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_b98abf93-8054-5955-bb06-076e22b0b4c7",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "Reflectivity": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_d6020727-daa9-5379-8ec4-ba1a02f7d0b6",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "Remanence": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_8fc78216-4859-53c2-b41e-e38062b04054",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "RemanentMagneticPolarization": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_538226cb-bebb-53e5-bf37-0f12226228be",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "SampleGeometry": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_b7ebd85f-36aa-540a-b8a9-e2c1094f27f1",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "SaturationMagneticPolarization": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_8ae216ed-64f9-55a0-b46f-27be41dda192",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "SaturationMagnetization": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_a3933eee-6ab1-5b7b-a21c-4e58bf64a830",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "SecondaryPhase": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_5394673b-027e-5afc-bc6f-f72df5ed40a1",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "ShapeAnisotropy": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_f8f03807-d6b6-5ebf-8e0b-418311e8e1e5",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "ShapeAnisotropyConstant": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_ac6edd90-c273-5203-836b-82462863f2c8",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "SigmaGrainSize": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_5a48bd5a-20ee-5399-ac29-c488c1c7ad73",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "SpaceGroup": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_5d5fbcc0-2738-5cb8-9157-a0fbe50eebb6",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "SpacerLayer": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_1b980f86-4116-5af8-bc45-14b44d88eeb5",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "SpontaneousMagneticPolarization": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_db6f7b13-1f1d-584f-9d73-47939b86a7cd",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "SpontaneousMagnetization": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_032731f8-874d-5efb-9c9d-6dafaa17ef25",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "StackingSequence": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_0296829f-f39b-5c0d-9a5c-045a7b8364c6",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "SwitchingFieldCoercivity": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_bc54c47f-8560-516a-b95b-cce9f1b7344f",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "SwitchingFieldCoercivityExternal": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_234a6193-f057-556f-bfcd-38efde3aafc4",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "ThinFilmMagnet": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_6f92a0d5-2eae-5ceb-83dc-2fef7c41a1dd",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "UniaxialAnisotropyConstant": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_49a882d1-9ce7-522b-91e7-3a460f25f5ac",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "UniaxialMagneticAnisotropy": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_6d90a9fe-5ff3-563b-b33b-ae5a4e1a88d8",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "UniaxialMagnetocrystallineAnisotropy": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_70efe904-df98-5f7c-9f45-45af722dfeb7",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "XrayDiffractionData": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_38684bd3-8137-5af1-9c0d-b32bcf58fefc",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "Xrd2dImage": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_cb1493e6-30a1-5c41-aec0-12ce41296469",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "XrdCounts": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_df2f8079-b925-5b36-aa55-3a58392d12d3",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    },
+    "XrdTwoThetaAngles": {
+      "@id": "https://w3id.org/emmo/domain/magnetic-materials#EMMO_56e8434d-4ecf-50e2-94a9-b854065c3393",
+      "@type": "http://www.w3.org/2002/07/owl#Class"
+    }
+  }
+}
