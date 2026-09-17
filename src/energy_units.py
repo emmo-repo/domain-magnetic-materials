@@ -16,7 +16,7 @@ Future checks:
 from util import add_altLabel, en, enUS
 
 
-def add_energy_entities(onto):
+def add_energy_units_entities(onto):
     """Define entities related to energy terms."""
     with onto:
 
