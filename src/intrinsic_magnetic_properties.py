@@ -1,15 +1,11 @@
-"""Entities related to intrinsic magnetic properties.
-
-- Magnetization
-- Anisotropy
-- Exchange
-"""
+"""Intrinsic magnetic properties and critical phenomena."""
 
 from util import add_altLabel, en, enGB, enUS, pl
+from util import en, pl
 
 
 def add_intrinsic_magnetic_properties_entities(onto):
-    """Add entities related to magnetic properties."""
+    """Add entities for the grouped module."""
     with onto:
         add_altLabel(onto.Magnetization, enUS("VolumeMagnetization"))
         add_altLabel(onto.Magnetization, enGB("VolumeMagnetisation"))
@@ -85,63 +81,6 @@ def add_intrinsic_magnetic_properties_entities(onto):
             wikipediaReference = pl("https://en.wikipedia.org/wiki/Magnetic_anisotropy")
             IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-01-08")
 
-        class RectangularCuboid(onto.EuclideanSpace):
-            """A rectangular cuboid is a special case of a cuboid with rectangular
-            faces in which all of its dihedral angles are right angles."""
-
-            prefLabel = en("RectangularCuboid")
-            wikidataReference = pl("https://www.wikidata.org/wiki/Q262959")
-            wikipediaReference = pl("https://en.wikipedia.org/wiki/Rectangular_cuboid")
-
-        class GeometricalSize(onto.Property):
-            """Spatial extension along the principal axes."""
-
-            prefLabel = en("GeometricalSize")
-            wikipediaReference = pl("https://en.wikipedia.org/wiki/Size")
-            is_a = [onto.hasProperty.exactly(3, onto.Length)]
-
-        class GeometricShape(onto.Property, onto.Geometrical):
-            """Geometric shape.
-
-            Two extrinsic properties, the remanence Mr
-            and coercivity Hc, which depend on the sample shape
-            """
-
-            prefLabel = en("GeometricShape")
-            wikidataReference = pl("https://www.wikidata.org/wiki/Q207961")
-            wikipediaReference = pl("https://en.wikipedia.org/wiki/Shape")
-            is_a = [onto.hasSpatialDirectPart.exactly(1, onto.Cylinder | RectangularCuboid)]
-
-        class SampleGeometry(onto.Property):
-            """The size and shape of the magnet"""
-
-            prefLabel = en("SampleGeometry")
-            is_a = [
-                onto.hasProperty.exactly(1, onto.GeometricalSize),
-                onto.hasProperty.exactly(1, onto.GeometricShape),
-            ]
-
-        class DemagnetizingFactor(onto.ElectromagneticQuantity):
-            """For a uniformly magnetized ellipsoid with magnetization along a
-            major axis the demagnetizing field is Hd = -N M.
-
-            The principal components of the diagonal demagnetizing tensor form
-            the demagnetizing factors. Only two of the three are independent
-            because the demagnetizing tensor has unit trace Nx + Ny + Nz = 1.
-            """
-
-            comment = pl(
-                "H = H' - DM, where D is the demagnetizing factor, M is the magnetization, and H is the internal field."
-            )
-            prefLabel = en("DemagnetizingFactor")
-            altLabel = [
-                enGB("DemagnetisingFactor"),
-                pl("N"),
-                pl("D"),
-            ]
-            is_a = [onto.hasMeasurementUnit.some(onto.DimensionlessUnit)]
-            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=121-12-63")
-
         class ShapeAnisotropyConstant(onto.EnergyDensity):
             """The energy density of a small particle given by
 
@@ -165,7 +104,7 @@ def add_intrinsic_magnetic_properties_entities(onto):
             )
             prefLabel = en("ShapeAnisotropy")
             is_a = [
-                onto.hasProperty.exactly(1, DemagnetizingFactor),
+                onto.hasProperty.exactly(1, onto.DemagnetizingFactor),
                 onto.hasProperty.exactly(1, ShapeAnisotropyConstant),
             ]
 
@@ -322,3 +261,21 @@ def add_intrinsic_magnetic_properties_entities(onto):
                 onto.hasProperty.some(onto.ExchangeStiffnessConstant),
                 onto.hasProperty.some(onto.CurieTemperature | onto.NeelTemperature),
             ]
+        class BinderCumulant(onto.ISQDimensionlessQuantity):
+            """A dimensionless fourth-order cumulant of magnetization, defined as U4 = 1 −
+            <m^4>/(3 <m^2>^2), where m is the normalised magnetization (magnetization per
+            site). It is used in finite-size scaling as an approximately scale-independent
+            measure of critical fluctuations: curves for different system sizes intersect
+            near the phase-transition temperature, enabling estimation of Tc without direct
+            extrapolation to infinite system size.
+            """
+
+            comment = pl(
+                'Binder, K. (1981). "Finite size scaling analysis of ising model block '
+                'distribution functions". Zeitschrift für Physik B: '
+                "Condensed Matter. 43 (2): 119–140. https://doi.org/10.1007/bf01293604"
+            )
+            prefLabel = en("BinderCumulant")
+            altLabel = [pl("U_L"), en("BinderParameter")]
+            wikidataReference = pl("https://www.wikidata.org/wiki/Q4913987")
+            wikipediaReference = pl("https://en.wikipedia.org/wiki/Binder_parameter")

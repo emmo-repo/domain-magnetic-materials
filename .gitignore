@@ -1,2 +1,5 @@
 pixi.lock
 __pycache__
+AGENTS.md
+build/
+generated.ttl
