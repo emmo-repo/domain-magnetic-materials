@@ -214,36 +214,6 @@ def add_magnetic_properties_entities(onto):
             is_a = [onto.hasMeasurementUnit.some(onto.EnergyDensityUnit)]
             wikipediaReference = pl("https://en.wikipedia.org/wiki/Maximum_energy_product")
 
-        class SaturationMagneticPolarization(onto.ElectromagneticQuantity):
-            """The Saturation magnetic polarization Jsat is the maximum
-            obtainable magnetic polarization for a given substance
-            at a given temperature. Jsat should be used instead of Js to avoid
-            confusion with the symbol for the spontaneous polarization"""
-
-            prefLabel = en("SaturationMagneticPolarization")
-            altLabel = [
-                enGB("SaturationMagneticPolarisation"),
-                en("Jsat"),
-            ]
-            is_a = [onto.hasMeasurementUnit.some(onto.MagneticFluxDensityUnit)]
-            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-01-05")
-
-        class SaturationMagnetization(onto.ElectromagneticQuantity):
-            """The Saturation magnetization Msat is the maximum
-            obtainable magnetic magnetization for a given substance
-            at a given temperature. Msat should be used instead Ms to avoid
-            confusion with the symbol for the SpontaneousMagnetization"""
-
-            prefLabel = en("SaturationMagnetization")
-            altLabel = [
-                enGB("SaturationMagnetisation"),
-                en("Msat"),
-            ]
-            is_a = [onto.hasMeasurementUnit.some(onto.MagneticFieldStrengthUnit)]
-            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-01-04")
-            wikipediaReference = pl("https://en.wikipedia.org/wiki/Saturation_(magnetic)")
-            wikidataReference = pl("https://www.wikidata.org/wiki/Q2630994")
-
         class LoopSquarenessFactorInternal(onto.ElectromagneticQuantity, onto.RatioQuantity):
             """The internal loop squareness factor SF is defined as the ratio of
             the internal KneeField Hk over the internal Coercivity Hc
