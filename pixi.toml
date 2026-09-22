@@ -75,6 +75,7 @@ docs-generate-squashed = 'ontoconvert -sawe --namespace="emmo:$EMMO_IRI" --names
 docs-generate-ontokit = 'ontokit docs --iri-regex="$ONTOLOGY_IRI" --docs-dir=docs . && touch public/.nojekyll'
 docs-copy-ontologies-to-public = 'cp $BUILD_DIR/*.ttl public/'
 docs-all = { depends-on = ["docs-cleanup", "docs-generate-graphs", "docs-generate-dependencies", "docs-generate-squashed", "docs-generate-ontokit", "docs-copy-ontologies-to-public"] }
+lint = { cmd = "pre-commit run --all-files", description = "Run all pre-commit hooks on the repository. Format and lint the Python files." }
 
 [environments]
 docs = ["docs"]
