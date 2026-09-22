@@ -1,14 +1,12 @@
 """Magnetic fields, response, hysteresis, and magnetotransport."""
 
-from owlready2 import Not
 from util import en, enGB, enUS, pl
-from util import en, enGB, pl
-from util import en, pl
 
 
 def add_magnetic_properties_entities(onto):
     """Add entities for the grouped module."""
     with onto:
+
         class ExternalMagneticField(onto.ElectromagneticQuantity):
             """The external field H′, acting on a sample that is produced by
             electric currents or the stray field of magnets outside the sample
@@ -42,6 +40,7 @@ def add_magnetic_properties_entities(onto):
             prefLabel = en("InternalMagneticField")
             altLabel = pl("H")
             is_a = [onto.hasMeasurementUnit.some(onto.MagneticFieldStrengthUnit)]
+
         class CoercivityHc(onto.Coercivity):
             """The internal magnetic field -Hc at which the macroscopic
             magnetization vanishes is the coercivity or coercive force.
@@ -297,6 +296,7 @@ def add_magnetic_properties_entities(onto):
                 onto.hasProperty.min(0, onto.AbsolutePermeability),
                 onto.hasProperty.min(0, onto.RelativePermeability),
             ]
+
         class Magnetoresistance(onto.RatioQuantity):
             """Change of the resistivity of a substance due to an applied
             magnetic field.
@@ -312,4 +312,3 @@ def add_magnetic_properties_entities(onto):
             is_a = [
                 onto.hasMeasurementUnit.some(onto.DimensionlessUnit),
             ]
-

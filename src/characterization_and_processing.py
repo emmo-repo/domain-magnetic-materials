@@ -6,6 +6,7 @@ from util import en, pl
 def add_characterization_and_processing_entities(onto):
     """Add entities for the grouped module."""
     with onto:
+
         class XrdTwoThetaAngles(onto.Vector):
             """The 2theta angles at which the counts are measured during X-ray
             diffraction."""
@@ -149,6 +150,7 @@ def add_characterization_and_processing_entities(onto):
                 onto.hasProperty.exactly(1, ProfilDistance),
                 onto.hasProperty.exactly(1, ProfilTotalProfile),
             ]
+
         class Reflectivity(onto.Property):
             """Capacity of an object to reflect light."""
 
@@ -288,4 +290,3 @@ def add_characterization_and_processing_entities(onto):
             is_a = [
                 onto.hasProperty.exactly(1, onto.PositionVector),
             ]
-

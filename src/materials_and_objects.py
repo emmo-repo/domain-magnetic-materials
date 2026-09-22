@@ -1,13 +1,14 @@
 """Materials, microstructure, geometry, layers, and physical objects."""
 
 from owlready2 import Not
-from util import add_altLabel, en, enGB, enUS, pl
-from util import en, pl
+
+from util import en, enGB, pl
 
 
 def _add_sample_geometry_entities(onto):
     """Add the G1 geometry foundation required by G2."""
     with onto:
+
         class RectangularCuboid(onto.EuclideanSpace):
             """A rectangular cuboid is a special case of a cuboid with rectangular
             faces in which all of its dihedral angles are right angles."""
@@ -66,10 +67,10 @@ def _add_sample_geometry_entities(onto):
             IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=121-12-63")
 
 
-
 def add_materials_and_objects_entities(onto):
     """Add G1 materials, structure, layers, and objects."""
     with onto:
+
         class EulerAngles(onto.Quantity):
             """Three angles introduced by Leonhard Euler to describe the
             orientation of a rigid body with respect to a fixed coordinate
@@ -195,6 +196,7 @@ def add_materials_and_objects_entities(onto):
             """Magnetic material with crystalline structure."""
 
             prefLabel = en("CrystallineMagneticMaterial")
+
         class MainMagneticPhase(onto.MagneticMaterial, onto.PhaseOfMatter):
             """Main phase of the magnet"""
 
@@ -263,6 +265,7 @@ def add_materials_and_objects_entities(onto):
                 onto.hasProperty.exactly(1, onto.ShapeAnisotropy),
                 onto.hasProperty.exactly(1, onto.DemagnetizingFactor),
             ]
+
         class ThinFilmMagnet(onto.Magnet, onto.MaterialBySize):
             """Piece of matter made of one or more magnetic material
             in form a thin film."""
@@ -288,6 +291,7 @@ def add_materials_and_objects_entities(onto):
                 onto.hasProperty.min(0, onto.LocalProfilometryData),
                 onto.hasProperty.min(0, onto.Xrd2dImage),
             ]
+
         class SpacerLayer(onto.Material):
             """Nonmagnetic thin film materials."""
 

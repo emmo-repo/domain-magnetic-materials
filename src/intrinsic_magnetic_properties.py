@@ -1,7 +1,6 @@
 """Intrinsic magnetic properties and critical phenomena."""
 
 from util import add_altLabel, en, enGB, enUS, pl
-from util import en, pl
 
 
 def add_intrinsic_magnetic_properties_entities(onto):
@@ -291,6 +290,7 @@ def add_intrinsic_magnetic_properties_entities(onto):
                 onto.hasProperty.some(onto.ExchangeStiffnessConstant),
                 onto.hasProperty.some(onto.CurieTemperature | onto.NeelTemperature),
             ]
+
         class BinderCumulant(onto.ISQDimensionlessQuantity):
             """A dimensionless fourth-order cumulant of magnetization, defined as U4 = 1 −
             <m^4>/(3 <m^2>^2), where m is the normalised magnetization (magnetization per
