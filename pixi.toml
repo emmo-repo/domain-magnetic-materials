@@ -48,6 +48,7 @@ description = "Initialize new development branch with given version string. This
 python = ">3.11"
 openjdk = ">=25.0.2,<26"
 ipython = ">=9.10.0,<10"
+pre-commit = "*"
 ruff = "*"
 sphinx = ">=9.1.0,<10"
 pytest = ">=9"
