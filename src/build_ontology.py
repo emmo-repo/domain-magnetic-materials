@@ -21,7 +21,6 @@ from __future__ import annotations
 
 import argparse
 import os
-import re
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -123,8 +122,10 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
         # Define mediator annotation
         dcterms = World().get_ontology("http://purl.org/dc/terms/").load()
         with dcterms:
+
             class mediator(AnnotationProperty):
                 namespace = onto.get_namespace("http://purl.org/dc/terms/")
+
         onto.metadata.mediator.append(onto.EMMC_ASBL)
 
     # Set version of ontology
