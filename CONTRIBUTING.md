@@ -36,10 +36,7 @@ This is a summary of all the relevant files.
 
 - The following pixi tasks are provided:
 
-  - `pixi run build`: Build ontology `magnetic-materials.ttl` from `src/build_ontology.py`.
-  - `pixi run reason`: Run ontology reasoner via `ontoconvert`.
-  - `pixi run check`: Run ontology tests via `emmocheck`.
-  - `pixi run all`: Run the tasks `build`, `reason`, `check` in order.
+  - `pixi run build`: Build ontology `magnetic-materials.ttl` from `src/build_ontology.py`. The ontology is also reasoned via `ontoconvert` and checked via `emmocheck`.
   - `pixi run test`: Run tests in order to check consistency among all the tracked files.
   - `pixi run start-new-release-branch <version_string>`: This task can be run to branch out of `main` into a new branch called `<version_string>`, e.g. `0.0.6`. More details are available in the [Branching model](#branching-model) section.
 
@@ -64,7 +61,7 @@ The task `pixi run start-new-release-branch <version_string>` facilitates the st
 
 It is up to the user to update the `README.md` and update the table with different version strings and dependencies.
 
-After running `pixi run all`, the ontology file `magnetic-materials.ttl` should declare its `versionIRI` using the new version string and import the new `dependencies` and `contributors`. This change to the ontology file should also be included in the first push to the new development branch.
+After running `pixi run build`, the ontology file `magnetic-materials.ttl` should declare its `versionIRI` using the new version string and import the new `dependencies` and `contributors`. This change to the ontology file should also be included in the first push to the new development branch.
 
 After the first push to the development branch, all URLs containing the new version number, e.g. `https://w3id.org/emmo/domain/magnetic-materials/0.0.6/magnetic-materials`, are created via [GitHub's CI](.github/workflows/).
 
@@ -82,7 +79,7 @@ Make sure that tests pass before pushing changes to a PR. Locally, the `test` pi
 
 Changes to the ontology should always be made in the [Python build script](./src/build_ontology.py). The file `magnetic-materials.ttl` ontology should not be edited by hand or using external software such as Protégé.
 
-Once the changes have been completed, the ontology must be rebuilt and reasoned (via `pixi run all`). If the ontology checks do not fail, both the Python build script and the ontology `magnetic-materials.ttl` should be committed.
+Once the changes have been completed, the ontology must be rebuilt and reasoned (via `pixi run build`). If the ontology checks do not fail, both the Python build script and the ontology `magnetic-materials.ttl` should be committed.
 
 However, if changes are not expected in the content of the ontologies, do not commit the new `ttl` ontology file. As the creation of this file via `EMMOntoPy` is not deterministic, in this situation changes are just a shuffling of elements and should not be tracked.
 
