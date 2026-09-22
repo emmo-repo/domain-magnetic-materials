@@ -4,6 +4,7 @@ This repository contains the development and releases of the magnetic materials 
 
 This is a summary of all the relevant files.
 - The directory [`.github`](.github/) contains the CI workflows to build the ontology, check it, release it, and compile the GitHub pages available at https://emmo-repo.github.io/domain-magnetic-materials/.
+- The file [`.pre-commit-config.yaml`](.pre-commit-config.yaml) specifies the pre-commit configuration and hooks. This allows linting and formatting before committing changes.
 - The [`src/`](./src/) directory contains the Python scripts to generate the ontology and its different parts. The main file is [`src/build_ontology.py`](./src/build_ontology.py).
 - The [`tests/`](./tests/) directory contains Python scripts (using the `pytest` testing framework) to check consistency in the ontology and the satellite files.
 - The [`README.md`](./README.md) is the landing page for [the GitHub repository](https://github.com/emmo-repo/domain-magnetic-materials/) and for [the pages hosting the documentation](https://emmo-repo.github.io/domain-magnetic-materials/).
@@ -34,6 +35,11 @@ This is a summary of all the relevant files.
   pixi install
   ```
 
+- Install the `pre-commit` to guarantee commits with correct linting and format:
+  ```console
+  pixi run pre-commit install
+  ```
+
 - The following pixi tasks are provided:
 
   - `pixi run build`: Build ontology `magnetic-materials.ttl` from `src/build_ontology.py`.
@@ -41,6 +47,7 @@ This is a summary of all the relevant files.
   - `pixi run check`: Run ontology tests via `emmocheck`.
   - `pixi run all`: Run the tasks `build`, `reason`, `check` in order.
   - `pixi run test`: Run tests in order to check consistency among all the tracked files.
+  - `pixi run lint`: Run the pre-commit hooks manually. This lints and formats all Python files. Running the hooks manually prevents the commit to fail.
   - `pixi run start-new-release-branch <version_string>`: This task can be run to branch out of `main` into a new branch called `<version_string>`, e.g. `0.0.6`. More details are available in the [Branching model](#branching-model) section.
 
 
