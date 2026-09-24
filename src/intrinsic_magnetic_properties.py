@@ -4,7 +4,7 @@ from util import add_altLabel, en, enGB, enUS, pl
 
 
 def add_intrinsic_magnetic_properties_entities(onto):
-    """Add entities for the grouped module."""
+    """Add entities related to intrinsic magnetic properties."""
     with onto:
         add_altLabel(onto.Magnetization, enUS("VolumeMagnetization"))
         add_altLabel(onto.Magnetization, enGB("VolumeMagnetisation"))
