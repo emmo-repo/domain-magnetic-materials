@@ -5,7 +5,7 @@ from owlready2 import Not
 from util import en, enGB, pl
 
 
-def _add_sample_geometry_entities(onto):
+def add_sample_geometry_entities(onto):
     """Add the G1 geometry foundation required by G2."""
     with onto:
 

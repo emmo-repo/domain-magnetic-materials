@@ -27,14 +27,13 @@ from typing import TYPE_CHECKING
 from ontopy import World
 from owlready2 import AnnotationProperty
 
-import materials_and_objects
 from annotations import add_annotation_properties
 from characterization_and_processing import add_characterization_and_processing_entities
 from crystal_structure import add_crystal_structure_entities
 from energy_units import add_energy_units_entities
 from intrinsic_magnetic_properties import add_intrinsic_magnetic_properties_entities
 from magnetic_properties import add_magnetic_properties_entities
-from materials_and_objects import add_materials_and_objects_entities
+from materials_and_objects import add_materials_and_objects_entities, add_sample_geometry_entities
 from util import en
 
 if TYPE_CHECKING:
@@ -67,7 +66,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
     add_annotation_properties(onto)
     add_crystal_structure_entities(onto)
     add_energy_units_entities(onto)
-    materials_and_objects._add_sample_geometry_entities(onto)
+    add_sample_geometry_entities(onto)
     add_intrinsic_magnetic_properties_entities(onto)
     add_magnetic_properties_entities(onto)
     add_characterization_and_processing_entities(onto)
