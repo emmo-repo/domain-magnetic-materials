@@ -1,10 +1,45 @@
-"""Hysteresis properties."""
+"""Magnetic fields, response, hysteresis, and magnetotransport."""
 
 from util import en, enGB, enUS, pl
 
 
-def add_hysteresis_properties_entities(onto):
+def add_magnetic_properties_entities(onto):
+    """Add entities for the grouped module."""
     with onto:
+
+        class ExternalMagneticField(onto.ElectromagneticQuantity):
+            """The external field H′, acting on a sample that is produced by
+            electric currents or the stray field of magnets outside the sample
+            volume, is often called the applied field."""
+
+            prefLabel = en("ExternalMagneticField")
+            altLabel = [
+                en("AppliedMagneticField"),
+                pl("H'"),
+            ]
+            is_a = [onto.hasMeasurementUnit.some(onto.MagneticFieldStrengthUnit)]
+
+        class DemagnetizingField(onto.ElectromagneticQuantity):
+            """The magnetic field produced by the magnetization distribution
+            of the sample itself."""
+
+            prefLabel = en("DemagnetizingField")
+            altLabel = [
+                enGB("DemagnetisingField"),
+                pl("Hd"),
+            ]
+            wikidataReference = pl("https://www.wikidata.org/wiki/Q5255001")
+            wikipediaReference = pl("https://en.wikipedia.org/wiki/Demagnetizing_field")
+            is_a = [onto.hasMeasurementUnit.some(onto.MagneticFieldStrengthUnit)]
+
+        class InternalMagneticField(onto.ElectromagneticQuantity):
+            """The internal field in the sample in the continuous medium
+            approximation is the sum of the external field H′ and the
+            demagnetizing field Hd."""
+
+            prefLabel = en("InternalMagneticField")
+            altLabel = pl("H")
+            is_a = [onto.hasMeasurementUnit.some(onto.MagneticFieldStrengthUnit)]
 
         class CoercivityHc(onto.Coercivity):
             """The internal magnetic field -Hc at which the macroscopic
@@ -178,36 +213,6 @@ def add_hysteresis_properties_entities(onto):
             is_a = [onto.hasMeasurementUnit.some(onto.EnergyDensityUnit)]
             wikipediaReference = pl("https://en.wikipedia.org/wiki/Maximum_energy_product")
 
-        class SaturationMagneticPolarization(onto.ElectromagneticQuantity):
-            """The Saturation magnetic polarization Jsat is the maximum
-            obtainable magnetic polarization for a given substance
-            at a given temperature. Jsat should be used instead of Js to avoid
-            confusion with the symbol for the spontaneous polarization"""
-
-            prefLabel = en("SaturationMagneticPolarization")
-            altLabel = [
-                enGB("SaturationMagneticPolarisation"),
-                en("Jsat"),
-            ]
-            is_a = [onto.hasMeasurementUnit.some(onto.MagneticFluxDensityUnit)]
-            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-01-05")
-
-        class SaturationMagnetization(onto.ElectromagneticQuantity):
-            """The Saturation magnetization Msat is the maximum
-            obtainable magnetic magnetization for a given substance
-            at a given temperature. Msat should be used instead Ms to avoid
-            confusion with the symbol for the SpontaneousMagnetization"""
-
-            prefLabel = en("SaturationMagnetization")
-            altLabel = [
-                enGB("SaturationMagnetisation"),
-                en("Msat"),
-            ]
-            is_a = [onto.hasMeasurementUnit.some(onto.MagneticFieldStrengthUnit)]
-            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=221-01-04")
-            wikipediaReference = pl("https://en.wikipedia.org/wiki/Saturation_(magnetic)")
-            wikidataReference = pl("https://www.wikidata.org/wiki/Q2630994")
-
         class LoopSquarenessFactorInternal(onto.ElectromagneticQuantity, onto.RatioQuantity):
             """The internal loop squareness factor SF is defined as the ratio of
             the internal KneeField Hk over the internal Coercivity Hc
@@ -290,4 +295,20 @@ def add_hysteresis_properties_entities(onto):
                 onto.hasProperty.min(0, onto.DemagnetizingFactor),
                 onto.hasProperty.min(0, onto.AbsolutePermeability),
                 onto.hasProperty.min(0, onto.RelativePermeability),
+            ]
+
+        class Magnetoresistance(onto.RatioQuantity):
+            """Change of the resistivity of a substance due to an applied
+            magnetic field.
+
+            Magnetoresistance can be defined as MR = [ϱ(B)-ϱ(0)]/ϱ(0).
+            """
+
+            prefLabel = en("Magnetoresistance")
+            altLabel = pl("MR")
+            wikidataReference = pl("https://www.wikidata.org/wiki/Q58347")
+            wikipediaReference = pl("https://en.wikipedia.org/wiki/Magnetoresistance")
+            IECEntry = pl("https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=121-12-83")
+            is_a = [
+                onto.hasMeasurementUnit.some(onto.DimensionlessUnit),
             ]
