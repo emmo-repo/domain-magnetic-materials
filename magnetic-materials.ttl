@@ -687,6 +687,16 @@ the internal field: sigma = chi_m H."""@en ;
     emmo:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 """Piece of matter made of stacked layers of one or more magnetic
 materials."""@en .
 
+:EMMO_5f3dad22-a865-5e95-a179-2c3f06a4eb56 a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass emmo:EMMO_4312cae4_03ba_457e_b35d_0671a7db350c ;
+            owl:onProperty emmo:EMMO_e1097637_70d2_4895_973f_2396f04fa204 ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        :EMMO_ef314f95-f3b5-5cb7-ac56-7bfc54f0d955 ;
+    skos:prefLabel "LocalLatticeConstantB"@en ;
+    emmo:EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9 """The length of lattice vectors `b`, where lattice vectors
+`a`, `b` and `c` defines the unit cell, measured locally."""@en .
+
 :EMMO_6183019b-73eb-51bc-87ca-06a7a1ad9cb1 a owl:Class ;
     rdfs:comment "The magnetization is obtained by multiplying sigma with the density"@en ;
     rdfs:subClassOf [ a owl:Restriction ;

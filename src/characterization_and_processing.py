@@ -198,6 +198,15 @@ def add_characterization_and_processing_entities(onto):
                 onto.hasProperty.exactly(1, onto.PositionVector),
             ]
 
+        class LocalLatticeConstantB(onto.LatticeConstantA):
+            """The length of lattice vectors `b`, where lattice vectors
+            `a`, `b` and `c` defines the unit cell, measured locally."""
+
+            prefLabel = en("LocalLatticeConstantB")
+            is_a = [
+                onto.hasProperty.exactly(1, onto.PositionVector),
+            ]
+
         class LocalLatticeConstantC(onto.LatticeConstantC):
             """The length of lattice vectors `c`, where lattice vectors
             `a`, `b` and `c` defines the unit cell, measured locally."""
