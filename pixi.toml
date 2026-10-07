@@ -51,6 +51,8 @@ description = "Initialize new development branch with given version string. This
 python = ">3.11"
 openjdk = ">=25.0.2,<26"
 ipython = ">=9.10.0,<10"
+pre-commit = "*"
+ruff = "*"
 sphinx = ">=9.1.0,<10"
 pytest = ">=9"
 gh = ">=2.97.0,<3"
@@ -76,6 +78,7 @@ docs-generate-squashed = 'ontoconvert -sawe --namespace="emmo:$EMMO_IRI" --names
 docs-generate-ontokit = 'ontokit docs --iri-regex="$ONTOLOGY_IRI" --docs-dir=docs . && touch public/.nojekyll'
 docs-copy-ontologies-to-public = 'cp $BUILD_DIR/*.ttl public/'
 docs-all = { depends-on = ["docs-cleanup", "docs-generate-graphs", "docs-generate-dependencies", "docs-generate-squashed", "docs-generate-ontokit", "docs-copy-ontologies-to-public"] }
+lint = { cmd = "pre-commit run --all-files", description = "Run all pre-commit hooks on the repository. Format and lint the Python files." }
 
 [environments]
 docs = ["docs"]

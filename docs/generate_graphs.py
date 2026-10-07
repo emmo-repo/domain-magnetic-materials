@@ -9,8 +9,9 @@ from ontopy import World
 from ontopy.graph import OntoGraph, _default_style
 
 if TYPE_CHECKING:
-    import ontopy.ontology
     import os
+
+    import ontopy.ontology
 
 
 def main():
@@ -38,7 +39,7 @@ def generate_graph(
     leaves: list[str] = [],
     relations: list[str] = ["isA"],
     parents: int = 1,
-    fmt: str = "svg"
+    fmt: str = "svg",
 ) -> None:
     """Generate entity graph.
 
@@ -97,11 +98,7 @@ def generate_graph_magnet(
     )
 
 
-def generate_graph_bulk_magnet(
-    onto: ontopy.ontology.Ontology,
-    out_dir: os.PathLike = ".",
-    fmt: str = "svg"
-) -> None:
+def generate_graph_bulk_magnet(onto: ontopy.ontology.Ontology, out_dir: os.PathLike = ".", fmt: str = "svg") -> None:
     """Generate entity graph of `BulkMagnet`."""
     generate_graph(
         onto,
