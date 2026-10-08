@@ -161,6 +161,10 @@ jobs:
     - name: Copy ontologies to public
       run: cp "${BUILD_DIR}"/*.ttl public/
 
+    # Copy README and ontokit configuration to public
+    - name: Copy README and ontokit configuration to public
+      run: cp README.md .ontokit_conf.yml public/
+
     # Copy widoco documentation to public, what to do with it is not yet decided.
     - name: Copy widoco documentation to public
       run: cp -r "${BUILD_DIR}/widoco" public
