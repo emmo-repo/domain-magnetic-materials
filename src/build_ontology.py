@@ -71,7 +71,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
     add_magnetic_properties_entities(onto)
     add_characterization_and_processing_entities(onto)
     add_materials_and_objects_entities(onto)
-    onto.sync_attributes(name_policy="uuid", class_docstring="elucidation", name_prefix="EMMO_")
+    onto.sync_attributes(name_policy="uuid", class_docstring="elucidation", name_prefix="MagMO_")
 
     # Add metadata
     if annotate_metadata:
