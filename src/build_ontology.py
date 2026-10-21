@@ -32,6 +32,7 @@ from characterization_and_processing import add_characterization_and_processing_
 from crystal_structure import add_crystal_structure_entities
 from energy import add_energy_entities
 from intrinsic_magnetic_properties import add_intrinsic_magnetic_properties_entities
+from magnetocaloric import add_magnetocaloric_entities 
 from magnetic_properties import add_magnetic_properties_entities
 from materials_and_objects import add_materials_and_objects_entities, add_sample_geometry_entities
 from util import en
@@ -68,6 +69,7 @@ def define_ontology(annotate_metadata: bool = True) -> ontopy.ontology.Ontology:
     add_energy_entities(onto)
     add_sample_geometry_entities(onto)
     add_intrinsic_magnetic_properties_entities(onto)
+    add_magnetocaloric_entities(onto)
     add_magnetic_properties_entities(onto)
     add_characterization_and_processing_entities(onto)
     add_materials_and_objects_entities(onto)
